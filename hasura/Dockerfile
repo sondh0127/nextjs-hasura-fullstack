@@ -16,6 +16,9 @@ ENV HASURA_GRAPHQL_DEV_MODE=true
 # https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier
 ENV HASURA_GRAPHQL_PG_CONNECTIONS=15
 
+# https://github.com/hasura/graphql-engine/issues/4651#issuecomment-623414531
+ENV HASURA_GRAPHQL_CLI_ENVIRONMENT=default
+
 # https://github.com/hasura/graphql-engine/issues/5172#issuecomment-653774367
 ENV HASURA_GRAPHQL_MIGRATIONS_DATABASE_ENV_VAR=DATABASE_URL
 
