@@ -1,0 +1,29 @@
+schema:
+  - "http://localhost:8080/v1/graphql":
+      headers:
+        x-hasura-admin-secret: ${X_HASURA_ADMIN_SECRET}
+documents:
+  - "./components/**/*.tsx"
+config:
+  scalars:
+    DateTime: Date
+    JSON: "{ [key: string]: any }"
+    timestamptz: string
+    uuid: string
+overwrite: true
+generates:
+  ./generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-urql"
+    config:
+      withHooks: true
+      withComponent: false
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+        - eslint --fix
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
