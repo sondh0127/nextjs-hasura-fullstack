@@ -17,7 +17,7 @@ NEXT_PUBLIC_API_URL: ''
 
 NEXT_PUBLIC_WS_URL: ''
 
-DATABASE_URL: ''
+DATABASE_URL: ''?sslmode=require
 
 AUTH_PRIVATE_KEY: ''
 
