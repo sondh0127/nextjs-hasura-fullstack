@@ -1,5 +1,11 @@
 FROM hasura/graphql-engine:v1.3.0.cli-migrations-v2
 
+# Copy migrations directory
+COPY ./migrations /hasura-migrations
+
+# Copy metadata directory
+COPY ./metadata /hasura-metadata
+
 # Enable the console
 ENV HASURA_GRAPHQL_ENABLE_CONSOLE=true
 
@@ -10,11 +16,8 @@ ENV HASURA_GRAPHQL_DEV_MODE=true
 # https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier
 ENV HASURA_GRAPHQL_PG_CONNECTIONS=15
 
-# Copy migrations directory
-COPY ./migrations /hasura-migrations
-
-# Copy metadata directory
-COPY ./metadata /hasura-metadata
+# https://github.com/hasura/graphql-engine/issues/5172#issuecomment-653774367
+ENV HASURA_GRAPHQL_MIGRATIONS_DATABASE_ENV_VAR=DATABASE_URL
 
 # Change $DATABASE_URL to your heroku postgres URL if you're not using
 # the primary postgres instance in your app
