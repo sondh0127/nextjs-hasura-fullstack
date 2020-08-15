@@ -6,6 +6,6 @@ declare module 'bumbag' {
   bumbagVendor;
   declare function useColorMode(): {
     colorMode: 'default' | 'dark';
-    toggleColorMode: () => void;
+    setColorMode: (colorMode: 'default' | 'dark') => void;
   };
 }
