@@ -18,3 +18,19 @@ HASURA_GRAPHQL_ADMIN_SECRET: ''
 
 HASURA_GRAPHQL_JWT_SECRET: ''
 ```
+
+## Migration from development to heroku production.
+### Prerequisites:
+- [Hasura CLI](https://hasura.io/docs/1.0/graphql/manual/hasura-cli/install-hasura-cli.html)
+
+Open console:
+```
+hasura console
+```
+Run migration:
+```
+hasura migrate apply --endpoint https://nextjs-hasura-fullstack-trello.herokuapp.com --admin-secret <secret>
+
+hasura metadata apply --endpoint https://nextjs-hasura-fullstack-trello.herokuapp.com --admin-secret <secret>
+
+```
