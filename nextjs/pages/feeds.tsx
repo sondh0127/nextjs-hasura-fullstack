@@ -1,7 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
-import { parseCookies } from 'nookies';
 import React from 'react';
 
 import AccessDeniedIndicator from '../components/access-denied-indicator';

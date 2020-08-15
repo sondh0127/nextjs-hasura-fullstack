@@ -1,6 +1,5 @@
 import {
   Button,
-  Container,
   Icon,
   Image,
   Link,
@@ -77,11 +76,6 @@ const MainLayout: FC<MainLayoutProps> = ({ children, footer }) => {
             <NextLink href="/">
               <TopNav.Item href="/" variant="pill">
                 Home
-              </TopNav.Item>
-            </NextLink>
-            <NextLink href="/board">
-              <TopNav.Item href="/board" variant="pill">
-                Board
               </TopNav.Item>
             </NextLink>
             <NextLink href="/feeds">

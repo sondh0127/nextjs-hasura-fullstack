@@ -43,7 +43,9 @@ const options = {
       const encodedToken = jwt.sign(
         tokenContents,
         process.env.AUTH_PRIVATE_KEY?.replace(/\\n/gm, '\n') || secret,
-        { algorithm: 'RS512' }
+        {
+          algorithm: 'RS512',
+        }
       );
 
       return encodedToken;
@@ -52,7 +54,9 @@ const options = {
       const decodedToken = jwt.verify(
         token,
         process.env.AUTH_PRIVATE_KEY?.replace(/\\n/gm, '\n') || secret,
-        { algorithms: ['RS512'] }
+        {
+          algorithms: ['RS512'],
+        }
       );
 
       return decodedToken;

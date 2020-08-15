@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import React from 'react';
 
 import { useFeedsSubscription } from '../../../generated/graphql';
-import IFeed from '../../../types/feed';
 import AddNewFeedForm from './add-new-feed-form';
 import Feed from './feed';
 
@@ -13,7 +12,7 @@ gql`
       id
       created_at
       body
-      author {
+      user {
         id
         name
         image
@@ -34,7 +33,7 @@ const FeedsPageComponent = () => {
       <Box>
         <AddNewFeedForm />
       </Box>
-      {result.data.feeds.map((feed: IFeed) => {
+      {result.data.feeds.map((feed) => {
         return (
           <Box key={feed.id}>
             <Feed feed={feed} />

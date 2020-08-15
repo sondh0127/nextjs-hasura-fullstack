@@ -1,0 +1,5 @@
+mutation insertFeed($body: String) {
+  insert_feeds_one(object: { body: $body }) {
+    id
+  }
+}

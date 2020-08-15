@@ -1,26 +1,26 @@
 version: "3.6"
 services:
-  postgres:
+  db:
     container_name: nextjs-hasura-fullstack-db
-    image: postgres:12
-    restart: always
+    image: postgres:11.3-alpine
+    ports:
+      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgrespassword
+    restart: unless-stopped
   pgadmin:
     container_name: nextjs-hasura-fullstack-db-admin
     image: dpage/pgadmin4
     restart: always
     depends_on:
-      - postgres
+      - db
     ports:
       - 5050:80
     ## you can change pgAdmin default username/password with below environment variables
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
-  graphql-engine:
+  backend:
     container_name: nextjs-hasura-fullstack-backend
     image: nextjs-hasura-fullstack-backend
     build:
@@ -28,10 +28,10 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - "postgres"
-    restart: always
+      - db
+    restart: on-failure
     environment:
-      DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      DATABASE_URL: postgres://postgres:@db:5432/postgres
       PORT: 8080
       HASURA_GRAPHQL_ADMIN_SECRET: B2123ilu
       HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwZ2ywdld38Mq+k/MpQG7\nFRuV80V612NoTqouBt+4zDOjz25i0SmB8ZKGp4ygDk9pRk1rFuYxN96bDxuhZHmM\ndGPPVyUvK5/RqdcbUZHtu15ajVtY1/YQWq6wJUa+Kbe8EiDFyVQz6EH55Jmna/Xo\np7PzkL6ZxeCaDhYyO94FMJdUHGWAEmXXRLR9hCb67qSJDHdJutfzSiv5qx2Qh0zx\n1KJM6Bxqoa7JYSeNCeu/wjlepnyPuVSj7jPIkyF775yKHdXmHg6SxQ4NH+riqKut\n999bOAoeRRmL9ftKCGZbO7cSg7ktK3ZC/NF1Rg83v7mmrt8HAIb4toWsgpQoOWGs\noQIDAQAB\n-----END PUBLIC KEY-----"}'

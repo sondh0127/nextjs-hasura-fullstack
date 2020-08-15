@@ -20,7 +20,7 @@ import {
 import Loader from '../../Footer';
 
 gql`
-  query fetchUser($userId: uuid!) {
+  query fetchUser($userId: Int!) {
     users_by_pk(id: $userId) {
       id
       name
@@ -29,7 +29,7 @@ gql`
 `;
 
 gql`
-  mutation updateUser($userId: uuid!, $name: String) {
+  mutation updateUser($userId: Int!, $name: String) {
     update_users(where: { id: { _eq: $userId } }, _set: { name: $name }) {
       returning {
         id
@@ -54,9 +54,7 @@ const MyAccountPageComponent = () => {
 
   useEffect(() => {
     if (fetchUserData) {
-      const { name } = fetchUserData.users_by_pk;
-
-      setName(name || '');
+      setName(fetchUserData.users_by_pk?.name || '');
     }
   }, [fetchUserData]);
 
