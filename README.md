@@ -10,3 +10,11 @@ To deploy the backend application on Heroku press the button below. You must [re
 
 [![Deploy to
 Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sondh0127/nextjs-hasura-fullstack)
+
+### Hasura config:
+
+```
+HASURA_GRAPHQL_ADMIN_SECRET: ''
+
+HASURA_GRAPHQL_JWT_SECRET: ''
+```
