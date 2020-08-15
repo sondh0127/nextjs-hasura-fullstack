@@ -16,10 +16,10 @@ COPY ./migrations /hasura-migrations
 # Copy metadata directory
 COPY ./metadata /hasura-metadata
 
-# Change $HASURA_GRAPHQL_DATABASE_URL to your heroku postgres URL if you're not using
+# Change $DATABASE_URL to your heroku postgres URL if you're not using
 # the primary postgres instance in your app
 CMD graphql-engine \
-  --database-url $HASURA_GRAPHQL_DATABASE_URL \
+  --database-url $DATABASE_URL \
   serve \
   --server-port $PORT
 
@@ -27,7 +27,7 @@ CMD graphql-engine \
 ## enable an access-key and an auth-hook
 ## Recommended that you set the access-key as a environment variable in heroku
 #CMD graphql-engine \
-#    --database-url $HASURA_GRAPHQL_DATABASE_URL \
+#    --database-url $DATABASE_URL \
 #    serve \
 #    --server-port $PORT \
 #    --access-key XXXXX \
