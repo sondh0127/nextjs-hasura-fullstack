@@ -3,6 +3,34 @@ A boilerplate that uses Hasura and Next.js to develop applications.
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+## Deployment
+
+### Frontend application
+Click on the button below to deploy the frontend application on Vercel. You'll need to [sign up for a free Vercel account](https://vercel.com/signup/).
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Fsondh0127%2Fnextjs-hasura-fullstack%2Ftree%2Fmaster%2Fnextjs&env=NEXT_PUBLIC_API_URL,NEXT_PUBLIC_WS_URL,DATABASE_URL,AUTH_PRIVATE_KEY,EMAIL_SERVER,EMAIL_FROM,NEXTAUTH_URL,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET&project-name=nextjs-hasura-fullstack&repo-name=nextjs-hasura-fullstack)
+
+### Nextjs config:
+
+```
+NEXT_PUBLIC_API_URL: ''
+
+NEXT_PUBLIC_WS_URL: ''
+
+DATABASE_URL: ''?sslmode=require
+
+AUTH_PRIVATE_KEY: ''
+
+EMAIL_SERVER: ''
+
+EMAIL_FROM: ''
+
+NEXTAUTH_URL: ''
+
+GOOGLE_CLIENT_ID: ''
+
+GOOGLE_CLIENT_SECRET: ''
+```
 
 ### Backend application
 

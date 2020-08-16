@@ -9,7 +9,6 @@ config:
     DateTime: Date
     JSON: "{ [key: string]: any }"
     timestamptz: string
-    uuid: string
 overwrite: true
 generates:
   ./generated/graphql.tsx:

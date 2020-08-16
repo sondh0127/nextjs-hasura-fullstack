@@ -1,11 +1,14 @@
-import { Box, Button, Flex, Heading, Stack, Text, useColorMode } from 'bumbag';
 import {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  NextPage,
-} from 'next';
-import { signIn, signOut, useSession } from 'next-auth/client';
-import { getSession } from 'next-auth/client';
+  Button,
+  Flex,
+  Heading,
+  Paragraph,
+  Stack,
+  Text,
+  useColorMode,
+} from 'bumbag';
+import { GetServerSideProps, NextPage } from 'next';
+import { getSession, signIn, signOut } from 'next-auth/client';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -67,14 +70,16 @@ const IndexPage: NextPage<IndexPageProps> = ({ session }) => {
             justifyContent="center"
             alignItems="center">
             <Stack spacing="major-2" marginX="auto" alignX="center">
-              <Heading textAlign="center">Nextjs Hasura Boilerplate</Heading>
-              <Text fontSize="xl" lineHeight="tall" textAlign="center">
-                Boilerplate for building applications using Hasura and Next.js.
-                This demo application has been built using Bumbag, NextAuth.js
-                and urql.
+              <Heading textAlign="center">Nextjs Hasura Fullstack</Heading>
+              <Text fontSize="300" lineHeight="tall" textAlign="center">
+                A boilerplate that uses Hasura and Next.js to develop
+                applications
               </Text>
-              <Flex alignX="center">{authButtonNode()}</Flex>
+              <Paragraph fontSize="300">
+                This demo has been built using BumbagUI, NextAuth.js and urql.
+              </Paragraph>
               <Book />
+              <Flex alignX="center">{authButtonNode()}</Flex>
             </Stack>
           </Flex>
         </Stack>

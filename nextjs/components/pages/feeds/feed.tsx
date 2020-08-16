@@ -11,13 +11,13 @@ import {
 import React, { FC } from 'react';
 
 import timeFromNow from '../../../lib/time-from-now';
-import IFeed from '../../../types/feed';
+import { IFeed } from '../../../types/model';
 
-interface IProps {
+interface FeedProps {
   feed: IFeed;
 }
 
-const Feed: FC<IProps> = ({ feed }) => {
+const Feed: FC<FeedProps> = ({ feed }) => {
   const { colorMode } = useColorMode();
   const bgColor = { default: 'white', dark: 'gray800' };
   const color = { default: 'gray800', dark: 'gray100' };
@@ -27,11 +27,11 @@ const Feed: FC<IProps> = ({ feed }) => {
     return (
       <Flex alignY="center">
         <Box marginRight="minor-2">
-          <Avatar alt={feed.author.name} src={feed.author.image} />
+          <Avatar alt={feed.user.name} src={feed.user.image} />
         </Box>
         <Box>
           <Box>
-            <Text fontWeight="bold">{feed.author.name}</Text>
+            <Text fontWeight="bold">{feed.user.name}</Text>
           </Box>
           <Box>
             <Text>{timeFromNow(feed.created_at)}</Text>
