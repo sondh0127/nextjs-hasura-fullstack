@@ -1,6 +1,13 @@
 import { Flex, Icon, Input, SideNav } from 'bumbag';
 import gql from 'graphql-tag';
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { useClickAway } from 'react-use';
 
 import {
   useBoardsQuery,
@@ -40,6 +47,12 @@ const BoardSideBar: React.FC = () => {
   const [editing, setEditing] = useState(false);
   const [boardName, setBoardName] = useState('');
 
+  const ref = useRef();
+
+  useClickAway(ref, () => {
+    setEditing(false);
+  });
+
   const handleInsert = useCallback(async () => {
     console.log(`🇻🇳 [LOG]: BoardSideBar:React.FC -> boardName`, boardName);
     try {
@@ -75,8 +88,11 @@ const BoardSideBar: React.FC = () => {
             <Flex>
               {editing ? (
                 <Input
+                  inputRef={ref}
                   size="small"
-                  placeholder="Enter board name"
+                  // eslint-disable-next-line jsx-a11y/no-autofocus
+                  autoFocus
+                  placeholder="New board"
                   value={boardName}
                   isLoading={insertFetching}
                   onChange={(e) => setBoardName(e.currentTarget.value)}
