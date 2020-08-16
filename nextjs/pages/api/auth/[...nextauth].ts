@@ -26,18 +26,18 @@ const options = {
   jwt: {
     encode: async ({ token, secret }: { token: iToken; secret: string }) => {
       const tokenContents = {
-        id: token.id,
+        id: `${token.id}`,
         name: token.name,
         email: token.email,
         picture: token.picture,
         'https://hasura.io/jwt/claims': {
           'x-hasura-allowed-roles': ['admin', 'user'],
           'x-hasura-default-role': 'user',
-          'x-hasura-user-id': token.id,
+          'x-hasura-user-id': `${token.id}`,
         },
         iat: Date.now() / 1000,
         exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
-        sub: token.id,
+        sub: `${token.id}`,
       };
 
       const encodedToken = jwt.sign(

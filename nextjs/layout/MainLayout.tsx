@@ -1,106 +1,23 @@
-import {
-  Button,
-  Icon,
-  Image,
-  Link,
-  PageContent,
-  PageWithHeader,
-  TopNav,
-  useColorMode,
-} from 'bumbag';
-import { signIn, signOut, useSession } from 'next-auth/client';
-import NextLink from 'next/link';
+import { PageContent, PageWithHeader, useColorMode } from 'bumbag';
 import React, { FC } from 'react';
 
-import Footer from '../components/Footer';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 interface MainLayoutProps {
   footer?: () => React.ReactNode;
 }
 
 const MainLayout: FC<MainLayoutProps> = ({ children, footer }) => {
-  const [session] = useSession();
-
-  const { colorMode, setColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const bgColor = { default: 'white600', dark: 'black200' };
 
-  const toggleColorMode = () => {
-    setColorMode(colorMode === 'dark' ? 'default' : 'dark');
-  };
-
-  const authButtonNode = () => {
-    if (session) {
-      return (
-        <Link href="/api/auth/signout">
-          <Button
-            palette="primary"
-            onClick={(e) => {
-              // e.preventDefault();
-              // signOut();
-            }}>
-            Logout
-          </Button>
-        </Link>
-      );
-    }
-
-    return (
-      <Link href="/api/auth/signin">
-        <Button
-          palette="primary"
-          onClick={(e) => {
-            // e.preventDefault();
-            // signIn();
-          }}>
-          Login
-        </Button>
-      </Link>
-    );
-  };
   const heightOfNavbar = '60px';
 
   return (
     <PageWithHeader
       sticky
-      header={
-        <TopNav>
-          <TopNav.Section>
-            <TopNav.Item
-              href="https://github.com/sondh0127"
-              fontWeight="semibold">
-              <Image
-                src="https://cdn.worldvectorlogo.com/logos/react.svg"
-                height="44px"
-              />
-            </TopNav.Item>
-            <NextLink href="/">
-              <TopNav.Item href="/" variant="pill">
-                Home
-              </TopNav.Item>
-            </NextLink>
-            <NextLink href="/feeds">
-              <TopNav.Item href="/feeds" variant="pill">
-                Feeds
-              </TopNav.Item>
-            </NextLink>
-            <NextLink href="/my-account">
-              <TopNav.Item href="/my-account" variant="pill">
-                Account
-              </TopNav.Item>
-            </NextLink>
-          </TopNav.Section>
-          <TopNav.Section marginRight="major-2">
-            <TopNav.Item>
-              <Button palette="default" onClick={() => toggleColorMode()}>
-                <Icon
-                  icon={colorMode === 'dark' ? 'solid-sun' : 'solid-moon'}
-                />
-              </Button>
-            </TopNav.Item>
-            <TopNav.Item>{authButtonNode()}</TopNav.Item>
-          </TopNav.Section>
-        </TopNav>
-      }
+      header={<Header />}
       overrides={{
         PageWithHeader: { styles: { base: { minHeight: 'unset' } } },
       }}>

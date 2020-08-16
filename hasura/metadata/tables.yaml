@@ -30,6 +30,31 @@
         table:
           schema: public
           name: lists
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - name
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - user_id
+      - created_at
+      - updated_at
+      filter:
+        _or:
+        - user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
 - table:
     schema: public
     name: boards_users
@@ -50,6 +75,35 @@
   - name: list
     using:
       foreign_key_constraint_on: list_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - description
+      - position
+      - title
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - description
+      - list_id
+      - board_id
+      - position
+      - title
+      - created_at
+      - updated_at
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
 - table:
     schema: public
     name: feeds
@@ -72,6 +126,54 @@
         table:
           schema: public
           name: cards
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
+      columns:
+      - board_id
+      - name
+      - position
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - board_id
+      - created_at
+      - id
+      - name
+      - position
+      - updated_at
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - name
+      - position
+      filter:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: sessions

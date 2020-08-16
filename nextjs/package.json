@@ -51,6 +51,7 @@
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "react-scrollbars-custom": "^4.0.25",
+    "react-use": "^15.3.3",
     "subscriptions-transport-ws": "^0.9.17",
     "urql": "^1.10.0",
     "ws": "^7.3.1",

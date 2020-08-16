@@ -63,7 +63,6 @@ const IndexPage: NextPage<IndexPageProps> = ({ session }) => {
         <Head>
           <title>Index Page</title>
         </Head>
-
         <Stack>
           <Flex
             minHeight={`calc(100vh - ${HEIGHT_OF_NAVBAR}  - ${HEIGHT_OF_FOOTER} - ${CONTAINER_PADDING}*2)`}

@@ -22,7 +22,6 @@ generates:
     hooks:
       afterOneFileWrite:
         - prettier --write
-        - eslint --fix
   ./graphql.schema.json:
     plugins:
       - "introspection"

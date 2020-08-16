@@ -17,7 +17,7 @@ import {
   useFetchUserQuery,
   useUpdateUserMutation,
 } from '../../../generated/graphql';
-import Loader from '../../Footer';
+import Loader from '../../../layout/components/Footer';
 
 gql`
   query fetchUser($userId: Int!) {

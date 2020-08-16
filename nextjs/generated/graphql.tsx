@@ -1261,6 +1261,8 @@ export type Cards_Bool_Exp = {
 export enum Cards_Constraint {
   /** unique or primary key constraint */
   CardsPkey = 'cards_pkey',
+  /** unique or primary key constraint */
+  CardsPositionKey = 'cards_position_key',
 }
 
 /** input type for incrementing integer column in table "cards" */
@@ -1977,6 +1979,8 @@ export type Lists_Bool_Exp = {
 
 /** unique or primary key constraints on table "lists" */
 export enum Lists_Constraint {
+  /** unique or primary key constraint */
+  ListsBoardIdPositionKey = 'lists_board_id_position_key',
   /** unique or primary key constraint */
   ListsPkey = 'lists_pkey',
 }
@@ -4239,6 +4243,77 @@ export type Verification_Requests_Variance_Order_By = {
   id?: Maybe<Order_By>;
 };
 
+export type InsertBoardMutationVariables = Exact<{
+  name?: Maybe<Scalars['String']>;
+}>;
+
+export type InsertBoardMutation = { __typename?: 'mutation_root' } & {
+  insert_boards_one?: Maybe<
+    { __typename?: 'boards' } & Pick<Boards, 'name' | 'id'>
+  >;
+};
+
+export type BoardsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type BoardsQuery = { __typename?: 'query_root' } & {
+  boards: Array<{ __typename?: 'boards' } & Pick<Boards, 'id' | 'name'>>;
+};
+
+export type ListsQueryVariables = Exact<{
+  board_id: Scalars['Int'];
+}>;
+
+export type ListsQuery = { __typename?: 'query_root' } & {
+  lists: Array<
+    { __typename?: 'lists' } & Pick<Lists, 'id' | 'position' | 'name'> & {
+        cards: Array<
+          { __typename?: 'cards' } & Pick<
+            Cards,
+            'id' | 'title' | 'description' | 'position'
+          >
+        >;
+      }
+  >;
+};
+
+export type UpdateListMutationVariables = Exact<{
+  id: Scalars['Int'];
+  position: Scalars['Int'];
+  name: Scalars['String'];
+}>;
+
+export type UpdateListMutation = { __typename?: 'mutation_root' } & {
+  update_lists_by_pk?: Maybe<
+    { __typename?: 'lists' } & Pick<Lists, 'id' | 'position' | 'name'> & {
+        cards: Array<
+          { __typename?: 'cards' } & Pick<
+            Cards,
+            'id' | 'title' | 'description' | 'position'
+          >
+        >;
+      }
+  >;
+};
+
+export type InsertListMutationVariables = Exact<{
+  name: Scalars['String'];
+  position: Scalars['Int'];
+  board_id: Scalars['Int'];
+}>;
+
+export type InsertListMutation = { __typename?: 'mutation_root' } & {
+  insert_lists_one?: Maybe<
+    { __typename?: 'lists' } & Pick<Lists, 'id' | 'position' | 'name'> & {
+        cards: Array<
+          { __typename?: 'cards' } & Pick<
+            Cards,
+            'id' | 'title' | 'description' | 'position'
+          >
+        >;
+      }
+  >;
+};
+
 export type InsertFeedMutationVariables = Exact<{
   body?: Maybe<Scalars['String']>;
 }>;
@@ -4278,6 +4353,105 @@ export type UpdateUserMutation = { __typename?: 'mutation_root' } & {
   >;
 };
 
+export const InsertBoardDocument = gql`
+  mutation insertBoard($name: String) {
+    insert_boards_one(object: { name: $name }) {
+      name
+      id
+    }
+  }
+`;
+
+export function useInsertBoardMutation() {
+  return Urql.useMutation<InsertBoardMutation, InsertBoardMutationVariables>(
+    InsertBoardDocument
+  );
+}
+export const BoardsDocument = gql`
+  query Boards {
+    boards {
+      id
+      name
+    }
+  }
+`;
+
+export function useBoardsQuery(
+  options: Omit<Urql.UseQueryArgs<BoardsQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<BoardsQuery>({ query: BoardsDocument, ...options });
+}
+export const ListsDocument = gql`
+  query Lists($board_id: Int!) {
+    lists(
+      order_by: { position: asc }
+      where: { board_id: { _eq: $board_id } }
+    ) {
+      id
+      position
+      name
+      cards {
+        id
+        title
+        description
+        position
+      }
+    }
+  }
+`;
+
+export function useListsQuery(
+  options: Omit<Urql.UseQueryArgs<ListsQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<ListsQuery>({ query: ListsDocument, ...options });
+}
+export const UpdateListDocument = gql`
+  mutation UpdateList($id: Int!, $position: Int!, $name: String!) {
+    update_lists_by_pk(
+      pk_columns: { id: $id }
+      _set: { name: $name, position: $position }
+    ) {
+      id
+      position
+      name
+      cards {
+        id
+        title
+        description
+        position
+      }
+    }
+  }
+`;
+
+export function useUpdateListMutation() {
+  return Urql.useMutation<UpdateListMutation, UpdateListMutationVariables>(
+    UpdateListDocument
+  );
+}
+export const InsertListDocument = gql`
+  mutation insertList($name: String!, $position: Int!, $board_id: Int!) {
+    insert_lists_one(
+      object: { name: $name, position: $position, board_id: $board_id }
+    ) {
+      id
+      position
+      name
+      cards {
+        id
+        title
+        description
+        position
+      }
+    }
+  }
+`;
+
+export function useInsertListMutation() {
+  return Urql.useMutation<InsertListMutation, InsertListMutationVariables>(
+    InsertListDocument
+  );
+}
 export const InsertFeedDocument = gql`
   mutation insertFeed($body: String) {
     insert_feeds_one(object: { body: $body }) {
