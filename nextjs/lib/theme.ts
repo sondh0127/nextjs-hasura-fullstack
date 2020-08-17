@@ -1,4 +1,4 @@
-import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
+import { faAddressBook } from '@fortawesome/free-regular-svg-icons'
 import {
   faEllipsisV,
   faExclamationCircle,
@@ -6,12 +6,13 @@ import {
   faMoon,
   faPlus,
   faSun,
-} from '@fortawesome/free-solid-svg-icons';
-import { css, ThemeConfig } from 'bumbag';
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons'
+import { css, ThemeConfig } from 'bumbag'
 
 const theme: ThemeConfig = {
   global: {
-    fontSize: 18,
+    fontSize: 16,
     styles: {
       base: css``,
     },
@@ -55,6 +56,7 @@ const theme: ThemeConfig = {
           faMapMarkedAlt,
           faEllipsisV,
           faPlus,
+          faTrashAlt,
         ],
         prefix: 'solid-',
         type: 'font-awesome',
@@ -73,6 +75,6 @@ const theme: ThemeConfig = {
   //     },
   //   },
   // },
-};
+}
 
-export default theme;
+export default theme

@@ -1,10 +1,11 @@
 import {
   BoardsQuery,
+  CardFragment,
   FeedsSubscription,
-  ListsQuery,
-} from '../generated/graphql';
-export type IFeed = FeedsSubscription['feeds'][number];
+  ListFragment,
+} from '../generated/graphql'
+export type IFeed = FeedsSubscription['feeds'][number]
 
-export type Board = BoardsQuery['boards'][number];
-export type List = ListsQuery['lists'][number];
-export type Card = ListsQuery['lists'][number]['cards'][number];
+export type Board = BoardsQuery['boards'][number]
+export type List = ListFragment
+export type Card = CardFragment

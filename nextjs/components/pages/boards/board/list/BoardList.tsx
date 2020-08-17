@@ -1,22 +1,22 @@
-import { Columns, Stack, useColorMode } from 'bumbag';
-import gql from 'graphql-tag';
-import React from 'react';
+import { Columns, Stack, useColorMode } from 'bumbag'
+import gql from 'graphql-tag'
+import React from 'react'
 import {
   Draggable,
   DroppableProvided,
   DroppableStateSnapshot,
-} from 'react-beautiful-dnd';
+} from 'react-beautiful-dnd'
 
-import { useUpdateListMutation } from '../../../../generated/graphql';
-import { List } from '../../../../types/model';
-import NewCard from '../card/NewCard';
-import TaskCard from '../card/TaskCard';
-import ListHeader from './ListHeader';
+import { useUpdateListMutation } from '../../../../../generated/graphql'
+import { List } from '../../../../../types/model'
+import NewCard from '../card/NewCard'
+import TaskCard from '../card/TaskCard'
+import ListHeader from './ListHeader'
 
 interface BoardListProps {
-  list: List;
-  provided: DroppableProvided;
-  snapshot: DroppableStateSnapshot;
+  list: List
+  provided: DroppableProvided
+  snapshot: DroppableStateSnapshot
 }
 
 gql`
@@ -25,47 +25,45 @@ gql`
       pk_columns: { id: $id }
       _set: { name: $name, position: $position }
     ) {
-      id
-      position
-      name
-      cards {
-        id
-        title
-        description
-        position
-      }
+      ...List
     }
   }
-`;
+`
 
 const BoardList: React.FC<BoardListProps> = ({ list, provided, snapshot }) => {
-  const { colorMode } = useColorMode();
-  const bgColor = { default: 'white', dark: 'gray800' };
-  const color = { default: 'gray800', dark: 'gray100' };
+  const { colorMode } = useColorMode()
+  const bgColor = { default: 'white600', dark: 'gray800' }
+  const color = { default: 'gray800', dark: 'gray100' }
 
-  const [{ fetching }, updateList] = useUpdateListMutation();
+  const [{ fetching }, updateList] = useUpdateListMutation()
 
   const onSubmit = async (name: string) => {
     // console.log(`🇻🇳 [LOG]: onSubmit -> onSubmit`);
     try {
-      await updateList({ id: list.id, position: list.position, name });
+      await updateList({ id: list.id, position: list.position, name })
     } catch (err) {
       // console.log(`🇻🇳 [LOG]: onSubmit -> err`, err);
     }
-  };
+  }
   const onCancel = () => {
     // console.log(`🇻🇳 [LOG]: onCancel -> onCancel`);
-  };
+  }
 
   return (
-    <Columns.Column>
+    <Columns.Column spread={2}>
       <Stack
         ref={provided.innerRef}
-        backgroundColor={snapshot.isDraggingOver ? 'secondary' : 'default'}
-        paddingX="major-2"
+        backgroundColor={
+          snapshot.isDraggingOver ? 'secondary' : bgColor[colorMode]
+        }
+        padding="major-1"
+        marginRight="major-2"
         spacing="major-2"
-        {...provided.droppableProps}>
+        borderRadius="2"
+        {...provided.droppableProps}
+      >
         <ListHeader
+          id={list.id}
           name={list.name}
           length={list.cards.length}
           onSubmit={onSubmit}
@@ -88,7 +86,7 @@ const BoardList: React.FC<BoardListProps> = ({ list, provided, snapshot }) => {
         </Stack>
       </Stack>
     </Columns.Column>
-  );
-};
+  )
+}
 
-export default BoardList;
+export default BoardList

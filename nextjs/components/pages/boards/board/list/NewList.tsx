@@ -1,23 +1,21 @@
-import { Card, Columns, Flex, Icon, Stack } from 'bumbag';
-import gql from 'graphql-tag';
-import React, { Fragment, useCallback, useState } from 'react';
+import { Card, Columns, Flex, Icon, Stack } from 'bumbag'
+import gql from 'graphql-tag'
+import { useRouter } from 'next/router'
+import React, { Fragment, useCallback, useState } from 'react'
 import {
   Draggable,
   DroppableProvided,
   DroppableStateSnapshot,
-} from 'react-beautiful-dnd';
+} from 'react-beautiful-dnd'
 
-import { useInsertListMutation } from '../../../../generated/graphql';
-import {
-  useLastListPosition,
-  useSelectedBoard,
-} from '../../../../zustands/boards';
-import NewCard from '../card/NewCard';
-import ListHeader from './ListHeader';
+import { useInsertListMutation } from '../../../../../generated/graphql'
+import { useLastListPosition } from '../../../../../zustands/boards'
+import NewCard from '../card/NewCard'
+import ListHeader from './ListHeader'
 
 interface NewListProps {
-  provided: DroppableProvided;
-  snapshot: DroppableStateSnapshot;
+  provided: DroppableProvided
+  snapshot: DroppableStateSnapshot
 }
 
 gql`
@@ -25,56 +23,49 @@ gql`
     insert_lists_one(
       object: { name: $name, position: $position, board_id: $board_id }
     ) {
-      id
-      position
-      name
-      cards {
-        id
-        title
-        description
-        position
-      }
+      ...List
     }
   }
-`;
+`
 
 const NewList: React.FC<NewListProps> = ({ provided, snapshot }) => {
-  const [isCreating, setIsCreating] = useState(false);
+  const router = useRouter()
+  const [isCreating, setIsCreating] = useState(false)
 
-  const { selectedBoardId } = useSelectedBoard();
-  const { lastPosition } = useLastListPosition();
+  const { lastPosition } = useLastListPosition()
 
-  const [{ fetching }, insertList] = useInsertListMutation();
+  const [{ fetching }, insertList] = useInsertListMutation()
 
   const onSubmit = useCallback(
     async (name: string) => {
-      console.log(`🇻🇳 [LOG]: onSubmit -> name`, name);
+      console.log(`🇻🇳 [LOG]: onSubmit -> name`, name)
       try {
         await insertList({
           name,
           position: lastPosition + 1,
-          board_id: selectedBoardId,
-        });
-        setIsCreating(false);
+          board_id: Number(router.query.boardId),
+        })
+        setIsCreating(false)
       } catch (err) {
-        console.log(`🇻🇳 [LOG]: onSubmit -> err`, err);
+        console.log(`🇻🇳 [LOG]: onSubmit -> err`, err)
       }
     },
-    [lastPosition, selectedBoardId]
-  );
+    [lastPosition, router.query.boardId],
+  )
 
   const onCancel = () => {
-    setIsCreating(false);
-  };
+    setIsCreating(false)
+  }
 
   return (
-    <Columns.Column>
+    <Columns.Column spread={2}>
       <Stack
         ref={provided.innerRef}
         backgroundColor={snapshot.isDraggingOver ? 'secondary' : 'default'}
         paddingX="major-2"
         spacing="major-2"
-        {...provided.droppableProps}>
+        {...provided.droppableProps}
+      >
         {isCreating && (
           <Fragment>
             <ListHeader name={''} onSubmit={onSubmit} onCancel={onCancel} />
@@ -88,9 +79,9 @@ const NewList: React.FC<NewListProps> = ({ provided, snapshot }) => {
         {!isCreating && (
           <Card
             padding="major-1"
-            minWidth="350px"
             cursor="pointer"
-            onClick={() => setIsCreating(true)}>
+            onClick={() => setIsCreating(true)}
+          >
             <Flex alignY="center">
               <Icon icon="solid-plus" marginRight="major-1" /> New
             </Flex>
@@ -98,7 +89,7 @@ const NewList: React.FC<NewListProps> = ({ provided, snapshot }) => {
         )}
       </Stack>
     </Columns.Column>
-  );
-};
+  )
+}
 
-export default NewList;
+export default NewList

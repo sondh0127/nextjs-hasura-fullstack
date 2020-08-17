@@ -1,13 +1,13 @@
-import { Card, Flex, Text } from 'bumbag';
-import React from 'react';
-import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
+import { Card, Flex, Text } from 'bumbag'
+import React from 'react'
+import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd'
 
-import { Card as CardType } from '../../../../types/model';
+import { Card as CardType } from '../../../../../types/model'
 
 interface TaskCardProps {
-  card: CardType;
-  provided: DraggableProvided;
-  snapshot: DraggableStateSnapshot;
+  card: CardType
+  provided: DraggableProvided
+  snapshot: DraggableStateSnapshot
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({ card, provided, snapshot }) => {
@@ -18,9 +18,9 @@ const TaskCard: React.FC<TaskCardProps> = ({ card, provided, snapshot }) => {
       {...provided.dragHandleProps}
       backgroundColor={snapshot.isDragging ? 'primary' : 'default'}
       cursor="pointer"
-      minWidth="350px"
       padding="major-2"
-      variant="shadowed">
+      variant="shadowed"
+    >
       {card.title}
       <Flex alignX="right">
         <Text use="em" fontSize="100" color="text100">
@@ -28,7 +28,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ card, provided, snapshot }) => {
         </Text>
       </Flex>
     </Card>
-  );
-};
+  )
+}
 
-export default TaskCard;
+export default TaskCard

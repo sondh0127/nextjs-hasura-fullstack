@@ -1,18 +1,18 @@
-import { Card, Flex, Icon, Input, useColorMode } from 'bumbag';
-import React, { useState } from 'react';
-import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
+import { Card, Flex, Icon, Input, useColorMode } from 'bumbag'
+import React, { useState } from 'react'
+import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd'
 
 interface NewCardProps {
-  text: string;
-  provided: DraggableProvided;
-  snapshot: DraggableStateSnapshot;
+  text: string
+  provided: DraggableProvided
+  snapshot: DraggableStateSnapshot
 }
 const NewCard: React.FC<NewCardProps> = ({ text, provided, snapshot }) => {
-  const { colorMode } = useColorMode();
-  const bgColor = { default: 'white', dark: 'gray600' };
-  const color = { default: 'gray800', dark: 'gray100' };
-  const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState('');
+  const { colorMode } = useColorMode()
+  const bgColor = { default: 'white', dark: 'gray600' }
+  const color = { default: 'gray800', dark: 'gray100' }
+  const [editing, setEditing] = useState(false)
+  const [value, setValue] = useState('')
 
   return (
     <Card
@@ -21,9 +21,9 @@ const NewCard: React.FC<NewCardProps> = ({ text, provided, snapshot }) => {
       {...provided.dragHandleProps}
       backgroundColor={snapshot.isDragging ? 'primary' : 'background'}
       padding="major-1"
-      minWidth="350px"
       cursor="pointer"
-      _hover={{}}>
+      _hover={{}}
+    >
       {!editing && (
         <Flex alignY="center" onClick={() => setEditing(true)}>
           <Icon icon="solid-plus" marginRight="major-1" /> {text}
@@ -43,7 +43,7 @@ const NewCard: React.FC<NewCardProps> = ({ text, provided, snapshot }) => {
         />
       )}
     </Card>
-  );
-};
+  )
+}
 
-export default NewCard;
+export default NewCard

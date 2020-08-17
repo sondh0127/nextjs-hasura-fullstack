@@ -1806,11 +1806,26 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-"@urql/core@^1.12.3":
+"@urql/core@>=1.12.3", "@urql/core@^1.12.3":
   version "1.12.3"
   resolved "https://registry.yarnpkg.com/@urql/core/-/core-1.12.3.tgz#74f7b8e073cf706380bb3dd28484b8136cc96905"
   integrity sha512-e4IXXQ4nes3KyusgYV925DuzfDAfo4ex7Ls3tZfOExkxEcXh0i0XnizXp0rvZmWRch69YCkc+Lh1Gy2aY49HTQ==
   dependencies:
+    wonka "^4.0.14"
+
+"@urql/devtools@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@urql/devtools/-/devtools-2.0.2.tgz#0991bc3bb09444b162ef56518b76f64f286954fc"
+  integrity sha512-f3gIx4NDOuWdXC54m4VQlLKNtYHl6PITSEqexH6xiktzvH7QcwS5hNPg0Fkki8cas/DZtkmDpwxNV1uRZ5xlvA==
+  dependencies:
+    wonka ">= 4.0.9"
+
+"@urql/exchange-graphcache@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@urql/exchange-graphcache/-/exchange-graphcache-3.0.2.tgz#074db388c1b301660f298336fd6dbc6d09340364"
+  integrity sha512-spFdJRpHXBfpF9+RcmzKDIjYds/x256dBvBYyf7Mo3MRE4xn7hQzqVnTzT+jpnokhvngzkjjzy7TIz2L5BFxyA==
+  dependencies:
+    "@urql/core" ">=1.12.3"
     wonka "^4.0.14"
 
 "@webassemblyjs/ast@1.9.0":
@@ -2675,10 +2690,10 @@ bumbag-server@^1.0.8:
   dependencies:
     emotion-server "^10.0.27"
 
-bumbag@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/bumbag/-/bumbag-1.1.3.tgz#b2b9ab35bf1e1d53cffa4d587c761e044068264e"
-  integrity sha512-bmMOLOSXvF7dIqU8uxPMyFZAETMxsYYdX5yZS4rNBHFgHQ32XkSspdCX57TpiFE3E8Nm3KPdNJzvdAM+tTF5Ww==
+bumbag@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/bumbag/-/bumbag-1.1.5.tgz#a1a9e1d4847c11b94f9f7b555f56e38785811959"
+  integrity sha512-Zp8A4x08IwQcQBhDnG7Q61wK/jR7n9glfqendu9DTjANNUqIpWkk1Nk9jgCoEE7//Wo/UizCTbKV55BP3stgSQ==
   dependencies:
     "@emotion/core" "^10.0.14"
     "@emotion/is-prop-valid" "^0.8.2"
@@ -8246,10 +8261,21 @@ stylis@3.5.4:
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.4.tgz#f665f25f5e299cf3d64654ab949a57c768b73fbe"
   integrity sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q==
 
-subscriptions-transport-ws@0.9.17, subscriptions-transport-ws@^0.9.17:
+subscriptions-transport-ws@0.9.17:
   version "0.9.17"
   resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.17.tgz#e30e40f0caae0d2781903c01a8cb51b6e2682098"
   integrity sha512-hNHi2N80PBz4T0V0QhnnsMGvG3XDFDS9mS6BhZ3R12T6EBywC8d/uJscsga0cVO4DKtXCkCRrWm2sOYrbOdhEA==
+  dependencies:
+    backo2 "^1.0.2"
+    eventemitter3 "^3.1.0"
+    iterall "^1.2.1"
+    symbol-observable "^1.0.4"
+    ws "^5.2.0"
+
+subscriptions-transport-ws@^0.9.18:
+  version "0.9.18"
+  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.18.tgz#bcf02320c911fbadb054f7f928e51c6041a37b97"
+  integrity sha512-tztzcBTNoEbuErsVQpTN2xUNN/efAZXyCyL5m3x4t6SKrEiTL2N8SaKWBFWM4u56pL79ULif3zjyeq+oV+nOaA==
   dependencies:
     backo2 "^1.0.2"
     eventemitter3 "^3.1.0"
@@ -8904,7 +8930,7 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-wonka@^4.0.14:
+"wonka@>= 4.0.9", wonka@^4.0.14:
   version "4.0.14"
   resolved "https://registry.yarnpkg.com/wonka/-/wonka-4.0.14.tgz#77d680a84e575ed15a9f975eb87d6c530488f3a4"
   integrity sha512-v9vmsTxpZjrA8CYfztbuoTQSHEsG3ZH+NCYfasHm0V3GqBupXrjuuz0RJyUaw2cRO7ouW2js0P6i853/qxlDcA==
