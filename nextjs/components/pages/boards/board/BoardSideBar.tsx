@@ -21,7 +21,7 @@ gql`
 const BoardSideBar: React.FC = () => {
   const router = useRouter()
 
-  const [{ fetching: boardsFetching, data }] = useBoardsQuery({})
+  const [{ data }] = useBoardsQuery({})
   const [{ fetching: insertFetching }, insertBoard] = useInsertBoardMutation()
 
   const [editing, setEditing] = useState(false)

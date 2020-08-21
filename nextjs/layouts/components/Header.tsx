@@ -1,16 +1,16 @@
-import { Button, Icon, Image, TopNav, useColorMode } from 'bumbag';
-import { useSession } from 'next-auth/client';
-import NextLink from 'next/link';
-import React from 'react';
+import { Button, Icon, Image, TopNav, useColorMode } from 'bumbag'
+import { useSession } from 'next-auth/client'
+import NextLink from 'next/link'
+import React from 'react'
 
 const Header: React.FC = () => {
-  const [session] = useSession();
+  const [session] = useSession()
 
-  const { colorMode, setColorMode } = useColorMode();
+  const { colorMode, setColorMode } = useColorMode()
 
   const toggleColorMode = () => {
-    setColorMode(colorMode === 'dark' ? 'default' : 'dark');
-  };
+    setColorMode(colorMode === 'dark' ? 'default' : 'dark')
+  }
 
   const authButtonNode = () => {
     if (session) {
@@ -21,11 +21,12 @@ const Header: React.FC = () => {
             onClick={(e) => {
               // e.preventDefault();
               // signOut();
-            }}>
+            }}
+          >
             Logout
           </Button>
         </NextLink>
-      );
+      )
     }
 
     return (
@@ -35,12 +36,13 @@ const Header: React.FC = () => {
           onClick={(e) => {
             // e.preventDefault();
             // signIn();
-          }}>
+          }}
+        >
           Login
         </Button>
       </NextLink>
-    );
-  };
+    )
+  }
 
   return (
     <TopNav>
@@ -81,7 +83,7 @@ const Header: React.FC = () => {
         <TopNav.Item>{authButtonNode()}</TopNav.Item>
       </TopNav.Section>
     </TopNav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

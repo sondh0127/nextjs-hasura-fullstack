@@ -1,5 +1,5 @@
-import { Box, Link, Text } from 'bumbag';
-import React from 'react';
+import { Box, Link, Text } from 'bumbag'
+import React from 'react'
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         </Link>
       </Text>
     </Box>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

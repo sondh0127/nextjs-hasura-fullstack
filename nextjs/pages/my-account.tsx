@@ -1,14 +1,14 @@
-import { GetServerSideProps, NextPage } from 'next';
-import { getSession } from 'next-auth/client';
-import Head from 'next/head';
-import React from 'react';
+import { GetServerSideProps, NextPage } from 'next'
+import { getSession } from 'next-auth/client'
+import Head from 'next/head'
+import React from 'react'
 
-import AccessDeniedIndicator from '../components/access-denied-indicator';
-import Page from '../components/pages/my-account';
-import MainLayout from '../layout/MainLayout';
+import AccessDeniedIndicator from '../components/access-denied-indicator'
+import Page from '../components/pages/my-account'
+import MainLayout from '../layouts/MainLayout'
 
 interface MyAccountPageProps {
-  session: string;
+  session: string
 }
 
 const MyAccountPage: NextPage<MyAccountPageProps> = ({ session }) => {
@@ -17,7 +17,7 @@ const MyAccountPage: NextPage<MyAccountPageProps> = ({ session }) => {
       <MainLayout>
         <AccessDeniedIndicator />
       </MainLayout>
-    );
+    )
   }
 
   return (
@@ -27,19 +27,19 @@ const MyAccountPage: NextPage<MyAccountPageProps> = ({ session }) => {
       </Head>
       <Page />
     </MainLayout>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps<MyAccountPageProps> = async (
-  ctx
+  ctx,
 ) => {
-  const session: string = await getSession({ req: ctx.req });
+  const session: string = await getSession({ req: ctx.req })
 
   return {
     props: {
       session,
     },
-  };
-};
+  }
+}
 
-export default MyAccountPage;
+export default MyAccountPage

@@ -38,9 +38,8 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/sort": "error",
-
     "jsx-a11y/anchor-is-valid": [
-      "error",
+      "off",
       {
         "components": ["Link"],
         "specialLink": ["hrefLeft", "hrefRight"],
@@ -52,6 +51,8 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

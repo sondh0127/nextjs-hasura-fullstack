@@ -14,7 +14,15 @@ const theme: ThemeConfig = {
   global: {
     fontSize: 16,
     styles: {
-      base: css``,
+      base: css`
+        html,
+        body {
+          font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+            'Noto Color Emoji';
+        }
+      `,
     },
   },
 

@@ -16,6 +16,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "tailwind.config.js"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

@@ -5,7 +5,7 @@ import React from 'react'
 
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
 import BoardPage from '../../components/pages/boards/board'
-import BoardLayout from '../../layout/BoardLayout'
+import BoardLayout from '../../layouts/BoardLayout'
 import { SessionProp } from '../../types/session'
 
 const Board: NextPage<SessionProp> = ({ session }) => {

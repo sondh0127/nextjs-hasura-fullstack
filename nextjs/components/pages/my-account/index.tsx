@@ -8,16 +8,16 @@ import {
   InputField,
   Stack,
   useColorMode,
-} from 'bumbag';
-import gql from 'graphql-tag';
-import { useSession } from 'next-auth/client';
-import React, { useEffect, useState } from 'react';
+} from 'bumbag'
+import gql from 'graphql-tag'
+import { useSession } from 'next-auth/client'
+import React, { useEffect, useState } from 'react'
 
 import {
   useFetchUserQuery,
   useUpdateUserMutation,
-} from '../../../generated/graphql';
-import Loader from '../../../layout/components/Footer';
+} from '../../../generated/graphql'
+import Loader from '../../../layouts/components/Footer'
 
 gql`
   query fetchUser($userId: Int!) {
@@ -26,7 +26,7 @@ gql`
       name
     }
   }
-`;
+`
 
 gql`
   mutation updateUser($userId: Int!, $name: String) {
@@ -37,50 +37,50 @@ gql`
       }
     }
   }
-`;
+`
 
 const MyAccountPageComponent = () => {
-  const { colorMode } = useColorMode();
-  const bgColor = { default: 'white', dark: 'gray800' };
-  const color = { default: 'gray800', dark: 'gray100' };
-  const [name, setName] = useState('');
-  const [session] = useSession();
+  const { colorMode } = useColorMode()
+  const bgColor = { default: 'white', dark: 'gray800' }
+  const color = { default: 'gray800', dark: 'gray100' }
+  const [name, setName] = useState('')
+  const [session] = useSession()
 
   const [
     { data: fetchUserData, fetching: fetchUserFetching, error: fetchUserError },
   ] = useFetchUserQuery({
     variables: { userId: session.id },
-  });
+  })
 
   useEffect(() => {
     if (fetchUserData) {
-      setName(fetchUserData.users_by_pk?.name || '');
+      setName(fetchUserData.users_by_pk?.name || '')
     }
-  }, [fetchUserData]);
+  }, [fetchUserData])
 
   const [
     { fetching: updateUserFetching, error: updateUserError },
     updateUser,
-  ] = useUpdateUserMutation();
+  ] = useUpdateUserMutation()
 
   if (fetchUserFetching) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (fetchUserError) {
-    return <p>Error: {fetchUserError.message}</p>;
+    return <p>Error: {fetchUserError.message}</p>
   }
 
   const handleSubmit = () => {
     updateUser({
       userId: session.id,
       name,
-    });
-  };
+    })
+  }
 
   const errorNode = () => {
     if (!updateUserError) {
-      return false;
+      return false
     }
 
     return (
@@ -89,11 +89,12 @@ const MyAccountPageComponent = () => {
         type="danger"
         showCloseButton
         isInline
-        onClickClose={() => alert('Closed!')}>
+        onClickClose={() => alert('Closed!')}
+      >
         {updateUserError}
       </Alert>
-    );
-  };
+    )
+  }
 
   return (
     <Stack spacing="major-2">
@@ -101,13 +102,15 @@ const MyAccountPageComponent = () => {
       {errorNode()}
       <Grid
         // templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)']}
-        gap={4}>
+        gap={4}
+      >
         <Box
           padding="major-2"
           background={bgColor[colorMode]}
           color={color[colorMode]}
           altitude="400"
-          borderRadius="5">
+          borderRadius="5"
+        >
           <Stack spacing="major-2">
             <InputField
               label="Name"
@@ -121,7 +124,8 @@ const MyAccountPageComponent = () => {
               <Button
                 // loadingText="Saving..."
                 onClick={handleSubmit}
-                isLoading={updateUserFetching}>
+                isLoading={updateUserFetching}
+              >
                 Save
               </Button>
             </FieldWrapper>
@@ -129,7 +133,7 @@ const MyAccountPageComponent = () => {
         </Box>
       </Grid>
     </Stack>
-  );
-};
+  )
+}
 
-export default MyAccountPageComponent;
+export default MyAccountPageComponent
