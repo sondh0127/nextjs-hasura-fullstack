@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // tailwind.config.js
-import Color from 'color'
-import defaultTheme from 'tailwindcss/defaultTheme'
-import plugin from 'tailwindcss/plugin'
+const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
+const Color = require('color')
 
 function svg({ addUtilities }) {
   addUtilities({
