@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import tableData from '../../../utils/tableData'
-import { Pagination } from '../../ui'
+import { Pagination } from './components'
 const Tables: React.FC = ({ children }) => {
   const total = tableData.length
   const resultPerPage = 5

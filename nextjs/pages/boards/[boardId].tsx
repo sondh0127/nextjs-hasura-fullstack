@@ -5,25 +5,25 @@ import React from 'react'
 
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
 import BoardPage from '../../components/pages/boards/board'
-import BoardLayout from '../../layouts/BoardLayout'
+import TailwindLayout from '../../layouts/TailwindLayout'
 import { SessionProp } from '../../types/session'
 
 const Board: NextPage<SessionProp> = ({ session }) => {
   if (!session) {
     return (
-      <BoardLayout>
+      <TailwindLayout>
         <AccessDeniedIndicator />
-      </BoardLayout>
+      </TailwindLayout>
     )
   }
 
   return (
-    <BoardLayout footer={() => null}>
+    <TailwindLayout footer={() => null}>
       <Head>
         <title>Board: Name</title>
       </Head>
       <BoardPage />
-    </BoardLayout>
+    </TailwindLayout>
   )
 }
 

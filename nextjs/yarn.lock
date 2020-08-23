@@ -9182,32 +9182,10 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-tailwindcss-aspect-ratio@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss-aspect-ratio/-/tailwindcss-aspect-ratio-3.0.0.tgz#4f9fc7ca0f3468373290faaa8b92652157bee6a4"
-  integrity sha512-syVueHOdk0u6S9lFSQQxHwsYS+9AJ0tp1WWBB+vAwmJYzc9g/2OLwq4mHpigYue6t3PUgTSbRi9unQd7WEDjGQ==
-  dependencies:
-    lodash "^4.17.15"
-
-tailwindcss-gradients@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss-gradients/-/tailwindcss-gradients-3.0.0.tgz#aabcff1ec9afd7d09ffc2af82e8e4113412bd088"
-  integrity sha512-EM1OreQggjWW6WuaiHKy02j1ZxgQIEp2zj0cruf4XMZ1RoCBpb1a14i/CiTE9rjl+APk57oCb3l+kbsJy4W4EA==
-  dependencies:
-    color "^3.1.2"
-    lodash "^4.17.15"
-
 tailwindcss-multi-theme@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tailwindcss-multi-theme/-/tailwindcss-multi-theme-1.0.3.tgz#06ee2a5f65777d8bdc5a5da6672ea7ee5615efe2"
   integrity sha512-fHIhjZEBNIRxrf8PQIlGarsio2ryiNYIH5yEvFeCC1w7a17c+BkirsZ7YE3/PRcUkpIXTB7OEa3cdKtXeKxW5g==
-
-tailwindcss-typography@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss-typography/-/tailwindcss-typography-3.1.0.tgz#b60690d97a53b0d94eab286cd02f68d6d30e2d3d"
-  integrity sha512-uqovHMt9orPs1kl2U+bidlcO25tmUGJjjluQdI67yRnOy/IlqKe6tYcHHAsQPhehlk3r11/T3CE7Uc0PSUJcNg==
-  dependencies:
-    lodash "^4.17.15"
 
 tailwindcss@^1.7.2:
   version "1.7.2"

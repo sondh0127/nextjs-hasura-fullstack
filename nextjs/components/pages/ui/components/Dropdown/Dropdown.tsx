@@ -2,7 +2,7 @@ import React from 'react'
 import FocusLock from 'react-focus-lock'
 
 import { Transition } from '../'
-import { useClickAwayOrEsc } from '../../../hooks/useClickAwayOrEsc'
+import { useClickAwayOrEsc } from '../'
 
 interface DropdownProps {
   onClose: () => void

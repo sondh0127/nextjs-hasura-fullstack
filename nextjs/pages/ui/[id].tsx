@@ -9,7 +9,9 @@ import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
 import Dashboard from '../../components/pages/ui/dashboard'
 import Form from '../../components/pages/ui/form'
+import Icons from '../../components/pages/ui/icons'
 import Modal from '../../components/pages/ui/modal'
+import Spinners from '../../components/pages/ui/spinners'
 import Tables from '../../components/pages/ui/tables'
 import TailwindLayout from '../../layouts/TailwindLayout'
 import { SessionProp } from '../../types/session'
@@ -20,6 +22,8 @@ const uiComps: Record<string, React.ReactNode> = {
   cards: Cards,
   charts: Charts,
   buttons: Buttons,
+  spinners: Spinners,
+  icons: Icons,
   modals: Modal,
   tables: Tables,
   pages: () => null,

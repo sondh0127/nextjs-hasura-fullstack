@@ -1,0 +1,6 @@
+export * from './AcademicCapOutline'
+export * from './AcademicCapSolid'
+export * from './MailOutline'
+export * from './MailSolid'
+export * from './ArrowCircleRightOutline'
+export * from './ArrowCircleRightSolid'

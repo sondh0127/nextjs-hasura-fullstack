@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react'
 
 import NextLink from '../../components/NextLink'
-import {
-  Transition,
-  useClickAwayOrEsc,
-} from '../../components/pages/ui/components'
+import { Transition } from '../../components/ui'
+import { useClickAwayOrEsc } from '../../hooks/useClickAwayOrEsc'
 import { Links } from '../../utils/uiLinks'
 
 interface SidebarMobileProps {

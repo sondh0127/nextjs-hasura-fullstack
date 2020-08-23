@@ -1,12 +1,3 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  Paragraph,
-  Stack,
-  Text,
-  useColorMode,
-} from 'bumbag'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession, signIn, signOut } from 'next-auth/client'
 import Head from 'next/head'
@@ -27,34 +18,34 @@ interface IndexPageProps {
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({ session }) => {
-  const { colorMode } = useColorMode()
-
   const authButtonNode = () => {
     if (session) {
       return (
         <Link href="/api/auth/signout">
-          <Button
+          <button
+            className="btn btn-primary"
             onClick={(e) => {
               e.preventDefault()
               signOut()
             }}
           >
             Sign Out
-          </Button>
+          </button>
         </Link>
       )
     }
 
     return (
       <Link href="/api/auth/signin">
-        <Button
+        <button
+          className="btn btn-primary"
           onClick={(e) => {
             e.preventDefault()
             signIn()
           }}
         >
           Create an account
-        </Button>
+        </button>
       </Link>
     )
   }
@@ -63,28 +54,22 @@ const IndexPage: NextPage<IndexPageProps> = ({ session }) => {
     <>
       <MainLayout>
         <Head>
-          <title>Index Page</title>
+          <title>Home Page</title>
         </Head>
-        <Stack>
-          <Flex
-            minHeight={`calc(100vh - ${HEIGHT_OF_NAVBAR}  - ${HEIGHT_OF_FOOTER} - ${CONTAINER_PADDING}*2)`}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Stack spacing="major-2" marginX="auto" alignX="center">
-              <Heading textAlign="center">Nextjs Hasura Fullstack</Heading>
-              <Text fontSize="300" lineHeight="tall" textAlign="center">
-                A boilerplate that uses Hasura and Next.js to develop
-                applications
-              </Text>
-              <Paragraph fontSize="300">
-                This demo has been built using BumbagUI, NextAuth.js and urql.
-              </Paragraph>
-              <Book />
-              <Flex alignX="center">{authButtonNode()}</Flex>
-            </Stack>
-          </Flex>
-        </Stack>
+        <div className="flex flex-col items-center p-10">
+          <article className="prose text-white lg:prose-xl">
+            <h1>Nextjs Hasura Fullstack</h1>
+            <p>
+              A boilerplate that uses Hasura and Next.js to develop web
+              applications
+            </p>
+            <p>
+              This demo has been built using tailwindcss, NextAuth.js and urql.
+            </p>
+          </article>
+          <Book />
+          <div className="mt-6 ">{authButtonNode()}</div>
+        </div>
       </MainLayout>
     </>
   )

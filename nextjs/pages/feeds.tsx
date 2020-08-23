@@ -5,7 +5,7 @@ import React from 'react'
 
 import AccessDeniedIndicator from '../components/access-denied-indicator'
 import Page from '../components/pages/feeds'
-import MainLayout from '../layouts/MainLayout'
+import TailwindLayout from '../layouts/TailwindLayout'
 
 interface FeedsProps {
   session: string
@@ -14,19 +14,19 @@ interface FeedsProps {
 const FeedsPage: NextPage<FeedsProps> = ({ session }) => {
   if (!session) {
     return (
-      <MainLayout>
+      <TailwindLayout>
         <AccessDeniedIndicator />
-      </MainLayout>
+      </TailwindLayout>
     )
   }
 
   return (
-    <MainLayout>
+    <TailwindLayout>
       <Head>
         <title>My Account Page</title>
       </Head>
       <Page />
-    </MainLayout>
+    </TailwindLayout>
   )
 }
 

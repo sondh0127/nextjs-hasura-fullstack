@@ -1,38 +1,23 @@
-import { PageContent, PageWithHeader, useColorMode } from 'bumbag'
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 
-import Footer from './components/Footer'
-import Header from './components/Header'
+import Navbar from './components/Navbar'
 
 interface MainLayoutProps {
   footer?: () => React.ReactNode
 }
 
 const MainLayout: FC<MainLayoutProps> = ({ children, footer }) => {
-  const { colorMode } = useColorMode()
-  const bgColor = { default: 'white600', dark: 'black200' }
-
-  const heightOfNavbar = '60px'
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
 
   return (
-    <PageWithHeader
-      sticky
-      header={<Header />}
-      overrides={{
-        PageWithHeader: { styles: { base: { minHeight: 'unset' } } },
-      }}
-    >
-      <PageContent
-        breakpoint="fullHD"
-        wrapperProps={{
-          minHeight: `calc(100vh - ${heightOfNavbar})`,
-          backgroundColor: bgColor[colorMode],
-        }}
-      >
-        {children}
-        {footer ? footer() : <Footer />}
-      </PageContent>
-    </PageWithHeader>
+    <div className="flex h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+      <div className="flex flex-col flex-1 w-full">
+        <Navbar onHamburgerClick={() => setIsSideMenuOpen((value) => !value)} />
+        <main className="h-full overflow-y-auto">
+          <div className="container grid px-6 mx-auto">{children}</div>
+        </main>
+      </div>
+    </div>
   )
 }
 

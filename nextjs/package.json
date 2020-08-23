@@ -33,6 +33,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@prisma/client": "^2.4.1",
+    "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.5.0",
     "@tailwindcssinjs/macro": "^0.8.0",
     "@types/react-beautiful-dnd": "^13.0.0",
@@ -41,6 +42,7 @@
     "bumbag": "^1.1.5",
     "bumbag-server": "^1.0.8",
     "chart.js": "^2.9.3",
+    "classnames": "^2.2.6",
     "dayjs": "^1.8.33",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
@@ -70,10 +72,6 @@
     "react-use": "^15.3.3",
     "subscriptions-transport-ws": "^0.9.18",
     "tailwindcss": "^1.7.2",
-    "tailwindcss-aspect-ratio": "^3.0.0",
-    "tailwindcss-gradients": "^3.0.0",
-    "tailwindcss-multi-theme": "^1.0.3",
-    "tailwindcss-typography": "^3.1.0",
     "urql": "^1.10.0",
     "ws": "^7.3.1",
     "yarn": "^1.22.4",
@@ -109,6 +107,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "tailwindcss-multi-theme": "^1.0.3",
     "typescript": "^3.9.7"
   }
 }

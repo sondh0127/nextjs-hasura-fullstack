@@ -16,7 +16,7 @@ import {
   TableHeaderRow,
   TableRow,
   TableWrapper,
-} from '../../ui'
+} from './components'
 import CTA from './components/CTA'
 
 const Dashboard: React.FC = () => {

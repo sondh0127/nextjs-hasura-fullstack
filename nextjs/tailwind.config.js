@@ -33,8 +33,11 @@ module.exports = {
     }),
     colors: {
       transparent: 'transparent',
+      current: 'currentColor',
+
       white: '#ffffff',
       black: '#000000',
+
       gray: {
         '50': '#f9fafb',
         '100': '#f4f5f7',
@@ -212,12 +215,12 @@ module.exports = {
     placeholderColor: ['focus', 'dark', 'dark:focus'],
     borderColor: ['focus', 'hover', 'dark', 'dark:focus', 'dark:hover'],
     divideColor: ['dark'],
-    boxShadow: ['focus', 'dark:focus'],
+    boxShadow: ['focus', 'dark:focus', 'active'],
+    gradientColorStops: ['responsive', 'hover', 'focus', 'dark'],
+    scale: ['active'],
   },
   plugins: [
-    // require('tailwindcss-gradients'),
-    // require('tailwindcss-typography'),
-    // require('tailwindcss-aspect-ratio'),
+    require('@tailwindcss/typography'),
     // require('@tailwindcss/ui'),
     require('tailwindcss-multi-theme'),
     require('@tailwindcss/custom-forms'),

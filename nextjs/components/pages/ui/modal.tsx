@@ -2,7 +2,7 @@ import { css } from '@emotion/css'
 import tw from '@tailwindcssinjs/macro'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Modal as ModalComp } from '../../ui'
+import { Modal as ModalComp } from './components'
 import ButtonCss from './components/ButtonCss'
 import ButtonReact from './components/ButtonReact'
 import ButtonStyled from './components/ButtonStyled'

@@ -1,18 +1,18 @@
 import { useSession } from 'next-auth/client'
 import React, { useCallback, useContext, useState } from 'react'
 
-import HamburgerIcon from '../../components/icons/HamburgerIcon'
-import LogoutIcon from '../../components/icons/LogoutIcon'
-import MoonIcon from '../../components/icons/MoonIcon'
-import NotificationIcon from '../../components/icons/NotificationIcon'
-import ProfileIcon from '../../components/icons/ProfileIcon'
-import SearchIcon from '../../components/icons/SearchIcon'
-import SettingsIcon from '../../components/icons/SettingsIcon'
-import SunIcon from '../../components/icons/SunIcon'
-import NextLink from '../../components/NextLink'
-import { Dropdown, DropdownItem } from '../../components/pages/ui/components'
-import { ThemeContext } from '../../contexts/themeContext'
-import routes from '../../utils/routes'
+import HamburgerIcon from '../../../components/icons/HamburgerIcon'
+import LogoutIcon from '../../../components/icons/LogoutIcon'
+import MoonIcon from '../../../components/icons/MoonIcon'
+import NotificationIcon from '../../../components/icons/NotificationIcon'
+import ProfileIcon from '../../../components/icons/ProfileIcon'
+import SearchIcon from '../../../components/icons/SearchIcon'
+import SettingsIcon from '../../../components/icons/SettingsIcon'
+import SunIcon from '../../../components/icons/SunIcon'
+import NextLink from '../../../components/NextLink'
+import { Dropdown, DropdownItem } from '../../../components/ui'
+import { ThemeContext } from '../../../contexts/themeContext'
+import routes from '../../../utils/routes'
 
 interface NavbarProps {
   onHamburgerClick: () => void
@@ -134,7 +134,7 @@ const Navbar: React.FC<NavbarProps> = ({ onHamburgerClick }) => {
             >
               <img
                 className="object-cover w-8 h-8 rounded-full"
-                src={session?.user?.image}
+                src={session.user.image}
                 alt=""
                 aria-hidden="true"
               />
