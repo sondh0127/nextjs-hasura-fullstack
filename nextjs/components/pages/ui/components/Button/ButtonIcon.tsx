@@ -11,10 +11,12 @@ type ReactButtonProps = Pick<
 export type ButtonIconColor = keyof Theme['ButtonIcon']['variant']['default']
 export type ButtonIconVariant = keyof Theme['ButtonIcon']['variant']
 export type ButtonIconSize = keyof Theme['ButtonIcon']['size']
+export type ButtonIconShape = keyof Theme['ButtonIcon']['shape']
 
 export type ButtonIconProps = ReactButtonProps & {
   size?: ButtonIconSize
   variant?: ButtonIconVariant
+  shape?: ButtonIconShape
   color?: ButtonIconColor
   className?: string
   spinnerClassName?: string
@@ -35,6 +37,7 @@ export const ButtonIcon = React.forwardRef<Ref, ButtonIconProps>(
       color = 'primary',
       size = 'base',
       icon,
+      shape,
     },
     ref,
   ) => {
@@ -42,6 +45,7 @@ export const ButtonIcon = React.forwardRef<Ref, ButtonIconProps>(
 
     const colorCls = variantCls[variant]
     const sizeCls = theme.ButtonIcon.size
+    const shapeCls = theme.ButtonIcon.shape
 
     const Icon = icon
 
@@ -51,19 +55,14 @@ export const ButtonIcon = React.forwardRef<Ref, ButtonIconProps>(
       isLoading && theme.ButtonIcon.loading,
       colorCls[color],
       sizeCls[size],
+      shape && shapeCls[shape],
       className,
     )
-    const spinnerSizeCls = theme.Button.spinner.size
+    const spinnerSizeCls = theme.ButtonIcon.spinner.size
     const spinnerCls = clsx('absolute', spinnerSizeCls[size], spinnerClassName)
     const isLoadingCls = isLoading ? 'opacity-0' : 'opacity-100'
 
-    const iconSizeCls: Record<ButtonIconSize, string> = {
-      xs: `h-4 w-4`,
-      sm: `h-4 w-4`,
-      base: `h-7 w-7`,
-      lg: `h-6 w-6`,
-      xl: `h-8 w-8`,
-    }
+    const iconSizeCls = theme.ButtonIcon.icon.size
 
     const iconCls = clsx(iconSizeCls[size], isLoadingCls)
 

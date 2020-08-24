@@ -43,6 +43,10 @@ const theme = {
         link: ``,
       },
     },
+    shape: {
+      rounded: `rounded-full`,
+      square: `rounded-none`,
+    },
     // className="
     spinner: {
       size: {
@@ -55,11 +59,11 @@ const theme = {
     },
     icon: {
       size: {
-        xs: `w-5 h-5`,
-        sm: `w-6 h-6`,
-        base: `w-7 h-7`,
-        lg: `w-8 h-8`,
-        xl: `w-9 h-9`,
+        xs: `!w-5 !h-5`,
+        sm: `!w-6 !h-6`,
+        base: `!w-7 !h-7`,
+        lg: `!w-8 !h-8`,
+        xl: `!w-9 !h-9`,
       },
       variant: {
         left: 'mr-2 -ml-1',
@@ -72,7 +76,7 @@ const theme = {
     disabled: `opacity-25 pointer-events-none cursor-default`,
     loading: `opacity-75 pointer-events-none cursor-default`,
     size: {
-      xs: `p-0`,
+      xs: `p-0 rounded-sm`,
       sm: `p-1 rounded-md`,
       base: `p-2 rounded-lg`,
       lg: `p-3 rounded-lg`,
@@ -110,6 +114,10 @@ const theme = {
         link: ``,
       },
     },
+    shape: {
+      rounded: `rounded-full`,
+      square: `rounded-none`,
+    },
     spinner: {
       size: {
         xs: `w-4 h-4`,
@@ -122,20 +130,20 @@ const theme = {
     // Icon size base on button
     icon: {
       size: {
-        xs: `h-4 w-4`,
-        sm: `h-4 w-4`,
-        base: `h-5 w-5`,
-        lg: `h-6 w-6`,
-        xl: `h-8 w-8`,
+        xs: `!h-4 !w-4`,
+        sm: `!h-4 !w-4`,
+        base: `!h-4 !w-4`,
+        lg: `!h-6 !w-6`,
+        xl: `!h-8 !w-8`,
       },
     },
   },
   Spinner: {
     base: `animate-spin `,
     size: {
-      sm: `w-4 h-4`,
-      base: `w-6 h-6`,
-      lg: `w-9 h-9`,
+      sm: `!w-4 !h-4`,
+      base: `!w-6 !h-6`,
+      lg: `!w-9 !h-9`,
     },
     // when has Loading text inside button `-ml-1 mr-3`
   },
@@ -159,29 +167,10 @@ const theme = {
   },
   Alert: {
     base:
-      'font-medium relative overflow-hidden border-2 border-solid rounded-md align-middle duration-150 ease-in flex items-start ',
-    '.alert a': {
-      underline: {},
-    },
-    closable: {
-      base: `pr-12`,
-      btn: `absolute top-0 bottom-0 right-0`,
-    },
-    '.alert-close svg': {
-      'mr-0 mt-0': {},
-    },
-    description: `flex text-sm font-normal`,
-    '.alert-closable, .alert-closable.alert-lg, .alert-closable.alert-sm': {
-      '': {},
-    },
-    '.alert svg': {
-      'h-5 w-5 mr-3': {},
-      marginTop: '3px',
-      maxWidth: '1.25rem',
-      minWidth: '1.25rem',
-      maxHeight: '1.25rem',
-      minHeight: '1.25rem',
-    },
+      'font-medium relative overflow-hidden border-2 border-solid rounded-md duration-150 ease-in flex items-center justify-start',
+    hasClose: `pr-12`,
+    btnClose: `absolute top-0 bottom-0 right-0 flex items-center justify-center px-1`,
+    description: `text-sm font-normal`,
     size: {
       sm: 'py-1 pl-2 pr-2 text-sm',
       base: 'py-2 pl-4 pr-4 text-base',
@@ -216,18 +205,22 @@ const theme = {
         dark: `bg-gray-900 border-gray-900 text-white`,
       },
     },
-    position: {
-      top: `border border-solid border-t-4 border-r-0 border-b-0 border-l-0 border-current rounded-none`,
-      left: `border border-solid border-l-4 border-r-0 border-b-0 border-t-0 border-current rounded-none`,
-      right: `border border-solid border-r-4 border-l-0 border-b-0 border-t-0 border-current rounded-none`,
-      bottom: `border border-solid border-b-4 border-l-0 border-r-0 border-t-0 border-current rounded-none`,
+    bordered: {
+      top: `border border-solid border-t-4 border-r-0 border-b-0 border-l-0 !border-current rounded-none`,
+      left: `border border-solid border-l-4 border-r-0 border-b-0 border-t-0 !border-current rounded-none`,
+      right: `border border-solid border-r-4 border-l-0 border-b-0 border-t-0 !border-current rounded-none`,
+      bottom: `border border-solid border-b-4 border-l-0 border-r-0 border-t-0 !border-current rounded-none`,
     },
-    '.prose .alert p': {
-      'mt-0 mb-0': {},
-    },
-    '.prose .alert a': {
-      color: 'inherit',
-    },
+    statusIcon: `!h-5 !w-5 mr-3`,
+    // '.alert a': {
+    //   underline: {},
+    // },
+    // '.prose .alert p': {
+    //   'mt-0 mb-0': {},
+    // },
+    // '.prose .alert a': {
+    //   color: 'inherit',
+    // },
   },
 }
 

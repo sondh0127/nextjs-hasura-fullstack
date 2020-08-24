@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 
 import { IconProps, Spinner, SpinnerSize, Theme, theme } from '../'
-import { hasSizeClass } from '../utils'
 
 type ReactButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -12,11 +11,13 @@ type ReactButtonProps = Pick<
 export type ButtonColor = keyof Theme['Button']['variant']['default']
 export type ButtonVariant = keyof Theme['Button']['variant']
 export type ButtonSize = keyof Theme['Button']['size']
+export type ButtonShape = keyof Theme['Button']['shape']
 
 export type ButtonProps = ReactButtonProps &
   PropsWithChildren<{
     size?: ButtonSize
     variant?: ButtonVariant
+    shape?: ButtonShape
     color?: ButtonColor
     className?: string
     spinnerClassName?: string
@@ -42,6 +43,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
       size = 'base',
       iconLeft,
       iconRight,
+      shape,
     },
     ref,
   ) => {
@@ -49,6 +51,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
 
     const colorCls = variantCls[variant]
     const sizeCls = theme.Button.size
+    const shapeCls = theme.Button.shape
 
     const IconLeft = iconLeft
     const IconRight = iconRight
@@ -60,6 +63,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
       isLoading && theme.Button.loading,
       colorCls[color],
       sizeCls[size],
+      shape && shapeCls[shape],
       className,
     )
     // Spinner

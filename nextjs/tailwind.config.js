@@ -213,17 +213,37 @@ module.exports = {
       'dark:active',
     ],
     placeholderColor: ['focus', 'dark', 'dark:focus'],
-    borderColor: ['focus', 'hover', 'dark', 'dark:focus', 'dark:hover'],
+    borderColor: [
+      'focus',
+      'hover',
+      'dark',
+      'dark:focus',
+      'dark:hover',
+      'important',
+    ],
     divideColor: ['dark'],
     boxShadow: ['focus', 'dark:focus', 'active'],
     gradientColorStops: ['responsive', 'hover', 'focus', 'dark'],
-    scale: ['active'],
+    scale: ['responsive', 'hover', 'focus', 'active'],
+    width: ['responsive', 'important'],
+    height: ['responsive', 'important'],
   },
   plugins: [
     require('@tailwindcss/typography'),
     // require('@tailwindcss/ui'),
     require('tailwindcss-multi-theme'),
     require('@tailwindcss/custom-forms'),
+    // Add !important variant
+    plugin(({ addVariant }) => {
+      addVariant('important', ({ container }) => {
+        container.walkRules((rule) => {
+          rule.selector = `.\\!${rule.selector.slice(1)}`
+          rule.walkDecls((decl) => {
+            decl.important = true
+          })
+        })
+      })
+    }),
     plugin(({ addUtilities, e, theme, variants }) => {
       const newUtilities = {}
       Object.entries(theme('colors')).map(([name, value]) => {
