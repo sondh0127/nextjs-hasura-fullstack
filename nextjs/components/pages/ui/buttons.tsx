@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Button } from './components'
+import { Button, ButtonIcon } from './components'
 import CTA from './components/CTA'
-import { MailSolid } from './components/heroicons'
+import { AcademicCapSolid, MailSolid } from './components/heroicons'
 
 const Buttons: React.FC = ({ children }) => {
   const icon = (
@@ -289,30 +289,14 @@ const Buttons: React.FC = ({ children }) => {
 
       <h2 className="section-title">Button Icon TODO:</h2>
       <div className="flex flex-col flex-wrap mb-3 space-y-4 md:flex-row md:items-end md:space-x-4">
-        <div>
-          <button className="btn btn-icon-sm btn-primary">
-            <span>
-              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
-              </svg>
-            </span>
-          </button>
-        </div>
-        <div>
-          <button className="btn btn-icon-base btn-primary">
-            <span>{icon}</span>
-          </button>
-        </div>
-        <div>
-          <button className="btn btn-icon-lg btn-primary">
-            <span>
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
-              </svg>
-            </span>
-          </button>
-        </div>
+        <ButtonIcon icon={AcademicCapSolid} size="xs" />
+        <ButtonIcon icon={AcademicCapSolid} size="sm" />
+        <ButtonIcon icon={AcademicCapSolid} size="base" />
+        <ButtonIcon icon={AcademicCapSolid} size="lg" />
+        <ButtonIcon icon={AcademicCapSolid} size="xl" />
       </div>
+
+      <h2 className="section-title">Button Group TODO:</h2>
     </div>
   )
 }

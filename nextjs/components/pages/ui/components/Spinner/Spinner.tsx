@@ -2,8 +2,9 @@ import clsx from 'clsx'
 import React from 'react'
 
 import { Theme, theme } from '../'
+import { hasSizeClass } from '../utils'
 
-export type SpinnerSize = keyof Theme['spinner']['size']
+export type SpinnerSize = keyof Theme['Spinner']['size']
 
 export interface SpinnerProps {
   className?: string
@@ -14,9 +15,13 @@ export const Spinner: React.FC<SpinnerProps> = ({
   className,
   size = 'base',
 }) => {
-  const sizeCls = theme.spinner.size[size]
+  const sizeCls = theme.Spinner.size[size]
 
-  const cls = clsx(theme.spinner.base, sizeCls, className)
+  const cls = clsx(
+    theme.Spinner.base,
+    !hasSizeClass(className) && sizeCls,
+    className,
+  )
 
   return (
     <svg

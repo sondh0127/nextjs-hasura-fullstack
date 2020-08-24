@@ -2,10 +2,11 @@ import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 
 import { Theme, theme } from '../'
+import { hasSizeClass } from '../utils'
 
 export type SVGRef = SVGSVGElement
-export type IconSize = keyof Theme['icon']['size']
-export type IconColor = keyof Theme['icon']['color']
+export type IconSize = keyof Theme['Icon']['size']
+export type IconColor = keyof Theme['Icon']['color']
 
 export type IconProps = {
   className?: string
@@ -34,11 +35,12 @@ export const Icon = React.forwardRef<
     },
     ref,
   ) => {
-    const sizeCls = theme.icon.size
-    const colorCls = theme.icon.color
+    const sizeCls = theme.Icon.size
+    const colorCls = theme.Icon.color
 
     const cls = clsx(
-      sizeCls[size],
+      // className has w-x h-x
+      !hasSizeClass(className) && sizeCls[size],
       color ? colorCls[color] : 'text-current',
       isSolid ? 'fill-current' : 'stroke-current',
       className,

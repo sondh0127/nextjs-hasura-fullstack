@@ -1,15 +1,17 @@
 import clsx from 'clsx'
 import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 
-import { IconProps, IconSize, Spinner, SpinnerSize, Theme, theme } from '../'
+import { IconProps, Spinner, SpinnerSize, Theme, theme } from '../'
+import { hasSizeClass } from '../utils'
+
 type ReactButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'type' | 'disabled'
 >
 
-export type ButtonColor = keyof Theme['button']['variant']['default']
-export type ButtonVariant = keyof Theme['button']['variant']
-export type ButtonSize = keyof Theme['button']['size']
+export type ButtonColor = keyof Theme['Button']['variant']['default']
+export type ButtonVariant = keyof Theme['Button']['variant']
+export type ButtonSize = keyof Theme['Button']['size']
 
 export type ButtonProps = ReactButtonProps &
   PropsWithChildren<{
@@ -43,66 +45,50 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
     },
     ref,
   ) => {
-    const variantCls = theme.button.variant
+    const variantCls = theme.Button.variant
 
     const colorCls = variantCls[variant]
-    const sizeCls = theme.button.size
+    const sizeCls = theme.Button.size
 
     const IconLeft = iconLeft
     const IconRight = iconRight
 
     const cls = clsx(
-      theme.button.base,
-      disabled && theme.button.disabled,
-      block && theme.button.block,
-      isLoading && theme.button.loading,
+      theme.Button.base,
+      disabled && theme.Button.disabled,
+      block && theme.Button.block,
+      isLoading && theme.Button.loading,
       colorCls[color],
       sizeCls[size],
-      // has icon but no children
-      // hasIcon() && !children && iconSizeStyles[size],
-      // has icon and children
-      // hasIcon() && children && sizeStyles[size],
       className,
     )
-    const spinnerSize: Record<ButtonSize, SpinnerSize> = {
-      xs: 'sm',
-      sm: 'sm',
-      base: 'base',
-      lg: 'base',
-      xl: 'base',
-    }
-    const spinnerCls = clsx('absolute', spinnerClassName)
+    // Spinner
+    const spinnerSizeCls = theme.Button.spinner.size
+    const spinnerCls = clsx('absolute', spinnerSizeCls[size], spinnerClassName)
     const isLoadingCls = isLoading ? 'opacity-0' : 'opacity-100'
 
-    const iconCls = theme.button.icon
+    const iconCls = theme.Button.icon
+    const iconSizeCls = iconCls['size']
 
-    const iconSizeProps: Record<ButtonSize, IconSize> = {
-      xs: 'xs',
-      sm: 'sm',
-      base: 'base',
-      lg: 'lg',
-      xl: 'xl',
-    }
-
-    const iconLeftCls = clsx(children && iconCls.variant.left, isLoadingCls)
-
-    const iconRightCls = clsx(children && iconCls.variant.right, isLoadingCls)
+    const iconLeftCls = clsx(
+      children && iconCls.variant.left,
+      isLoadingCls,
+      iconSizeCls[size],
+    )
+    const iconRightCls = clsx(
+      children && iconCls.variant.right,
+      isLoadingCls,
+      iconSizeCls[size],
+    )
 
     return (
       <button ref={ref} className={cls} disabled={disabled}>
-        {isLoading && (
-          <Spinner className={spinnerCls} size={spinnerSize[size]} />
-        )}
-
-        {IconLeft && (
-          <IconLeft size={iconSizeProps[size]} className={iconLeftCls} />
-        )}
+        {isLoading && <Spinner className={spinnerCls} />}
+        {IconLeft && <IconLeft className={iconLeftCls} />}
         <span className={isLoading ? 'opacity-0' : 'opacity-100'}>
           {children}
         </span>
-        {IconRight && (
-          <IconRight size={iconSizeProps[size]} className={iconRightCls} />
-        )}
+        {IconRight && <IconRight className={iconRightCls} />}
       </button>
     )
   },

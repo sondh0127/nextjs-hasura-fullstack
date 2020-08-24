@@ -1,5 +1,5 @@
 const theme = {
-  button: {
+  Button: {
     base: `inline-flex items-center justify-center leading-5 align-bottom transition-colors duration-150 ease-in transform scale-100 border cursor-pointer focus:outline-none dark:focus:shadow-outline-gray active:scale-95 overflow-hidden no-underline select-none`,
     disabled: `opacity-25 pointer-events-none cursor-default`,
     loading: `opacity-75 pointer-events-none cursor-default`,
@@ -44,24 +44,102 @@ const theme = {
       },
     },
     // className="
+    spinner: {
+      size: {
+        xs: `w-4 h-4`,
+        sm: `w-4 h-4`,
+        base: `w-5 h-5`,
+        lg: `w-6 h-6`,
+        xl: `w-6 h-6`,
+      },
+    },
     icon: {
+      size: {
+        xs: `w-5 h-5`,
+        sm: `w-6 h-6`,
+        base: `w-7 h-7`,
+        lg: `w-8 h-8`,
+        xl: `w-9 h-9`,
+      },
       variant: {
         left: 'mr-2 -ml-1',
         right: 'ml-2 -mr-1',
       },
     },
   },
-  // className="
-  spinner: {
+  ButtonIcon: {
+    base: `inline-flex items-center justify-center leading-5 align-bottom transition-colors duration-150 ease-in transform scale-100 border cursor-pointer focus:outline-none dark:focus:shadow-outline-gray active:scale-95 overflow-hidden no-underline select-none`,
+    disabled: `opacity-25 pointer-events-none cursor-default`,
+    loading: `opacity-75 pointer-events-none cursor-default`,
+    size: {
+      xs: `p-0`,
+      sm: `p-1 rounded-md`,
+      base: `p-2 rounded-lg`,
+      lg: `p-3 rounded-lg`,
+      xl: `p-4 rounded-lg`,
+    },
+    variant: {
+      default: {
+        primary: `text-white bg-purple-600 border-transparent active:shadow-outline-purple focus:bg-purple-700 hover:bg-purple-700`,
+        secondary: `text-white bg-gray-600 border-gray-600 active:shadow-outline-gray focus:bg-gray-700 hover:bg-gray-700`,
+        success: `text-white bg-green-600 border-green-600 active:shadow-outline-green focus:bg-green-700 hover:bg-green-700`,
+        danger: `text-white bg-red-600 border-red-600 active:shadow-outline-red focus:bg-red-700 hover:bg-red-700`,
+        warning: `text-white bg-yellow-500 border-yellow-500 active:shadow-outline-red focus:bg-yellow-600 hover:bg-yellow-600`,
+        light: `text-gray-900 bg-gray-200 border-gray-200 active:shadow-outline-red focus:bg-gray-400 hover:bg-gray-400`,
+        dark: `text-white bg-gray-900 border-gray-900 active:shadow-outline-red focus:bg-gray-600 hover:bg-gray-600`,
+        link: `text-purple-800 border border-transparent dark:text-gray-400 active:bg-transparent hover:bg-gray-100 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-0`,
+      },
+      outline: {
+        primary: `text-purple-700 bg-transparent border-current hover:text-white hover:bg-purple-700 hover:border-purple-700`,
+        secondary: `text-gray-600 bg-transparent border-current hover:text-white hover:bg-gray-800 hover:border-gray-800`,
+        success: `text-green-700 bg-transparent border-current hover:text-white hover:bg-green-700 hover:border-green-700`,
+        danger: `text-red-700 bg-transparent border-current hover:text-white hover:bg-red-700 hover:border-red-700`,
+        warning: `text-yellow-600 bg-transparent border-current hover:text-white hover:bg-yellow-600 hover:border-yellow-600`,
+        link: `text-purple-800 bg-transparent border-transparent hover:border-gray-300`,
+        light: `text-gray-600 bg-transparent border-current hover:text-gray-900 hover:bg-gray-400 hover:border-gray-400`,
+        dark: `text-gray-900 bg-transparent border-current hover:text-white hover:bg-gray-900 hover:border-gray-900`,
+      },
+      light: {
+        primary: `text-purple-700 bg-purple-200 border-purple-200 hover:bg-purple-300 hover:text-purple-700 hover:border-purple-300`,
+        secondary: `text-gray-700 bg-gray-200 border-gray-200 hover:text-gray-900 hover:bg-gray-300 hover:border-gray-300`,
+        success: `text-green-800 bg-green-200 border-green-200 hover:text-green-900 hover:bg-green-300 hover:border-green-300`,
+        danger: `text-red-700 bg-red-200 border-red-200 hover:text-red-900 hover:bg-red-300 hover:border-red-300`,
+        warning: `text-yellow-800 bg-yellow-200 border-yellow-200 hover:text-yellow-900 hover:bg-yellow-300 hover:border-yellow-300`,
+        light: `text-purple-500 bg-transparent border-transparent hover:text-purple-700 hover:bg-gray-100 hover:border-gray-200`,
+        dark: ``,
+        link: ``,
+      },
+    },
+    spinner: {
+      size: {
+        xs: `w-4 h-4`,
+        sm: `w-4 h-4`,
+        base: `w-5 h-5`,
+        lg: `w-6 h-6`,
+        xl: `w-6 h-6`,
+      },
+    },
+    // Icon size base on button
+    icon: {
+      size: {
+        xs: `h-4 w-4`,
+        sm: `h-4 w-4`,
+        base: `h-5 w-5`,
+        lg: `h-6 w-6`,
+        xl: `h-8 w-8`,
+      },
+    },
+  },
+  Spinner: {
     base: `animate-spin `,
-    button: `-ml-1 mr-3`,
     size: {
       sm: `w-4 h-4`,
       base: `w-6 h-6`,
       lg: `w-9 h-9`,
     },
+    // when has Loading text inside button `-ml-1 mr-3`
   },
-  icon: {
+  Icon: {
     size: {
       xs: `w-5 h-5`,
       sm: `w-6 h-6`,
@@ -77,6 +155,78 @@ const theme = {
       warning: ` text-yellow-500`,
       light: ` text-gray-200`,
       dark: ` text-gray-900`,
+    },
+  },
+  Alert: {
+    base:
+      'font-medium relative overflow-hidden border-2 border-solid rounded-md align-middle duration-150 ease-in flex items-start ',
+    '.alert a': {
+      underline: {},
+    },
+    closable: {
+      base: `pr-12`,
+      btn: `absolute top-0 bottom-0 right-0`,
+    },
+    '.alert-close svg': {
+      'mr-0 mt-0': {},
+    },
+    description: `flex text-sm font-normal`,
+    '.alert-closable, .alert-closable.alert-lg, .alert-closable.alert-sm': {
+      '': {},
+    },
+    '.alert svg': {
+      'h-5 w-5 mr-3': {},
+      marginTop: '3px',
+      maxWidth: '1.25rem',
+      minWidth: '1.25rem',
+      maxHeight: '1.25rem',
+      minHeight: '1.25rem',
+    },
+    size: {
+      sm: 'py-1 pl-2 pr-2 text-sm',
+      base: 'py-2 pl-4 pr-4 text-base',
+      lg: 'py-5 pl-5 pr-5 text-lg',
+    },
+    variant: {
+      default: {
+        primary: `bg-purple-200 border-purple-200 text-purple-800`,
+        secondary: `bg-gray-200 border-gray-200 text-gray-800`,
+        success: `bg-green-200 border-green-200 text-green-800`,
+        danger: `bg-red-200 border-red-200 text-red-700`,
+        warning: `bg-yellow-200 border-yellow-200 text-yellow-800`,
+        light: `bg-gray-200 border-gray-200 text-gray-900`,
+        dark: `bg-gray-900 border-gray-900 text-white`,
+      },
+      outline: {
+        primary: `border-current text-purple-700 bg-transparent`,
+        secondary: `border-current text-gray-700 bg-transparent`,
+        success: `border-current text-green-700 bg-transparent`,
+        danger: `border-current text-red-700 bg-transparent`,
+        warning: `border-current text-yellow-700 bg-transparent`,
+        light: `border-current text-gray-200 bg-transparent`,
+        dark: `border-current text-gray-900 bg-transparent`,
+      },
+      solid: {
+        primary: `bg-purple-700 border-purple-700 text-white`,
+        secondary: `bg-primary border-primary text-white`,
+        success: `bg-green-700 border-green-700 text-white`,
+        danger: `bg-red-700 border-red-700 text-white`,
+        warning: `bg-yellow-600 border-yellow-600 text-white`,
+        light: `bg-gray-200 border-gray-200  text-white`,
+        dark: `bg-gray-900 border-gray-900 text-white`,
+      },
+    },
+    position: {
+      top: `border border-solid border-t-4 border-r-0 border-b-0 border-l-0 border-current rounded-none`,
+      left: `border border-solid border-l-4 border-r-0 border-b-0 border-t-0 border-current rounded-none`,
+      right: `border border-solid border-r-4 border-l-0 border-b-0 border-t-0 border-current rounded-none`,
+      bottom: `border border-solid border-b-4 border-l-0 border-r-0 border-t-0 border-current rounded-none`,
+    },
+    '.prose .alert p': {
+      'mt-0 mb-0': {},
+    },
+    '.prose .alert a': {
+      color: 'inherit',
     },
   },
 }
