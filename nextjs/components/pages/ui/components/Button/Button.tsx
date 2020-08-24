@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 
 import { IconProps, IconSize, Spinner, SpinnerSize, Theme, theme } from '../'
@@ -51,11 +51,11 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
     const IconLeft = iconLeft
     const IconRight = iconRight
 
-    const cls = classNames(
+    const cls = clsx(
       theme.button.base,
-      disabled ? theme.button.disabled : '',
-      block ? theme.button.block : '',
-      isLoading ? theme.button.loading : '',
+      disabled && theme.button.disabled,
+      block && theme.button.block,
+      isLoading && theme.button.loading,
       colorCls[color],
       sizeCls[size],
       // has icon but no children
@@ -71,7 +71,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
       lg: 'base',
       xl: 'base',
     }
-    const spinnerCls = classNames('absolute', spinnerClassName)
+    const spinnerCls = clsx('absolute', spinnerClassName)
     const isLoadingCls = isLoading ? 'opacity-0' : 'opacity-100'
 
     const iconCls = theme.button.icon
@@ -84,15 +84,9 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
       xl: 'xl',
     }
 
-    const iconLeftCls = classNames(
-      children ? iconCls.variant.left : '',
-      isLoadingCls,
-    )
+    const iconLeftCls = clsx(children && iconCls.variant.left, isLoadingCls)
 
-    const iconRightCls = classNames(
-      children ? iconCls.variant.right : '',
-      isLoadingCls,
-    )
+    const iconRightCls = clsx(children && iconCls.variant.right, isLoadingCls)
 
     return (
       <button ref={ref} className={cls} disabled={disabled}>

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 
 import { Theme, theme } from '../'
@@ -37,7 +37,7 @@ export const Icon = React.forwardRef<
     const sizeCls = theme.icon.size
     const colorCls = theme.icon.color
 
-    const cls = classNames(
+    const cls = clsx(
       sizeCls[size],
       color ? colorCls[color] : 'text-current',
       isSolid ? 'fill-current' : 'stroke-current',

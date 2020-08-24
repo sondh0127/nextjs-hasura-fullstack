@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 import React from 'react'
 
 import { Theme, theme } from '../'
@@ -16,7 +16,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 }) => {
   const sizeCls = theme.spinner.size[size]
 
-  const cls = classNames(theme.spinner.base, sizeCls, className)
+  const cls = clsx(theme.spinner.base, sizeCls, className)
 
   return (
     <svg

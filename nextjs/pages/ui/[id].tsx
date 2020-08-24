@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
+import Alerts from '../../components/pages/ui/alerts'
 import Buttons from '../../components/pages/ui/buttons'
 import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
@@ -16,7 +17,7 @@ import Tables from '../../components/pages/ui/tables'
 import TailwindLayout from '../../layouts/TailwindLayout'
 import { SessionProp } from '../../types/session'
 
-const uiComps: Record<string, React.ReactNode> = {
+const uiComps: Record<string, React.ElementType> = {
   dashboard: Dashboard,
   forms: Form,
   cards: Cards,
@@ -24,6 +25,7 @@ const uiComps: Record<string, React.ReactNode> = {
   buttons: Buttons,
   spinners: Spinners,
   icons: Icons,
+  alerts: Alerts,
   modals: Modal,
   tables: Tables,
   pages: () => null,
