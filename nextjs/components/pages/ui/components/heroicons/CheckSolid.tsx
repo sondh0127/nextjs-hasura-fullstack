@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Icon, IconProps, SVGRef } from '..'
 
-export const CheckSoild = React.forwardRef<SVGRef, IconProps>((props, ref) => {
+export const CheckSolid = React.forwardRef<SVGRef, IconProps>((props, ref) => {
   return (
     <Icon ref={ref} {...props} viewBox="0 0 20 20" isSolid>
       <path
@@ -14,4 +14,4 @@ export const CheckSoild = React.forwardRef<SVGRef, IconProps>((props, ref) => {
   )
 })
 
-CheckSoild.displayName = 'CheckSoild'
+CheckSolid.displayName = 'CheckSolid'

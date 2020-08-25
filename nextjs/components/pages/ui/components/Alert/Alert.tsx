@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { Fragment, PropsWithChildren } from 'react'
+import * as React from 'react'
 
 import { ButtonIcon, ButtonIconVariant } from '..'
 import {

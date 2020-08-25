@@ -5,6 +5,7 @@ import React from 'react'
 
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
 import Alerts from '../../components/pages/ui/alerts'
+import Avatars from '../../components/pages/ui/avatars'
 import Buttons from '../../components/pages/ui/buttons'
 import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
@@ -13,6 +14,7 @@ import Form from '../../components/pages/ui/form'
 import Icons from '../../components/pages/ui/icons'
 import Modal from '../../components/pages/ui/modal'
 import Spinners from '../../components/pages/ui/spinners'
+import Statuses from '../../components/pages/ui/statuses'
 import Tables from '../../components/pages/ui/tables'
 import TailwindLayout from '../../layouts/TailwindLayout'
 import { SessionProp } from '../../types/session'
@@ -26,6 +28,8 @@ const uiComps: Record<string, React.ElementType> = {
   spinners: Spinners,
   icons: Icons,
   alerts: Alerts,
+  avatars: Avatars,
+  status: Statuses,
   modals: Modal,
   tables: Tables,
   pages: () => null,

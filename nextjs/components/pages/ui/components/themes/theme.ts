@@ -222,10 +222,93 @@ const theme = {
     //   color: 'inherit',
     // },
   },
+  Avatar: {
+    base: `relative rounded-full select-none text-center no-underline`,
+    avatarIcon: `bg-purple-300 text-purple-600 `,
+    size: {
+      xs: `w-6 h-6`,
+      sm: `w-8 h-8`,
+      base: `h-10 w-10 `,
+      lg: `w-20 h-20`,
+      xl: `w-32 h-32`,
+    },
+    // '.avatar-xs': {
+    //   '@apply h-6 w-6 !important': {},
+    //   maxWidth: '1.5rem !important',
+    //   minWidth: '1.5rem !important',
+    //   maxHeight: '1.5rem !important',
+    //   minHeight: '1.5rem !important',
+    // },
+    // '.avatar-sm': {
+    //   maxWidth: '2rem !important',
+    //   minWidth: '2rem !important',
+    //   maxHeight: '2rem !important',
+    //   minHeight: '2rem !important',
+    // },
+    // '.avatar': {
+    //   maxWidth: '3rem',
+    //   minWidth: '3rem',
+    //   maxHeight: '3rem',
+    //   minHeight: '3rem',
+    // },
+    // '.avatar-lg': {
+    //   maxWidth: '5rem !important',
+    //   minWidth: '5rem !important',
+    //   maxHeight: '5rem !important',
+    //   minHeight: '5rem !important',
+    // },
+    // '.avatar-xl': {
+    //   maxWidth: '8rem !important',
+    //   minWidth: '8rem !important',
+    //   maxHeight: '8rem !important',
+    //   minHeight: '8rem !important',
+    // },
+    image: {
+      base: `h-full w-full object-cover rounded-full bg-purple-300`,
+    },
+    icon: {
+      size: {
+        xs: `!w-3 !h-full mx-auto`,
+        sm: `!w-4 !h-full mx-auto`,
+        base: `!h-6 !h-full mx-auto`,
+        lg: `!w-10 !h-full mx-auto`,
+        xl: `!w-16 !h-full mx-auto`,
+      },
+    },
+    title: {
+      base: `absolute rounded-full inset-0 font-bold uppercase flex items-center justify-center h-full w-full bg-purple-300 text-purple-600 no-underline`,
+      size: {
+        xs: `text-xs`,
+        sm: `text-sm`,
+        base: `text-base`,
+        lg: `text-lg`,
+        xl: `text-xl`,
+      },
+    },
+    group: {
+      base: `flex -space-x-4`,
+    },
+    // '.prose .avatar img': {
+    //   '@apply mt-0 mb-0': {},
+    // },
+  },
+  Status: {
+    base: `relative rounded-full select-none text-center no-underline inline-block`,
+    color: {
+      offline: ` bg-gray-500`,
+      online: ` bg-green-500`,
+      focused: ` bg-purple-500`,
+      busy: ` bg-red-500`,
+    },
+    position: {
+      'top-right': `absolute top-0 right-0 w-3 h-3 rounded-full`,
+      'top-left': `absolute top-0 left-0 w-3 h-3 rounded-full`,
+      'bottom-right': `absolute bottom-0 right-0 w-3 h-3 rounded-full`,
+      'bottom-left': `absolute bottom-0 left-0 w-3 h-3 rounded-full`,
+    },
+  },
 }
 
 export type Theme = typeof theme
 
 export default theme
-
-// "

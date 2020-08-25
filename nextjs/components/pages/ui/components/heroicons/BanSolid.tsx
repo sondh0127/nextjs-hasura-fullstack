@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Icon, IconProps, SVGRef } from '..'
 
-export const BanSoild = React.forwardRef<SVGRef, IconProps>((props, ref) => {
+export const BanSolid = React.forwardRef<SVGRef, IconProps>((props, ref) => {
   return (
     <Icon ref={ref} {...props} viewBox="0 0 20 20" isSolid>
       <path
@@ -14,4 +14,4 @@ export const BanSoild = React.forwardRef<SVGRef, IconProps>((props, ref) => {
   )
 })
 
-BanSoild.displayName = 'BanSoild'
+BanSolid.displayName = 'BanSolid'

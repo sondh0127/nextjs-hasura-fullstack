@@ -1,10 +1,10 @@
 import clsx from 'clsx'
-import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react'
+import * as React from 'react'
 
 import { IconProps, Spinner, SpinnerSize, Theme, theme } from '../'
 
 type ReactButtonProps = Pick<
-  ButtonHTMLAttributes<HTMLButtonElement>,
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
   'type' | 'disabled'
 >
 
@@ -14,7 +14,7 @@ export type ButtonSize = keyof Theme['Button']['size']
 export type ButtonShape = keyof Theme['Button']['shape']
 
 export type ButtonProps = ReactButtonProps &
-  PropsWithChildren<{
+  React.PropsWithChildren<{
     size?: ButtonSize
     variant?: ButtonVariant
     shape?: ButtonShape

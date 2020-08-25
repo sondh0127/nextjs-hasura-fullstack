@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
+import * as React from 'react'
 
 import { Theme, theme } from '../'
 
@@ -7,22 +7,19 @@ export type SVGRef = SVGSVGElement
 export type IconSize = keyof Theme['Icon']['size']
 export type IconColor = keyof Theme['Icon']['color']
 
-export type IconProps = {
+export type IconProps = React.PropsWithChildren<{
   className?: string
   size?: IconSize
   color?: IconColor
   style?: React.CSSProperties
-}
+}>
 
 type SVGProps = {
   viewBox: string
   isSolid?: boolean
 }
 
-export const Icon = React.forwardRef<
-  SVGRef,
-  PropsWithChildren<IconProps & SVGProps>
->(
+export const Icon = React.forwardRef<SVGRef, IconProps & SVGProps>(
   (
     {
       viewBox,
