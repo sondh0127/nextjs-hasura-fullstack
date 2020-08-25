@@ -6,6 +6,7 @@ import React from 'react'
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
 import Alerts from '../../components/pages/ui/alerts'
 import Avatars from '../../components/pages/ui/avatars'
+import Badges from '../../components/pages/ui/badges'
 import Buttons from '../../components/pages/ui/buttons'
 import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
@@ -32,6 +33,7 @@ const uiComps: Record<string, React.ElementType> = {
   status: Statuses,
   modals: Modal,
   tables: Tables,
+  badges: Badges,
   pages: () => null,
 }
 
