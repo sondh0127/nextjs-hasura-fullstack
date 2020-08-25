@@ -4,15 +4,6 @@ const plugin = require('tailwindcss/plugin')
 const defaultTheme = require('tailwindcss/defaultTheme')
 const Color = require('color')
 
-function svg({ addUtilities }) {
-  addUtilities({
-    '.svg': {
-      width: '1em',
-      height: '1em',
-    },
-  })
-}
-
 module.exports = {
   experimental: 'all',
   purge: [
@@ -202,7 +193,7 @@ module.exports = {
       'dark:odd',
     ],
     backgroundOpacity: ['responsive', 'hover', 'focus', 'dark:hover'],
-    display: ['responsive', 'dark'],
+    display: ['responsive', 'dark', 'last'],
     textColor: [
       'focus-within',
       'hover',
