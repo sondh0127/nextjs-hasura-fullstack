@@ -5,7 +5,7 @@ import { IconProps, Spinner, SpinnerSize, Theme, theme } from '../'
 
 type ReactButtonProps = Pick<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
-  'type' | 'disabled'
+  'type' | 'disabled' | 'onClick'
 >
 
 export type ButtonColor = keyof Theme['Button']['variant']['default']

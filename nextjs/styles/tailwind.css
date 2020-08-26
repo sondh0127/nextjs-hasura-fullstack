@@ -9,8 +9,6 @@
 /* Write you own custom component styles here */
 /*! purgecss start ignore */
 @import './bar-of-progress.css';
-@import './components/card.css';
-@import './components/button.css';
 @import './components/form.css';
 @import './components/helper-text.css';
 @import './components/modal.css';

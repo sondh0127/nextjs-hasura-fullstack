@@ -1,3 +1,7 @@
+import { ActionButtonsStyles } from '../ActionButtons'
+import { CardStyles } from '../Card'
+import { ImageStyles } from '../Image'
+
 const theme = {
   Button: {
     base: `inline-flex items-center justify-center leading-5 align-bottom transition-colors duration-150 ease-in transform scale-100 border cursor-pointer focus:outline-none dark:focus:shadow-outline-gray active:scale-95 overflow-hidden no-underline select-none`,
@@ -367,6 +371,9 @@ const theme = {
       base: `inline-block px-3 text-gray-600 last:hidden`,
     },
   },
+  Card: CardStyles,
+  ActionButtons: ActionButtonsStyles,
+  Image: ImageStyles,
 }
 
 export type Theme = typeof theme

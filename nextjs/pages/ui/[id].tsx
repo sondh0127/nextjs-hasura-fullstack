@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 import AccessDeniedIndicator from '../../components/access-denied-indicator'
+import ActionButtons from '../../components/pages/ui/actionbuttons'
 import Alerts from '../../components/pages/ui/alerts'
 import Avatars from '../../components/pages/ui/avatars'
 import Badges from '../../components/pages/ui/badges'
@@ -14,6 +15,7 @@ import Charts from '../../components/pages/ui/charts'
 import Dashboard from '../../components/pages/ui/dashboard'
 import Form from '../../components/pages/ui/form'
 import Icons from '../../components/pages/ui/icons'
+import Images from '../../components/pages/ui/images'
 import Modal from '../../components/pages/ui/modal'
 import Spinners from '../../components/pages/ui/spinners'
 import Statuses from '../../components/pages/ui/statuses'
@@ -36,6 +38,8 @@ const uiComps: Record<string, React.ElementType> = {
   tables: Tables,
   badges: Badges,
   breadcrumbs: Breadcrumbs,
+  actionbuttons: ActionButtons,
+  images: Images,
   pages: () => null,
 }
 

@@ -1,13 +1,44 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import clsx from 'clsx'
+import * as React from 'react'
 
-interface CardProps {}
+import { Theme, theme } from '..'
+import { CardProvider } from './CardContext'
 
-const Card: React.FC<CardProps> = ({ children }) => {
-  return (
-    <div className="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-      {children}
-    </div>
-  )
+export type CardColor = keyof Theme['Card']['color']
+
+export type CardProps = {
+  className?: string
+  children: React.ReactNodeArray
+  color?: CardColor
+  isLoading?: boolean
 }
+type Ref = HTMLDivElement
+
+export const Card = React.forwardRef<Ref, CardProps>((props, ref) => {
+  const { children, className, color = 'default', isLoading = false } = props
+
+  const cardStyle = theme.Card
+
+  const cls = clsx(
+    className,
+    cardStyle.base,
+    cardStyle.hov,
+    cardStyle.color[color],
+  )
+
+  const cardValue = React.useMemo(() => {
+    return { color, isLoading }
+  }, [color, isLoading])
+
+  return (
+    <CardProvider value={cardValue}>
+      <div ref={ref} className={cls}>
+        {children}
+      </div>
+    </CardProvider>
+  )
+})
+
+Card.displayName = 'Card'
 
 export default Card
