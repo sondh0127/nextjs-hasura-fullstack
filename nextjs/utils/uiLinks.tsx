@@ -234,8 +234,8 @@ const links: Array<{
     ),
   },
   {
-    link: 'modals',
-    name: 'Modals',
+    link: 'dialogs',
+    name: 'Dialogs',
     icon: (
       <svg
         viewBox="0 0 20 20"

@@ -14,10 +14,10 @@ import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
 import Collapses from '../../components/pages/ui/collapses'
 import Dashboard from '../../components/pages/ui/dashboard'
+import Dialogs from '../../components/pages/ui/dialogs'
 import Form from '../../components/pages/ui/form'
 import Icons from '../../components/pages/ui/icons'
 import Images from '../../components/pages/ui/images'
-import Modal from '../../components/pages/ui/modal'
 import Spinners from '../../components/pages/ui/spinners'
 import Statuses from '../../components/pages/ui/statuses'
 import Tables from '../../components/pages/ui/tables'
@@ -35,7 +35,7 @@ const uiComps: Record<string, React.ElementType> = {
   alerts: Alerts,
   avatars: Avatars,
   status: Statuses,
-  modals: Modal,
+  dialogs: Dialogs,
   tables: Tables,
   badges: Badges,
   collapses: Collapses,

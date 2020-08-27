@@ -1,6 +1,7 @@
 import { ActionButtonsStyles } from '../ActionButtons'
 import { CardStyles } from '../Card'
 import { CollapseStyles } from '../Collapse'
+import { DialogStyles } from '../Dialog'
 import { ImageStyles } from '../Image'
 
 const theme = {
@@ -376,6 +377,7 @@ const theme = {
   ActionButtons: ActionButtonsStyles,
   Image: ImageStyles,
   Collapse: CollapseStyles,
+  Dialog: DialogStyles,
 }
 
 export type Theme = typeof theme

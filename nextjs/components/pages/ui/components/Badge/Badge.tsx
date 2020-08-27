@@ -13,6 +13,7 @@ export type BadgeProps = React.PropsWithChildren<{
   color?: BadgeColor
   hasClose?: boolean
   className?: string
+  onClose?: () => void
 }>
 type Ref = HTMLDivElement
 
@@ -23,6 +24,7 @@ export const Badge = React.forwardRef<Ref, BadgeProps>((props, ref) => {
     variant = 'solid',
     color = 'primary',
     hasClose,
+    onClose,
   } = props
 
   const variantCls = theme.Badge.variant
@@ -53,6 +55,7 @@ export const Badge = React.forwardRef<Ref, BadgeProps>((props, ref) => {
           shape="rounded"
           icon={XSolid}
           variant={btnVariant[variant]}
+          onClick={onClose}
         />
       )}
     </div>

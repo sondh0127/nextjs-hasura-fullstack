@@ -32,84 +32,83 @@ export type AlertProps = React.PropsWithChildren<{
   size?: AlertSize
   bordered?: AlertBordered
   hasClose?: boolean
+  onClose?: () => void
 }>
 
 type Ref = HTMLDivElement
 
-export const Alert = React.forwardRef<Ref, AlertProps>(
-  (
-    {
-      title,
-      children,
-      variant = 'default',
-      color = 'primary',
-      size = 'base',
-      bordered,
-      hasClose = false,
-      statusIcon,
-    },
-    ref,
-  ) => {
-    const variantCls = theme.Alert.variant
+export const Alert = React.forwardRef<Ref, AlertProps>((props, ref) => {
+  const {
+    title,
+    children,
+    variant = 'default',
+    color = 'primary',
+    size = 'base',
+    bordered,
+    hasClose = false,
+    statusIcon,
+    onClose,
+  } = props
+  const variantCls = theme.Alert.variant
 
-    const colorCls = variantCls[variant]
-    const sizeCls = theme.Alert.size
-    const borderedCls = theme.Alert.bordered
+  const colorCls = variantCls[variant]
+  const sizeCls = theme.Alert.size
+  const borderedCls = theme.Alert.bordered
 
-    const cls = clsx(
-      theme.Alert.base,
-      colorCls[color],
-      sizeCls[size],
-      bordered && borderedCls[bordered],
-      hasClose && theme.Alert.hasClose,
-    )
+  const cls = clsx(
+    theme.Alert.base,
+    colorCls[color],
+    sizeCls[size],
+    bordered && borderedCls[bordered],
+    hasClose && theme.Alert.hasClose,
+  )
 
-    const btnCls = clsx(theme.Alert.btnClose)
-    const btnVariant: Record<AlertVariant, ButtonIconVariant> = {
-      default: 'light',
-      outline: 'outline',
-      solid: 'default',
-    }
+  const btnCls = clsx(theme.Alert.btnClose)
+  const btnVariant: Record<AlertVariant, ButtonIconVariant> = {
+    default: 'light',
+    outline: 'outline',
+    solid: 'default',
+  }
 
-    const StatusIcon = statusIcon ? ALERT_STATUS_ICON[statusIcon] : null
-    const statusIconCls = clsx(theme.Alert.statusIcon)
+  const StatusIcon = statusIcon ? ALERT_STATUS_ICON[statusIcon] : null
+  const statusIconCls = clsx(theme.Alert.statusIcon)
 
-    const descriptionCls = clsx(theme.Alert.description)
+  const descriptionCls = clsx(theme.Alert.description)
 
-    return (
-      <div ref={ref} className={cls} role="alert">
-        {StatusIcon && (
-          <StatusIcon
-            className={statusIconCls}
-            // style={{
-            //   maxWidth: '1.25rem',
-            //   minWidth: '1.25rem',
-            //   maxHeight: '1.25rem',
-            //   minHeight: '1.25rem',
-            // }}
+  return (
+    <div ref={ref} className={cls} role="alert">
+      {StatusIcon && (
+        <StatusIcon
+          className={statusIconCls}
+          // style={{
+          //   maxWidth: '1.25rem',
+          //   minWidth: '1.25rem',
+          //   maxHeight: '1.25rem',
+          //   minHeight: '1.25rem',
+          // }}
+        />
+      )}
+      {!children && title}
+      {children && (
+        <div>
+          <span>{title}</span>
+          <p className={descriptionCls}>{children}</p>
+        </div>
+      )}
+      {hasClose && (
+        <div className={btnCls}>
+          <ButtonIcon
+            color={color}
+            size="base"
+            shape="rounded"
+            icon={XSolid}
+            variant={btnVariant[variant]}
+            onClick={onClose}
           />
-        )}
-        {!children && title}
-        {children && (
-          <div>
-            <span>{title}</span>
-            <p className={descriptionCls}>{children}</p>
-          </div>
-        )}
-        {hasClose && (
-          <div className={btnCls}>
-            <ButtonIcon
-              color={color}
-              size="base"
-              shape="rounded"
-              icon={XSolid}
-              variant={btnVariant[variant]}
-            />
-          </div>
-        )}
-      </div>
-    )
-  },
-)
+        </div>
+      )}
+    </div>
+  )
+})
 
 Alert.displayName = 'Alert'

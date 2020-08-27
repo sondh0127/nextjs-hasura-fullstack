@@ -5,7 +5,7 @@ import { IconProps, Spinner, Theme, theme } from '..'
 
 type ReactButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'type' | 'disabled'
+  'type' | 'disabled' | 'onClick'
 >
 
 export type ButtonIconColor = keyof Theme['ButtonIcon']['variant']['default']
@@ -38,6 +38,7 @@ export const ButtonIcon = React.forwardRef<Ref, ButtonIconProps>(
       size = 'base',
       icon,
       shape,
+      onClick,
     },
     ref,
   ) => {
@@ -67,7 +68,7 @@ export const ButtonIcon = React.forwardRef<Ref, ButtonIconProps>(
     const iconCls = clsx(iconSizeCls[size], isLoadingCls)
 
     return (
-      <button ref={ref} className={cls} disabled={disabled}>
+      <button ref={ref} className={cls} disabled={disabled} onClick={onClick}>
         {isLoading && <Spinner className={spinnerCls} />}
         <Icon className={iconCls} />
       </button>
