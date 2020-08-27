@@ -1,5 +1,5 @@
 export default {
-  base: `min-w-0 overflow-hidden rounded-lg transition-shadow duration-150 ease-in inline-flex flex-col relative border border-solid  text-base`,
+  base: `min-w-0 overflow-hidden rounded-lg transition-shadow duration-150 ease-in inline-flex flex-col relative border border-solid text-base`,
   hov: 'hover:shadow focus:shadow',
   header: {
     base: `px-3 py-2 border-b flex justify-between items-center`,

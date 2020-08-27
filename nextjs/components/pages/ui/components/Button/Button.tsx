@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import * as React from 'react'
 
-import { IconProps, Spinner, SpinnerSize, Theme, theme } from '../'
+import { IconProps, Spinner, Theme, theme } from '../'
 
 type ReactButtonProps = Pick<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -44,6 +44,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
       iconLeft,
       iconRight,
       shape,
+      onClick,
     },
     ref,
   ) => {
@@ -86,7 +87,7 @@ export const Button = React.forwardRef<Ref, ButtonProps>(
     )
 
     return (
-      <button ref={ref} className={cls} disabled={disabled}>
+      <button ref={ref} className={cls} disabled={disabled} onClick={onClick}>
         {isLoading && <Spinner className={spinnerCls} />}
         {IconLeft && <IconLeft className={iconLeftCls} />}
         <span className={isLoading ? 'opacity-0' : 'opacity-100'}>

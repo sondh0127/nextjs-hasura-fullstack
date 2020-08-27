@@ -6,23 +6,29 @@ import { CardProvider } from './CardContext'
 
 export type CardColor = keyof Theme['Card']['color']
 
-export type CardProps = {
+export type CardProps = React.PropsWithChildren<{
   className?: string
-  children: React.ReactNodeArray
   color?: CardColor
   isLoading?: boolean
-}
+  isStatic?: boolean
+}>
 type Ref = HTMLDivElement
 
 export const Card = React.forwardRef<Ref, CardProps>((props, ref) => {
-  const { children, className, color = 'default', isLoading = false } = props
+  const {
+    children,
+    className,
+    color = 'default',
+    isLoading = false,
+    isStatic = false,
+  } = props
 
   const cardStyle = theme.Card
 
   const cls = clsx(
     className,
-    cardStyle.base,
-    cardStyle.hov,
+    isStatic && cardStyle.base,
+    !cardStyle.hov,
     cardStyle.color[color],
   )
 

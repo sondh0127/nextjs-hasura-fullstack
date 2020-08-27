@@ -1,5 +1,6 @@
 import { ActionButtonsStyles } from '../ActionButtons'
 import { CardStyles } from '../Card'
+import { CollapseStyles } from '../Collapse'
 import { ImageStyles } from '../Image'
 
 const theme = {
@@ -374,6 +375,7 @@ const theme = {
   Card: CardStyles,
   ActionButtons: ActionButtonsStyles,
   Image: ImageStyles,
+  Collapse: CollapseStyles,
 }
 
 export type Theme = typeof theme

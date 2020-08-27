@@ -12,6 +12,7 @@ import Breadcrumbs from '../../components/pages/ui/breadcrumbs'
 import Buttons from '../../components/pages/ui/buttons'
 import Cards from '../../components/pages/ui/cards'
 import Charts from '../../components/pages/ui/charts'
+import Collapses from '../../components/pages/ui/collapses'
 import Dashboard from '../../components/pages/ui/dashboard'
 import Form from '../../components/pages/ui/form'
 import Icons from '../../components/pages/ui/icons'
@@ -37,6 +38,7 @@ const uiComps: Record<string, React.ElementType> = {
   modals: Modal,
   tables: Tables,
   badges: Badges,
+  collapses: Collapses,
   breadcrumbs: Breadcrumbs,
   actionbuttons: ActionButtons,
   images: Images,
