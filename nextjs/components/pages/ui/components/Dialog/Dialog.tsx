@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 import FocusLock from 'react-focus-lock'
-import { useKeyPressEvent, useMountedState } from 'react-use'
+import { useMountedState } from 'react-use'
 
 import { Theme, theme, Transition } from '..'
 import { useClickAwayOrEsc } from '../hooks'
@@ -45,12 +45,13 @@ export const Dialog: React.FC<DialogProps> = (props) => {
 
           {/* Modal main */}
           <Transition
-            enter="transition ease-out duration-150 origin-center"
-            enterFrom="opacity-0 transform translate-y-1/2 scale-105"
+            show={isOpen}
+            enter="transition ease-out duration-150"
+            enterFrom="opacity-0 transform scale-105 origin-center"
             enterTo="opacity-100 scale-100"
-            leave="transition ease-in duration-150"
+            leave="transition ease-in duration-150 "
             leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 transform translate-y-1/2 scale-105"
+            leaveTo="opacity-0 transform scale-105 origin-center"
           >
             <FocusLock returnFocus>
               <div

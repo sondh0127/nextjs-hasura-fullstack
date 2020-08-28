@@ -15,6 +15,7 @@ import Charts from '../../components/pages/ui/charts'
 import Collapses from '../../components/pages/ui/collapses'
 import Dashboard from '../../components/pages/ui/dashboard'
 import Dialogs from '../../components/pages/ui/dialogs'
+import Drawers from '../../components/pages/ui/drawers'
 import Form from '../../components/pages/ui/form'
 import Icons from '../../components/pages/ui/icons'
 import Images from '../../components/pages/ui/images'
@@ -42,6 +43,7 @@ const uiComps: Record<string, React.ElementType> = {
   breadcrumbs: Breadcrumbs,
   actionbuttons: ActionButtons,
   images: Images,
+  drawers: Drawers,
   pages: () => null,
 }
 
