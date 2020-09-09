@@ -1,0 +1,33 @@
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/client'
+import React from 'react'
+
+import AccessDeniedIndicator from '@/components/AccessDeniedIndicator'
+import { getMainLayout } from '@/layouts/MainLayout'
+import { NextPageWithLayout } from '@/types/page'
+
+import BoardsPage from '../../components/pages/boards'
+import { SessionProp } from '../../types/session'
+
+const Boards: NextPageWithLayout<SessionProp> = ({ session }) => {
+  if (!session) {
+    return <AccessDeniedIndicator />
+  }
+
+  return <BoardsPage />
+}
+
+export const getServerSideProps: GetServerSideProps<SessionProp> = async (
+  ctx,
+) => {
+  const session = await getSession(ctx as any)
+
+  return {
+    props: {
+      session,
+    },
+  }
+}
+
+Boards.getLayout = getMainLayout('Boards')
+export default Boards

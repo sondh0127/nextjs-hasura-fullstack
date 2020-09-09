@@ -16,7 +16,6 @@ services:
       - db
     ports:
       - 5050:80
-    ## you can change pgAdmin default username/password with below environment variables
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -33,7 +32,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:@db:5432/postgres
       PORT: 8080
-      HASURA_GRAPHQL_ADMIN_SECRET: B2123ilu
-      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwZ2ywdld38Mq+k/MpQG7\nFRuV80V612NoTqouBt+4zDOjz25i0SmB8ZKGp4ygDk9pRk1rFuYxN96bDxuhZHmM\ndGPPVyUvK5/RqdcbUZHtu15ajVtY1/YQWq6wJUa+Kbe8EiDFyVQz6EH55Jmna/Xo\np7PzkL6ZxeCaDhYyO94FMJdUHGWAEmXXRLR9hCb67qSJDHdJutfzSiv5qx2Qh0zx\n1KJM6Bxqoa7JYSeNCeu/wjlepnyPuVSj7jPIkyF775yKHdXmHg6SxQ4NH+riqKut\n999bOAoeRRmL9ftKCGZbO7cSg7ktK3ZC/NF1Rg83v7mmrt8HAIb4toWsgpQoOWGs\noQIDAQAB\n-----END PUBLIC KEY-----"}'
+      HASURA_GRAPHQL_ADMIN_SECRET: "secret@123"
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqPGYul8KnfYM1pji+Dn9\nvB7fQ4MOyTgzN0c5viONOBiBtDB3G1weoRhoZh7V+n1WjftKWQZezwUOtL8CQXrg\nIgjXe7aKljiPYZgf6QR2GuKHW/EKewV86+rhGK5uI76CjbmXqbKlNe6+SXANsufs\nlRv7O8h+eCK899Uf+jUtaxWFbXawB7ukdcrjr+89QqWJ/VAZ2da3u3ttlPJY13Pp\ndtGNjBQhwj2nFodOqx65gvUZ8bAbihRSu6cxoGZl1gK3DHScCGIi3I23MwiXoWQE\nZuPEjgLCGBJ9T5H/YQWxVvq2b9n9olOOY4uXsoJ0Z/BCFD3vV3zZdSY7va4OeAKk\n1QIDAQAB\n-----END PUBLIC KEY-----"}'
 volumes:
   db_data:

@@ -1,0 +1,6 @@
+fragment Card on cards {
+  id
+  title
+  description
+  position
+}

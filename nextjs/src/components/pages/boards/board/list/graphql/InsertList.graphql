@@ -1,0 +1,7 @@
+mutation InsertList($name: String!, $position: Int!, $board_id: Int!) {
+  insert_lists_one(
+    object: { name: $name, position: $position, board_id: $board_id }
+  ) {
+    ...List
+  }
+}

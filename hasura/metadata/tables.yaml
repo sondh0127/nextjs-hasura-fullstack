@@ -39,22 +39,40 @@
       set:
         user_id: x-hasura-User-Id
       columns:
+      - icon
       - name
       backend_only: false
   select_permissions:
   - role: user
     permission:
       columns:
+      - created_at
+      - icon
       - id
       - name
-      - user_id
-      - created_at
       - updated_at
+      - user_id
       filter:
         _or:
         - user_id:
             _eq: X-Hasura-User-Id
       allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - icon
+      - name
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: boards_users
@@ -135,6 +153,42 @@
   - name: user
     using:
       foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-user-id
+      columns:
+      - body
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - user_id
+      - body
+      - created_at
+      - updated_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - body
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: lists

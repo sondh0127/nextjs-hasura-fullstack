@@ -1,0 +1,15 @@
+mutation DeleteList($board_id: Int!, $deletedPosition: Int!) {
+  delete_lists(where: { position: { _eq: $deletedPosition } }) {
+    returning {
+      ...List
+    }
+  }
+  update_lists(
+    where: { board_id: { _eq: $board_id }, position: { _gt: $deletedPosition } }
+    _inc: { position: -1 }
+  ) {
+    returning {
+      ...List
+    }
+  }
+}
