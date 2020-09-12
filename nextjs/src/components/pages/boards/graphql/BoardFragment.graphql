@@ -1,0 +1,6 @@
+fragment Board on boards {
+  id
+  name
+  icon
+  created_at
+}

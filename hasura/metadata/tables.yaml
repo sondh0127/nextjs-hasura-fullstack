@@ -3,11 +3,278 @@
     name: accounts
 - table:
     schema: public
+    name: boards
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: boards_users
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          schema: public
+          name: boards_users
+  - name: cards
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          schema: public
+          name: cards
+  - name: lists
+    using:
+      foreign_key_constraint_on:
+        column: board_id
+        table:
+          schema: public
+          name: lists
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-User-Id
+      columns:
+      - icon
+      - name
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - created_at
+      - icon
+      - id
+      - name
+      - updated_at
+      - user_id
+      filter:
+        _or:
+        - user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - icon
+      - name
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: boards_users
+  object_relationships:
+  - name: board
+    using:
+      foreign_key_constraint_on: board_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - board_id
+      - user_id
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - board_id
+      - user_id
+      - created_at
+      - updated_at
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      allow_aggregations: true
+- table:
+    schema: public
+    name: cards
+  object_relationships:
+  - name: board
+    using:
+      foreign_key_constraint_on: board_id
+  - name: list
+    using:
+      foreign_key_constraint_on: list_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - board_id
+      - description
+      - list_id
+      - position
+      - title
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - description
+      - list_id
+      - board_id
+      - position
+      - title
+      - created_at
+      - updated_at
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - description
+      - list_id
+      - position
+      - title
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+- table:
+    schema: public
     name: feeds
   object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-user-id
+      columns:
+      - body
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - user_id
+      - body
+      - created_at
+      - updated_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - body
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: lists
+  object_relationships:
+  - name: board
+    using:
+      foreign_key_constraint_on: board_id
+  array_relationships:
+  - name: cards
+    using:
+      foreign_key_constraint_on:
+        column: list_id
+        table:
+          schema: public
+          name: cards
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
+      columns:
+      - board_id
+      - id
+      - name
+      - position
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - board_id
+      - created_at
+      - id
+      - name
+      - position
+      - updated_at
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - name
+      - position
+      filter:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+        - board:
+            user_id:
+              _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: sessions
@@ -15,6 +282,20 @@
     schema: public
     name: users
   array_relationships:
+  - name: boards
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: boards
+  - name: boards_users
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: boards_users
   - name: feeds
     using:
       foreign_key_constraint_on:
@@ -22,6 +303,29 @@
         table:
           schema: public
           name: feeds
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - image
+      - name
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - email
+      - email_verified
+      - image
+      - created_at
+      - updated_at
+      filter: {}
+      allow_aggregations: true
 - table:
     schema: public
     name: verification_requests

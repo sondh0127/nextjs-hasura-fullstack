@@ -1,0 +1,5 @@
+mutation DeleteList($id: Int!) {
+  delete_lists_by_pk(id: $id) {
+    ...List
+  }
+}

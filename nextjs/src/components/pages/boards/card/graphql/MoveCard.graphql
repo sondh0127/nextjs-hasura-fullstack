@@ -1,0 +1,15 @@
+# Move card to other list
+
+mutation MoveCard(
+  $id: Int!
+  $title: String!
+  $position: numeric!
+  $list_id: Int!
+) {
+  update_cards_by_pk(
+    pk_columns: { id: $id }
+    _set: { title: $title, position: $position, list_id: $list_id }
+  ) {
+    ...Card
+  }
+}

@@ -1,0 +1,5 @@
+subscription Feeds {
+  feeds(order_by: { created_at: desc }) {
+    ...Feed
+  }
+}

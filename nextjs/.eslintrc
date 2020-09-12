@@ -18,48 +18,34 @@
     "amd": true, // Enables require() and define() as global variables as per the amd spec.
     "node": true // Enables Node.js global variables and Node.js scoping.
   },
-  "plugins": ["simple-import-sort"],
+  /* Guest: If we want to customize a plugin: should input that in the plugin list  */
+  "plugins": ["simple-import-sort", "@typescript-eslint"],
   "extends": [
+    /* Eslint typescript */
     "eslint:recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    // Prettier plugin and recommended rules
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "rules": {
     // Include .prettierrc.js rules
     "prettier/prettier": ["error", {}, { "usePrettierrc": true }], // Use our .prettierrc file as source
 
+    "simple-import-sort/sort": "error",
+
     // Targeting Next.js
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "simple-import-sort/sort": "error",
 
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "components": ["Link"],
-        "specialLink": ["hrefLeft", "hrefRight"],
-        "aspects": ["invalidHref", "preferButton"]
-      }
-    ],
-
-    "@typescript-eslint/explicit-function-return-type": "off",
+    /* @typescript-eslint */
+    "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "jsx-a11y/label-has-associated-control": [
-      "error",
-      {
-        "labelComponents": [],
-        "labelAttributes": [],
-        "controlComponents": [],
-        "assert": "either",
-        "depth": 25
-      }
-    ]
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

@@ -3,26 +3,29 @@ schema:
       headers:
         x-hasura-admin-secret: ${X_HASURA_ADMIN_SECRET}
 documents:
-  - "./components/**/*.tsx"
+  - "./src/**/*.graphql"
+watch: true
 config:
   scalars:
     DateTime: Date
     JSON: "{ [key: string]: any }"
     timestamptz: string
+    numeric: number
 overwrite: true
 generates:
-  ./generated/graphql.tsx:
+  ./src/generated/graphql.tsx:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-urql"
+      - "typescript-react-apollo"
     config:
+      maybeValue: T | undefined
       withHooks: true
       withComponent: false
+      withHOC: false
     hooks:
       afterOneFileWrite:
         - prettier --write
-        - eslint --fix
   ./graphql.schema.json:
     plugins:
       - "introspection"

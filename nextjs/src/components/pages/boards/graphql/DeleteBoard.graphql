@@ -1,0 +1,5 @@
+mutation DeleteBoard($id: Int!) {
+  delete_boards_by_pk(id: $id) {
+    ...Board
+  }
+}

@@ -1,0 +1,8 @@
+mutation UpdateList($id: Int!, $name: String!, $position: numeric!) {
+  update_lists_by_pk(
+    pk_columns: { id: $id }
+    _set: { name: $name, position: $position }
+  ) {
+    ...List
+  }
+}
