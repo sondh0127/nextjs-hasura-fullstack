@@ -1,8 +1,4 @@
-A boilerplate that uses Hasura and Next.js to develop applications.
-
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+A fullstack boilerplate which uses Hasura GraphQL Engine and Next.js to develop applications. The production ready can be done with Vercel and Heroku platforms by following the instruction.
 
 ## Deployment
 
@@ -15,7 +11,7 @@ Click on the button below to deploy the frontend application on Vercel. You'll n
 ### Nextjs config:
 
 ```
-NEXT_PUBLIC_API_URL: ''
+NEXT_PUBLIC_API_URL: '' #
 
 NEXT_PUBLIC_WS_URL: ''
 
@@ -49,7 +45,7 @@ HASURA_GRAPHQL_ADMIN_SECRET: ''
 HASURA_GRAPHQL_JWT_SECRET: ''
 ```
 
-## Migration from development to heroku production.
+## Migration follow from development to heroku production.
 
 ### Prerequisites:
 
@@ -58,14 +54,22 @@ HASURA_GRAPHQL_JWT_SECRET: ''
 Open console:
 
 ```
-hasura console
+hasura console --admin-secret <HASURA_GRAPHQL_ADMIN_SECRET>
 ```
 
-Run migration:
+Run migration with metadata:
 
 ```
-hasura migrate apply --endpoint https://nextjs-hasura-fullstack-trello.herokuapp.com --admin-secret <secret>
+hasura migrate apply --endpoint <YOUR_HASURA_APP_ENDPOINT> --admin-secret <HASURA_GRAPHQL_ADMIN_SECRET>
 
-hasura metadata apply --endpoint https://nextjs-hasura-fullstack-trello.herokuapp.com --admin-secret <secret>
+hasura metadata apply --endpoint <YOUR_HASURA_APP_ENDPOINT> --admin-secret <HASURA_GRAPHQL_ADMIN_SECRET>
 
 ```
+
+Example: hasura migrate apply --endpoint https://nextjs-hasura-fullstack-trello.herokuapp.com --admin-secret secret@123
+
+## Custom logic with NextJs routes (serverless)
+
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
