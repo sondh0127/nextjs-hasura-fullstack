@@ -10,19 +10,7 @@
 /* Write you own custom component styles here */
 /*! purgecss start ignore */
 @import './bar-of-progress.css';
-@import './components/form.css';
-@import './components/helper-text.css';
-@import './components/modal.css';
-@import './components/table.css';
 
-/* Typography */
-.page-title {
-  @apply my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200;
-}
-
-.section-title {
-  @apply mb-3 text-lg font-semibold text-gray-600 dark:text-gray-300;
-}
 /*! purgecss end ignore */
 
 /* Start purging... */

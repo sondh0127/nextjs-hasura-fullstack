@@ -6,6 +6,11 @@ export const cache = new InMemoryCache({
     Query: {
       fields: {
         feeds: concatPagination(),
+        // boards: {
+        //   merge(existing = [], incoming: any[]) {
+        //     return [...existing, ...incoming]
+        //   },
+        // },
       },
     },
   },

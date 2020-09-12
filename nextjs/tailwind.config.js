@@ -23,8 +23,5 @@ module.exports = resolveConfig({
   variants: {
     display: ['responsive', 'dark', 'last', 'group-hover'],
   },
-  plugins: [
-    require('@tailwindcss/ui'),
-    // require('@tailwindcss/custom-forms'),
-  ],
+  plugins: [require('@tailwindcss/ui')],
 })

@@ -1,0 +1,9 @@
+fragment List on lists {
+  id
+  position
+  name
+  board_id
+  cards(order_by: { position: asc }) {
+    ...Card
+  }
+}

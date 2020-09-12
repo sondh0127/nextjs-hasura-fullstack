@@ -1,5 +1,0 @@
-query Boards {
-  boards {
-    ...Board
-  }
-}

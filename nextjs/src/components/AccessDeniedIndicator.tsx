@@ -31,12 +31,12 @@ const AccessDeniedIndicator: React.FC<AccessDeniedIndicatorProps> = ({
   }
 
   return (
-    <div className={`flex h-96 items-center justify-center`}>
+    <div className={`flex items-center justify-center h-96`}>
       <div
-        className={`flex flex-col bg-gray-200 rounded-md p-6 space-y-4 items-center justify-center`}
+        className={`flex flex-col items-center justify-center p-6 space-y-4 bg-gray-200 rounded-md`}
       >
         <div>{iconNode()}</div>
-        <div className={`italic text-lg text-gray-800`}>
+        <div className={`text-lg italic text-gray-800`}>
           {signInButtonNode()}
         </div>
       </div>

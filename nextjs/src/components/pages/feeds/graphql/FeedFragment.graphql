@@ -1,0 +1,10 @@
+fragment Feed on feeds {
+  id
+  created_at
+  body
+  user {
+    id
+    name
+    image
+  }
+}

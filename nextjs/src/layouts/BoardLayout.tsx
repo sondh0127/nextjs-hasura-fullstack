@@ -43,7 +43,7 @@ const BoardLayout: React.FC<BoardLayoutProps> = (props) => {
               setIsSideMenuOpen(false)
             }}
           />
-          <div className="container mx-auto">{children}</div>
+          <div className={``}>{children}</div>
         </main>
       </div>
     </React.Fragment>

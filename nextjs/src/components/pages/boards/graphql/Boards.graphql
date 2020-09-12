@@ -1,0 +1,5 @@
+query Boards {
+  boards(order_by: { id: asc }) {
+    ...Board
+  }
+}

@@ -1,8 +1,0 @@
-subscription Board($id: Int!) {
-  boards_by_pk(id: $id) {
-    ...Board
-    lists(order_by: { position: asc }) {
-      ...List
-    }
-  }
-}

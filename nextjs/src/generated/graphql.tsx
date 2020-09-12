@@ -11,6 +11,7 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  numeric: number
   timestamptz: string
 }
 
@@ -1180,7 +1181,7 @@ export type Cards = {
   /** An object relationship */
   list: Lists
   list_id: Scalars['Int']
-  position: Scalars['Int']
+  position: Scalars['numeric']
   title: Scalars['String']
   updated_at: Scalars['timestamptz']
 }
@@ -1264,7 +1265,7 @@ export type Cards_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>
   list?: Maybe<Lists_Bool_Exp>
   list_id?: Maybe<Int_Comparison_Exp>
-  position?: Maybe<Int_Comparison_Exp>
+  position?: Maybe<Numeric_Comparison_Exp>
   title?: Maybe<String_Comparison_Exp>
   updated_at?: Maybe<Timestamptz_Comparison_Exp>
 }
@@ -1273,8 +1274,6 @@ export type Cards_Bool_Exp = {
 export enum Cards_Constraint {
   /** unique or primary key constraint */
   CardsPkey = 'cards_pkey',
-  /** unique or primary key constraint */
-  CardsPositionKey = 'cards_position_key',
 }
 
 /** input type for incrementing integer column in table "cards" */
@@ -1282,7 +1281,7 @@ export type Cards_Inc_Input = {
   board_id?: Maybe<Scalars['Int']>
   id?: Maybe<Scalars['Int']>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
 }
 
 /** input type for inserting data into table "cards" */
@@ -1294,7 +1293,7 @@ export type Cards_Insert_Input = {
   id?: Maybe<Scalars['Int']>
   list?: Maybe<Lists_Obj_Rel_Insert_Input>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   title?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
@@ -1307,7 +1306,7 @@ export type Cards_Max_Fields = {
   description?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['Int']>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   title?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
@@ -1332,7 +1331,7 @@ export type Cards_Min_Fields = {
   description?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['Int']>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   title?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
@@ -1417,7 +1416,7 @@ export type Cards_Set_Input = {
   description?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['Int']>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   title?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
@@ -1479,7 +1478,7 @@ export type Cards_Sum_Fields = {
   board_id?: Maybe<Scalars['Int']>
   id?: Maybe<Scalars['Int']>
   list_id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
 }
 
 /** order by sum() on columns of table "cards" */
@@ -1887,7 +1886,7 @@ export type Lists = {
   created_at: Scalars['timestamptz']
   id: Scalars['Int']
   name: Scalars['String']
-  position: Scalars['Int']
+  position: Scalars['numeric']
   updated_at: Scalars['timestamptz']
 }
 
@@ -1985,14 +1984,12 @@ export type Lists_Bool_Exp = {
   created_at?: Maybe<Timestamptz_Comparison_Exp>
   id?: Maybe<Int_Comparison_Exp>
   name?: Maybe<String_Comparison_Exp>
-  position?: Maybe<Int_Comparison_Exp>
+  position?: Maybe<Numeric_Comparison_Exp>
   updated_at?: Maybe<Timestamptz_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "lists" */
 export enum Lists_Constraint {
-  /** unique or primary key constraint */
-  ListsBoardIdPositionKey = 'lists_board_id_position_key',
   /** unique or primary key constraint */
   ListsPkey = 'lists_pkey',
 }
@@ -2001,7 +1998,7 @@ export enum Lists_Constraint {
 export type Lists_Inc_Input = {
   board_id?: Maybe<Scalars['Int']>
   id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
 }
 
 /** input type for inserting data into table "lists" */
@@ -2012,7 +2009,7 @@ export type Lists_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>
   id?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -2023,7 +2020,7 @@ export type Lists_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>
   id?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -2044,7 +2041,7 @@ export type Lists_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>
   id?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -2119,7 +2116,7 @@ export type Lists_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>
   id?: Maybe<Scalars['Int']>
   name?: Maybe<Scalars['String']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -2173,7 +2170,7 @@ export type Lists_Sum_Fields = {
   __typename?: 'lists_sum_fields'
   board_id?: Maybe<Scalars['Int']>
   id?: Maybe<Scalars['Int']>
-  position?: Maybe<Scalars['Int']>
+  position?: Maybe<Scalars['numeric']>
 }
 
 /** order by sum() on columns of table "lists" */
@@ -2679,6 +2676,19 @@ export type Mutation_RootUpdate_Verification_Requests_By_PkArgs = {
   _inc?: Maybe<Verification_Requests_Inc_Input>
   _set?: Maybe<Verification_Requests_Set_Input>
   pk_columns: Verification_Requests_Pk_Columns_Input
+}
+
+/** expression to compare columns of type numeric. All fields are combined with logical 'AND'. */
+export type Numeric_Comparison_Exp = {
+  _eq?: Maybe<Scalars['numeric']>
+  _gt?: Maybe<Scalars['numeric']>
+  _gte?: Maybe<Scalars['numeric']>
+  _in?: Maybe<Array<Scalars['numeric']>>
+  _is_null?: Maybe<Scalars['Boolean']>
+  _lt?: Maybe<Scalars['numeric']>
+  _lte?: Maybe<Scalars['numeric']>
+  _neq?: Maybe<Scalars['numeric']>
+  _nin?: Maybe<Array<Scalars['numeric']>>
 }
 
 /** column ordering options */
@@ -4276,16 +4286,11 @@ export type UserQuery = { __typename?: 'query_root' } & {
   users_by_pk?: Maybe<{ __typename?: 'users' } & Pick<Users, 'id' | 'name'>>
 }
 
-export type CardFragment = { __typename?: 'cards' } & Pick<
-  Cards,
-  'id' | 'title' | 'description' | 'position'
->
-
-export type BoardSubscriptionVariables = Exact<{
+export type BoardQueryVariables = Exact<{
   id: Scalars['Int']
 }>
 
-export type BoardSubscription = { __typename?: 'subscription_root' } & {
+export type BoardQuery = { __typename?: 'query_root' } & {
   boards_by_pk?: Maybe<
     { __typename?: 'boards' } & {
       lists: Array<{ __typename?: 'lists' } & ListFragment>
@@ -4293,78 +4298,62 @@ export type BoardSubscription = { __typename?: 'subscription_root' } & {
   >
 }
 
-export type DeleteListMutationVariables = Exact<{
-  board_id: Scalars['Int']
-  deletedPosition: Scalars['Int']
-}>
+export type CardFragment = { __typename?: 'cards' } & Pick<
+  Cards,
+  | 'id'
+  | 'updated_at'
+  | 'created_at'
+  | 'title'
+  | 'description'
+  | 'position'
+  | 'list_id'
+  | 'board_id'
+>
 
-export type DeleteListMutation = { __typename?: 'mutation_root' } & {
-  delete_lists?: Maybe<
-    { __typename?: 'lists_mutation_response' } & {
-      returning: Array<{ __typename?: 'lists' } & ListFragment>
-    }
-  >
-  update_lists?: Maybe<
-    { __typename?: 'lists_mutation_response' } & {
-      returning: Array<{ __typename?: 'lists' } & ListFragment>
-    }
-  >
-}
-
-export type InsertListMutationVariables = Exact<{
-  name: Scalars['String']
-  position: Scalars['Int']
-  board_id: Scalars['Int']
-}>
-
-export type InsertListMutation = { __typename?: 'mutation_root' } & {
-  insert_lists_one?: Maybe<{ __typename?: 'lists' } & ListFragment>
-}
-
-export type ListFragment = { __typename?: 'lists' } & Pick<
-  Lists,
-  'id' | 'position' | 'name' | 'board_id'
-> & { cards: Array<{ __typename?: 'cards' } & CardFragment> }
-
-export type MoveListMutationVariables = Exact<{
-  board_id: Scalars['Int']
-  sourcePos: Scalars['Int']
-  destPos: Scalars['Int']
-  startPos: Scalars['Int']
-  endPos: Scalars['Int']
-  inc: Scalars['Int']
-}>
-
-export type MoveListMutation = { __typename?: 'mutation_root' } & {
-  update_lists?: Maybe<
-    { __typename?: 'lists_mutation_response' } & {
-      returning: Array<{ __typename?: 'lists' } & ListFragment>
-    }
-  >
-  update_lists_1?: Maybe<
-    { __typename?: 'lists_mutation_response' } & {
-      returning: Array<{ __typename?: 'lists' } & ListFragment>
-    }
-  >
-  update_lists_2?: Maybe<
-    { __typename?: 'lists_mutation_response' } & {
-      returning: Array<{ __typename?: 'lists' } & ListFragment>
-    }
-  >
-}
-
-export type UpdateListMutationVariables = Exact<{
+export type DeleteCardMutationVariables = Exact<{
   id: Scalars['Int']
-  name: Scalars['String']
 }>
 
-export type UpdateListMutation = { __typename?: 'mutation_root' } & {
-  update_lists_by_pk?: Maybe<{ __typename?: 'lists' } & ListFragment>
+export type DeleteCardMutation = { __typename?: 'mutation_root' } & {
+  delete_cards_by_pk?: Maybe<{ __typename?: 'cards' } & CardFragment>
+}
+
+export type InsertCardMutationVariables = Exact<{
+  list_id: Scalars['Int']
+  board_id: Scalars['Int']
+  description: Scalars['String']
+  title: Scalars['String']
+  position: Scalars['numeric']
+}>
+
+export type InsertCardMutation = { __typename?: 'mutation_root' } & {
+  insert_cards_one?: Maybe<{ __typename?: 'cards' } & CardFragment>
+}
+
+export type MoveCardMutationVariables = Exact<{
+  id: Scalars['Int']
+  title: Scalars['String']
+  position: Scalars['numeric']
+  list_id: Scalars['Int']
+}>
+
+export type MoveCardMutation = { __typename?: 'mutation_root' } & {
+  update_cards_by_pk?: Maybe<{ __typename?: 'cards' } & CardFragment>
+}
+
+export type UpdateCardMutationVariables = Exact<{
+  id: Scalars['Int']
+  title: Scalars['String']
+  position: Scalars['numeric']
+}>
+
+export type UpdateCardMutation = { __typename?: 'mutation_root' } & {
+  update_cards_by_pk?: Maybe<{ __typename?: 'cards' } & CardFragment>
 }
 
 export type BoardFragment = { __typename?: 'boards' } & Pick<
   Boards,
-  'id' | 'name' | 'icon'
+  'id' | 'name' | 'icon' | 'created_at'
 >
 
 export type BoardsQueryVariables = Exact<{ [key: string]: never }>
@@ -4389,14 +4378,48 @@ export type InsertBoardMutation = { __typename?: 'mutation_root' } & {
   insert_boards_one?: Maybe<{ __typename?: 'boards' } & BoardFragment>
 }
 
+export type DeleteListMutationVariables = Exact<{
+  id: Scalars['Int']
+}>
+
+export type DeleteListMutation = { __typename?: 'mutation_root' } & {
+  delete_lists_by_pk?: Maybe<{ __typename?: 'lists' } & ListFragment>
+}
+
+export type InsertListMutationVariables = Exact<{
+  name: Scalars['String']
+  position: Scalars['numeric']
+  board_id: Scalars['Int']
+}>
+
+export type InsertListMutation = { __typename?: 'mutation_root' } & {
+  insert_lists_one?: Maybe<{ __typename?: 'lists' } & ListFragment>
+}
+
+export type ListFragment = { __typename?: 'lists' } & Pick<
+  Lists,
+  'id' | 'position' | 'name' | 'board_id'
+> & { cards: Array<{ __typename?: 'cards' } & CardFragment> }
+
+export type UpdateListMutationVariables = Exact<{
+  id: Scalars['Int']
+  name: Scalars['String']
+  position: Scalars['numeric']
+}>
+
+export type UpdateListMutation = { __typename?: 'mutation_root' } & {
+  update_lists_by_pk?: Maybe<{ __typename?: 'lists' } & ListFragment>
+}
+
+export type FeedFragment = { __typename?: 'feeds' } & Pick<
+  Feeds,
+  'id' | 'created_at' | 'body'
+> & { user: { __typename?: 'users' } & Pick<Users, 'id' | 'name' | 'image'> }
+
 export type FeedsSubscriptionVariables = Exact<{ [key: string]: never }>
 
 export type FeedsSubscription = { __typename?: 'subscription_root' } & {
-  feeds: Array<
-    { __typename?: 'feeds' } & Pick<Feeds, 'id' | 'created_at' | 'body'> & {
-        user: { __typename?: 'users' } & Pick<Users, 'id' | 'name' | 'image'>
-      }
-  >
+  feeds: Array<{ __typename?: 'feeds' } & FeedFragment>
 }
 
 export type InsertFeedMutationVariables = Exact<{
@@ -4404,15 +4427,27 @@ export type InsertFeedMutationVariables = Exact<{
 }>
 
 export type InsertFeedMutation = { __typename?: 'mutation_root' } & {
-  insert_feeds_one?: Maybe<{ __typename?: 'feeds' } & Pick<Feeds, 'id'>>
+  insert_feeds_one?: Maybe<{ __typename?: 'feeds' } & FeedFragment>
 }
 
+export const BoardFragmentDoc = gql`
+  fragment Board on boards {
+    id
+    name
+    icon
+    created_at
+  }
+`
 export const CardFragmentDoc = gql`
   fragment Card on cards {
     id
+    updated_at
+    created_at
     title
     description
     position
+    list_id
+    board_id
   }
 `
 export const ListFragmentDoc = gql`
@@ -4421,17 +4456,22 @@ export const ListFragmentDoc = gql`
     position
     name
     board_id
-    cards {
+    cards(order_by: { position: asc }) {
       ...Card
     }
   }
   ${CardFragmentDoc}
 `
-export const BoardFragmentDoc = gql`
-  fragment Board on boards {
+export const FeedFragmentDoc = gql`
+  fragment Feed on feeds {
     id
-    name
-    icon
+    created_at
+    body
+    user {
+      id
+      name
+      image
+    }
   }
 `
 export const UpdateUserDocument = gql`
@@ -4531,7 +4571,7 @@ export type UserQueryHookResult = ReturnType<typeof useUserQuery>
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>
 export const BoardDocument = gql`
-  subscription Board($id: Int!) {
+  query Board($id: Int!) {
     boards_by_pk(id: $id) {
       ...Board
       lists(order_by: { position: asc }) {
@@ -4544,290 +4584,274 @@ export const BoardDocument = gql`
 `
 
 /**
- * __useBoardSubscription__
+ * __useBoardQuery__
  *
- * To run a query within a React component, call `useBoardSubscription` and pass it any options that fit your needs.
- * When your component renders, `useBoardSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useBoardQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBoardQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useBoardSubscription({
+ * const { data, loading, error } = useBoardQuery({
  *   variables: {
  *      id: // value for 'id'
  *   },
  * });
  */
-export function useBoardSubscription(
-  baseOptions?: Apollo.SubscriptionHookOptions<
-    BoardSubscription,
-    BoardSubscriptionVariables
-  >,
+export function useBoardQuery(
+  baseOptions?: Apollo.QueryHookOptions<BoardQuery, BoardQueryVariables>,
 ) {
-  return Apollo.useSubscription<BoardSubscription, BoardSubscriptionVariables>(
+  return Apollo.useQuery<BoardQuery, BoardQueryVariables>(
     BoardDocument,
     baseOptions,
   )
 }
-export type BoardSubscriptionHookResult = ReturnType<
-  typeof useBoardSubscription
->
-export type BoardSubscriptionResult = Apollo.SubscriptionResult<
-  BoardSubscription
->
-export const DeleteListDocument = gql`
-  mutation DeleteList($board_id: Int!, $deletedPosition: Int!) {
-    delete_lists(where: { position: { _eq: $deletedPosition } }) {
-      returning {
-        ...List
-      }
-    }
-    update_lists(
-      where: {
-        board_id: { _eq: $board_id }
-        position: { _gt: $deletedPosition }
-      }
-      _inc: { position: -1 }
-    ) {
-      returning {
-        ...List
-      }
-    }
-  }
-  ${ListFragmentDoc}
-`
-export type DeleteListMutationFn = Apollo.MutationFunction<
-  DeleteListMutation,
-  DeleteListMutationVariables
->
-
-/**
- * __useDeleteListMutation__
- *
- * To run a mutation, you first call `useDeleteListMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteListMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteListMutation, { data, loading, error }] = useDeleteListMutation({
- *   variables: {
- *      board_id: // value for 'board_id'
- *      deletedPosition: // value for 'deletedPosition'
- *   },
- * });
- */
-export function useDeleteListMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    DeleteListMutation,
-    DeleteListMutationVariables
-  >,
+export function useBoardLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<BoardQuery, BoardQueryVariables>,
 ) {
-  return Apollo.useMutation<DeleteListMutation, DeleteListMutationVariables>(
-    DeleteListDocument,
+  return Apollo.useLazyQuery<BoardQuery, BoardQueryVariables>(
+    BoardDocument,
     baseOptions,
   )
 }
-export type DeleteListMutationHookResult = ReturnType<
-  typeof useDeleteListMutation
+export type BoardQueryHookResult = ReturnType<typeof useBoardQuery>
+export type BoardLazyQueryHookResult = ReturnType<typeof useBoardLazyQuery>
+export type BoardQueryResult = Apollo.QueryResult<
+  BoardQuery,
+  BoardQueryVariables
 >
-export type DeleteListMutationResult = Apollo.MutationResult<DeleteListMutation>
-export type DeleteListMutationOptions = Apollo.BaseMutationOptions<
-  DeleteListMutation,
-  DeleteListMutationVariables
->
-export const InsertListDocument = gql`
-  mutation InsertList($name: String!, $position: Int!, $board_id: Int!) {
-    insert_lists_one(
-      object: { name: $name, position: $position, board_id: $board_id }
-    ) {
-      ...List
+export const DeleteCardDocument = gql`
+  mutation DeleteCard($id: Int!) {
+    delete_cards_by_pk(id: $id) {
+      ...Card
     }
   }
-  ${ListFragmentDoc}
+  ${CardFragmentDoc}
 `
-export type InsertListMutationFn = Apollo.MutationFunction<
-  InsertListMutation,
-  InsertListMutationVariables
+export type DeleteCardMutationFn = Apollo.MutationFunction<
+  DeleteCardMutation,
+  DeleteCardMutationVariables
 >
 
 /**
- * __useInsertListMutation__
+ * __useDeleteCardMutation__
  *
- * To run a mutation, you first call `useInsertListMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useInsertListMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useDeleteCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCardMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [insertListMutation, { data, loading, error }] = useInsertListMutation({
- *   variables: {
- *      name: // value for 'name'
- *      position: // value for 'position'
- *      board_id: // value for 'board_id'
- *   },
- * });
- */
-export function useInsertListMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    InsertListMutation,
-    InsertListMutationVariables
-  >,
-) {
-  return Apollo.useMutation<InsertListMutation, InsertListMutationVariables>(
-    InsertListDocument,
-    baseOptions,
-  )
-}
-export type InsertListMutationHookResult = ReturnType<
-  typeof useInsertListMutation
->
-export type InsertListMutationResult = Apollo.MutationResult<InsertListMutation>
-export type InsertListMutationOptions = Apollo.BaseMutationOptions<
-  InsertListMutation,
-  InsertListMutationVariables
->
-export const MoveListDocument = gql`
-  mutation MoveList(
-    $board_id: Int!
-    $sourcePos: Int!
-    $destPos: Int!
-    $startPos: Int!
-    $endPos: Int!
-    $inc: Int!
-  ) {
-    update_lists(
-      where: { board_id: { _eq: $board_id }, position: { _eq: $sourcePos } }
-      _set: { position: 9999 }
-    ) {
-      returning {
-        ...List
-      }
-    }
-    update_lists_1: update_lists(
-      where: {
-        board_id: { _eq: $board_id }
-        position: { _gt: $startPos, _lte: $endPos }
-      }
-      _inc: { position: $inc }
-    ) {
-      returning {
-        ...List
-      }
-    }
-    update_lists_2: update_lists(
-      where: { board_id: { _eq: $board_id }, position: { _eq: 9999 } }
-      _set: { position: $destPos }
-    ) {
-      returning {
-        ...List
-      }
-    }
-  }
-  ${ListFragmentDoc}
-`
-export type MoveListMutationFn = Apollo.MutationFunction<
-  MoveListMutation,
-  MoveListMutationVariables
->
-
-/**
- * __useMoveListMutation__
- *
- * To run a mutation, you first call `useMoveListMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMoveListMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [moveListMutation, { data, loading, error }] = useMoveListMutation({
- *   variables: {
- *      board_id: // value for 'board_id'
- *      sourcePos: // value for 'sourcePos'
- *      destPos: // value for 'destPos'
- *      startPos: // value for 'startPos'
- *      endPos: // value for 'endPos'
- *      inc: // value for 'inc'
- *   },
- * });
- */
-export function useMoveListMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    MoveListMutation,
-    MoveListMutationVariables
-  >,
-) {
-  return Apollo.useMutation<MoveListMutation, MoveListMutationVariables>(
-    MoveListDocument,
-    baseOptions,
-  )
-}
-export type MoveListMutationHookResult = ReturnType<typeof useMoveListMutation>
-export type MoveListMutationResult = Apollo.MutationResult<MoveListMutation>
-export type MoveListMutationOptions = Apollo.BaseMutationOptions<
-  MoveListMutation,
-  MoveListMutationVariables
->
-export const UpdateListDocument = gql`
-  mutation UpdateList($id: Int!, $name: String!) {
-    update_lists_by_pk(pk_columns: { id: $id }, _set: { name: $name }) {
-      ...List
-    }
-  }
-  ${ListFragmentDoc}
-`
-export type UpdateListMutationFn = Apollo.MutationFunction<
-  UpdateListMutation,
-  UpdateListMutationVariables
->
-
-/**
- * __useUpdateListMutation__
- *
- * To run a mutation, you first call `useUpdateListMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateListMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateListMutation, { data, loading, error }] = useUpdateListMutation({
+ * const [deleteCardMutation, { data, loading, error }] = useDeleteCardMutation({
  *   variables: {
  *      id: // value for 'id'
- *      name: // value for 'name'
  *   },
  * });
  */
-export function useUpdateListMutation(
+export function useDeleteCardMutation(
   baseOptions?: Apollo.MutationHookOptions<
-    UpdateListMutation,
-    UpdateListMutationVariables
+    DeleteCardMutation,
+    DeleteCardMutationVariables
   >,
 ) {
-  return Apollo.useMutation<UpdateListMutation, UpdateListMutationVariables>(
-    UpdateListDocument,
+  return Apollo.useMutation<DeleteCardMutation, DeleteCardMutationVariables>(
+    DeleteCardDocument,
     baseOptions,
   )
 }
-export type UpdateListMutationHookResult = ReturnType<
-  typeof useUpdateListMutation
+export type DeleteCardMutationHookResult = ReturnType<
+  typeof useDeleteCardMutation
 >
-export type UpdateListMutationResult = Apollo.MutationResult<UpdateListMutation>
-export type UpdateListMutationOptions = Apollo.BaseMutationOptions<
-  UpdateListMutation,
-  UpdateListMutationVariables
+export type DeleteCardMutationResult = Apollo.MutationResult<DeleteCardMutation>
+export type DeleteCardMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCardMutation,
+  DeleteCardMutationVariables
+>
+export const InsertCardDocument = gql`
+  mutation InsertCard(
+    $list_id: Int!
+    $board_id: Int!
+    $description: String!
+    $title: String!
+    $position: numeric!
+  ) {
+    insert_cards_one(
+      object: {
+        description: $description
+        title: $title
+        position: $position
+        list_id: $list_id
+        board_id: $board_id
+      }
+    ) {
+      ...Card
+    }
+  }
+  ${CardFragmentDoc}
+`
+export type InsertCardMutationFn = Apollo.MutationFunction<
+  InsertCardMutation,
+  InsertCardMutationVariables
+>
+
+/**
+ * __useInsertCardMutation__
+ *
+ * To run a mutation, you first call `useInsertCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertCardMutation, { data, loading, error }] = useInsertCardMutation({
+ *   variables: {
+ *      list_id: // value for 'list_id'
+ *      board_id: // value for 'board_id'
+ *      description: // value for 'description'
+ *      title: // value for 'title'
+ *      position: // value for 'position'
+ *   },
+ * });
+ */
+export function useInsertCardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    InsertCardMutation,
+    InsertCardMutationVariables
+  >,
+) {
+  return Apollo.useMutation<InsertCardMutation, InsertCardMutationVariables>(
+    InsertCardDocument,
+    baseOptions,
+  )
+}
+export type InsertCardMutationHookResult = ReturnType<
+  typeof useInsertCardMutation
+>
+export type InsertCardMutationResult = Apollo.MutationResult<InsertCardMutation>
+export type InsertCardMutationOptions = Apollo.BaseMutationOptions<
+  InsertCardMutation,
+  InsertCardMutationVariables
+>
+export const MoveCardDocument = gql`
+  mutation MoveCard(
+    $id: Int!
+    $title: String!
+    $position: numeric!
+    $list_id: Int!
+  ) {
+    update_cards_by_pk(
+      pk_columns: { id: $id }
+      _set: { title: $title, position: $position, list_id: $list_id }
+    ) {
+      ...Card
+    }
+  }
+  ${CardFragmentDoc}
+`
+export type MoveCardMutationFn = Apollo.MutationFunction<
+  MoveCardMutation,
+  MoveCardMutationVariables
+>
+
+/**
+ * __useMoveCardMutation__
+ *
+ * To run a mutation, you first call `useMoveCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMoveCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [moveCardMutation, { data, loading, error }] = useMoveCardMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      title: // value for 'title'
+ *      position: // value for 'position'
+ *      list_id: // value for 'list_id'
+ *   },
+ * });
+ */
+export function useMoveCardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    MoveCardMutation,
+    MoveCardMutationVariables
+  >,
+) {
+  return Apollo.useMutation<MoveCardMutation, MoveCardMutationVariables>(
+    MoveCardDocument,
+    baseOptions,
+  )
+}
+export type MoveCardMutationHookResult = ReturnType<typeof useMoveCardMutation>
+export type MoveCardMutationResult = Apollo.MutationResult<MoveCardMutation>
+export type MoveCardMutationOptions = Apollo.BaseMutationOptions<
+  MoveCardMutation,
+  MoveCardMutationVariables
+>
+export const UpdateCardDocument = gql`
+  mutation UpdateCard($id: Int!, $title: String!, $position: numeric!) {
+    update_cards_by_pk(
+      pk_columns: { id: $id }
+      _set: { title: $title, position: $position }
+    ) {
+      ...Card
+    }
+  }
+  ${CardFragmentDoc}
+`
+export type UpdateCardMutationFn = Apollo.MutationFunction<
+  UpdateCardMutation,
+  UpdateCardMutationVariables
+>
+
+/**
+ * __useUpdateCardMutation__
+ *
+ * To run a mutation, you first call `useUpdateCardMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCardMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCardMutation, { data, loading, error }] = useUpdateCardMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      title: // value for 'title'
+ *      position: // value for 'position'
+ *   },
+ * });
+ */
+export function useUpdateCardMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCardMutation,
+    UpdateCardMutationVariables
+  >,
+) {
+  return Apollo.useMutation<UpdateCardMutation, UpdateCardMutationVariables>(
+    UpdateCardDocument,
+    baseOptions,
+  )
+}
+export type UpdateCardMutationHookResult = ReturnType<
+  typeof useUpdateCardMutation
+>
+export type UpdateCardMutationResult = Apollo.MutationResult<UpdateCardMutation>
+export type UpdateCardMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCardMutation,
+  UpdateCardMutationVariables
 >
 export const BoardsDocument = gql`
   query Boards {
-    boards {
+    boards(order_by: { id: asc }) {
       ...Board
     }
   }
@@ -4973,19 +4997,169 @@ export type InsertBoardMutationOptions = Apollo.BaseMutationOptions<
   InsertBoardMutation,
   InsertBoardMutationVariables
 >
+export const DeleteListDocument = gql`
+  mutation DeleteList($id: Int!) {
+    delete_lists_by_pk(id: $id) {
+      ...List
+    }
+  }
+  ${ListFragmentDoc}
+`
+export type DeleteListMutationFn = Apollo.MutationFunction<
+  DeleteListMutation,
+  DeleteListMutationVariables
+>
+
+/**
+ * __useDeleteListMutation__
+ *
+ * To run a mutation, you first call `useDeleteListMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteListMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteListMutation, { data, loading, error }] = useDeleteListMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteListMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteListMutation,
+    DeleteListMutationVariables
+  >,
+) {
+  return Apollo.useMutation<DeleteListMutation, DeleteListMutationVariables>(
+    DeleteListDocument,
+    baseOptions,
+  )
+}
+export type DeleteListMutationHookResult = ReturnType<
+  typeof useDeleteListMutation
+>
+export type DeleteListMutationResult = Apollo.MutationResult<DeleteListMutation>
+export type DeleteListMutationOptions = Apollo.BaseMutationOptions<
+  DeleteListMutation,
+  DeleteListMutationVariables
+>
+export const InsertListDocument = gql`
+  mutation InsertList($name: String!, $position: numeric!, $board_id: Int!) {
+    insert_lists_one(
+      object: { name: $name, position: $position, board_id: $board_id }
+    ) {
+      ...List
+    }
+  }
+  ${ListFragmentDoc}
+`
+export type InsertListMutationFn = Apollo.MutationFunction<
+  InsertListMutation,
+  InsertListMutationVariables
+>
+
+/**
+ * __useInsertListMutation__
+ *
+ * To run a mutation, you first call `useInsertListMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertListMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertListMutation, { data, loading, error }] = useInsertListMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      position: // value for 'position'
+ *      board_id: // value for 'board_id'
+ *   },
+ * });
+ */
+export function useInsertListMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    InsertListMutation,
+    InsertListMutationVariables
+  >,
+) {
+  return Apollo.useMutation<InsertListMutation, InsertListMutationVariables>(
+    InsertListDocument,
+    baseOptions,
+  )
+}
+export type InsertListMutationHookResult = ReturnType<
+  typeof useInsertListMutation
+>
+export type InsertListMutationResult = Apollo.MutationResult<InsertListMutation>
+export type InsertListMutationOptions = Apollo.BaseMutationOptions<
+  InsertListMutation,
+  InsertListMutationVariables
+>
+export const UpdateListDocument = gql`
+  mutation UpdateList($id: Int!, $name: String!, $position: numeric!) {
+    update_lists_by_pk(
+      pk_columns: { id: $id }
+      _set: { name: $name, position: $position }
+    ) {
+      ...List
+    }
+  }
+  ${ListFragmentDoc}
+`
+export type UpdateListMutationFn = Apollo.MutationFunction<
+  UpdateListMutation,
+  UpdateListMutationVariables
+>
+
+/**
+ * __useUpdateListMutation__
+ *
+ * To run a mutation, you first call `useUpdateListMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateListMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateListMutation, { data, loading, error }] = useUpdateListMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      name: // value for 'name'
+ *      position: // value for 'position'
+ *   },
+ * });
+ */
+export function useUpdateListMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateListMutation,
+    UpdateListMutationVariables
+  >,
+) {
+  return Apollo.useMutation<UpdateListMutation, UpdateListMutationVariables>(
+    UpdateListDocument,
+    baseOptions,
+  )
+}
+export type UpdateListMutationHookResult = ReturnType<
+  typeof useUpdateListMutation
+>
+export type UpdateListMutationResult = Apollo.MutationResult<UpdateListMutation>
+export type UpdateListMutationOptions = Apollo.BaseMutationOptions<
+  UpdateListMutation,
+  UpdateListMutationVariables
+>
 export const FeedsDocument = gql`
   subscription Feeds {
     feeds(order_by: { created_at: desc }) {
-      id
-      created_at
-      body
-      user {
-        id
-        name
-        image
-      }
+      ...Feed
     }
   }
+  ${FeedFragmentDoc}
 `
 
 /**
@@ -5023,9 +5197,10 @@ export type FeedsSubscriptionResult = Apollo.SubscriptionResult<
 export const InsertFeedDocument = gql`
   mutation InsertFeed($body: String) {
     insert_feeds_one(object: { body: $body }) {
-      id
+      ...Feed
     }
   }
+  ${FeedFragmentDoc}
 `
 export type InsertFeedMutationFn = Apollo.MutationFunction<
   InsertFeedMutation,

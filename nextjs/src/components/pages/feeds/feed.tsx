@@ -1,11 +1,11 @@
 import { Avatar, Card, CardBody } from '@retail-ui/core'
 import React from 'react'
 
-import { Feed } from '@/types/model'
+import { FeedFragment } from '@/generated/graphql'
 import { timeFromNow } from '@/utils'
 
 interface FeedPageProps {
-  feed: Feed
+  feed: FeedFragment
 }
 
 const FeedPage: React.FC<FeedPageProps> = ({ feed }) => {

@@ -1,0 +1,11 @@
+fragment Card on cards {
+  id
+  updated_at
+  created_at
+
+  title
+  description
+  position
+  list_id
+  board_id
+}

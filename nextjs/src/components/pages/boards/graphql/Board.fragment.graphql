@@ -1,5 +1,0 @@
-fragment Board on boards {
-  id
-  name
-  icon
-}

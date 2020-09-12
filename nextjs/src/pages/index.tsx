@@ -1,3 +1,4 @@
+import { useApolloClient } from '@apollo/client'
 import { Button } from '@retail-ui/core'
 import { GetServerSideProps } from 'next'
 import { getSession, signIn, signOut } from 'next-auth/client'
@@ -15,8 +16,11 @@ interface IndexPageProps extends SessionProp {
 }
 
 const IndexPage: NextPageWithLayout<IndexPageProps> = ({ session }) => {
+  const apolloClient = useApolloClient()
+
   const authButtonNode = () => {
     if (session) {
+      apolloClient.resetStore()
       return (
         <Link href="/api/auth/signout">
           <Button

@@ -1,21 +1,23 @@
 schema:
-  - 'http://localhost:8080/v1/graphql':
+  - "http://localhost:8080/v1/graphql":
       headers:
         x-hasura-admin-secret: ${X_HASURA_ADMIN_SECRET}
 documents:
-  - './src/**/*.graphql'
+  - "./src/**/*.graphql"
+watch: true
 config:
   scalars:
     DateTime: Date
-    JSON: '{ [key: string]: any }'
+    JSON: "{ [key: string]: any }"
     timestamptz: string
+    numeric: number
 overwrite: true
 generates:
   ./src/generated/graphql.tsx:
     plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
     config:
       maybeValue: T | undefined
       withHooks: true
@@ -26,4 +28,4 @@ generates:
         - prettier --write
   ./graphql.schema.json:
     plugins:
-      - 'introspection'
+      - "introspection"

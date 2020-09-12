@@ -1,12 +1,5 @@
 subscription Feeds {
   feeds(order_by: { created_at: desc }) {
-    id
-    created_at
-    body
-    user {
-      id
-      name
-      image
-    }
+    ...Feed
   }
 }

@@ -125,7 +125,9 @@
           user_id:
             _eq: X-Hasura-User-Id
       columns:
+      - board_id
       - description
+      - list_id
       - position
       - title
       backend_only: false
@@ -146,6 +148,26 @@
           user_id:
             _eq: X-Hasura-User-Id
       allow_aggregations: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - description
+      - list_id
+      - position
+      - title
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        board:
+          user_id:
+            _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: feeds
@@ -214,6 +236,7 @@
               _eq: X-Hasura-User-Id
       columns:
       - board_id
+      - id
       - name
       - position
       backend_only: false
@@ -280,6 +303,16 @@
         table:
           schema: public
           name: feeds
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - image
+      - name
+      backend_only: false
   select_permissions:
   - role: user
     permission:

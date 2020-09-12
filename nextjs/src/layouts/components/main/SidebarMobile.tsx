@@ -3,15 +3,19 @@ import {
   Drawer,
   DrawerHeader,
   Input,
-  useClickAwayOrEsc,
   XSolid,
 } from '@retail-ui/core'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
+import { useClickAway, useKey } from 'react-use'
 
+import AddInput from '@/components/AddInput'
 import Logo from '@/components/icons/Logo'
 import {
   BoardFragmentDoc,
+  BoardsQuery,
+  InsertBoardMutation,
   useBoardsQuery,
   useDeleteBoardMutation,
   useInsertBoardMutation,
@@ -28,50 +32,45 @@ const SidebarMobile: React.FC<SidebarMobileProps> = ({
 }) => {
   const { data, loading } = useBoardsQuery()
   const [isOnNewBoard, setIsOnNewBoard] = React.useState(false)
-  const [boardName, setBoardName] = React.useState('')
-
-  const handleClickAway = () => {
-    if (!boardName) {
-      setIsOnNewBoard(false)
-    }
-  }
-
-  const ref = useClickAwayOrEsc(handleClickAway)
+  const router = useRouter()
 
   /* Insert new board */
-  const [insertBoard, { loading: insertLoading }] = useInsertBoardMutation({
-    update: (cache, { data }) => {
-      cache.modify({
-        fields: {
-          boards: (existingBoards = []) => {
-            const newTodoRef = cache.writeFragment({
-              data: data?.insert_boards_one,
-              fragment: BoardFragmentDoc,
-            })
-            return [...existingBoards, newTodoRef]
-          },
-        },
-      })
-    },
-  })
+  const [insertBoard, { loading: insertLoading }] = useInsertBoardMutation()
 
   /* Delete a board */
   const [deleteBoard, { loading: deleteLoading }] = useDeleteBoardMutation()
 
-  const handleInsertBoard = async () => {
+  const handleInsertBoard = React.useCallback(async (boardName: string) => {
     try {
-      console.log(`🇻🇳 [LOG]: handleInsertBoard -> boardName`, boardName)
-      await insertBoard({
+      const { data } = await insertBoard({
         variables: {
           name: boardName,
         },
+        update: (cache, { data }) => {
+          if (data?.insert_boards_one) {
+            const cacheId = cache.identify(data.insert_boards_one)
+            if (cacheId) {
+              cache.modify({
+                fields: {
+                  boards: (existingBoards = [], { toReference }) => {
+                    // const newBoardRef = cache.writeFragment({
+                    //   data: data?.insert_boards_one,
+                    //   fragment: BoardFragmentDoc,
+                    // })
+                    // return [...existingBoards, newBoardRef]
+                    return [...existingBoards, toReference(cacheId)]
+                  },
+                },
+              })
+            }
+          }
+        },
       })
-      setBoardName('')
-      setIsOnNewBoard(false)
+      router.push(`/boards/${data?.insert_boards_one?.id}`)
     } catch (error) {
       console.log('Error: ', Object.entries(error))
     }
-  }
+  }, [])
 
   const handleDeleteBoard = async (id: number) => {
     // add popup confirm
@@ -79,9 +78,15 @@ const SidebarMobile: React.FC<SidebarMobileProps> = ({
       variables: { id },
       update: (cache) => {
         cache.evict({ id: `boards:${id}` })
+        cache.gc()
       },
     })
     console.log({ id })
+  }
+  const handleClickAway = (value: string) => {
+    if (!value) {
+      setIsOnNewBoard(false)
+    }
   }
 
   return (
@@ -110,7 +115,6 @@ const SidebarMobile: React.FC<SidebarMobileProps> = ({
                       icon={item.icon}
                       onClick={(e) => {
                         e.preventDefault()
-                        console.log('onClick')
                       }}
                     />
                     <div className={`ml-3`}>{item.name}</div>
@@ -132,49 +136,16 @@ const SidebarMobile: React.FC<SidebarMobileProps> = ({
             ))}
           </div>
 
-          <div
-            tabIndex={0}
-            role="menuitem"
-            onClick={(e) => {
-              setIsOnNewBoard(true)
-            }}
-            onKeyDown={() => {
-              return
-            }}
-            className={`flex items-center px-5 py-3 cursor-pointer hover:bg-purple-300 focus:outline-none`}
-          >
-            {!isOnNewBoard && (
-              <React.Fragment>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className={`w-6 h-6 text-purple-600 `}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className={`ml-3`}>New board</span>
-              </React.Fragment>
-            )}
-            {isOnNewBoard && (
-              <Input
-                ref={ref}
-                placeholder="Enter board name"
-                value={boardName}
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus
-                onChange={(e) => setBoardName(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleInsertBoard()
-                  }
-                }}
-              />
-            )}
+          <div className={`flex items-center px-5 py-3`}>
+            <AddInput
+              label="New board"
+              placeholder="Enter board name"
+              isCreating={isOnNewBoard}
+              setIsCreating={setIsOnNewBoard}
+              loading={insertLoading}
+              onSubmit={handleInsertBoard}
+              onClickAway={handleClickAway}
+            />
           </div>
         </div>
       </Drawer>

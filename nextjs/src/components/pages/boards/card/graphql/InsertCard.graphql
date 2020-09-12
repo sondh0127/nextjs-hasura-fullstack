@@ -1,0 +1,19 @@
+mutation InsertCard(
+  $list_id: Int!
+  $board_id: Int!
+  $description: String!
+  $title: String!
+  $position: numeric!
+) {
+  insert_cards_one(
+    object: {
+      description: $description
+      title: $title
+      position: $position
+      list_id: $list_id
+      board_id: $board_id
+    }
+  ) {
+    ...Card
+  }
+}

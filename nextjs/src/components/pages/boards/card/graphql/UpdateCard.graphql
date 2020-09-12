@@ -1,0 +1,8 @@
+mutation UpdateCard($id: Int!, $title: String!, $position: numeric!) {
+  update_cards_by_pk(
+    pk_columns: { id: $id }
+    _set: { title: $title, position: $position }
+  ) {
+    ...Card
+  }
+}

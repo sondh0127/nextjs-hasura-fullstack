@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Card,
   CardBody,
@@ -17,6 +18,7 @@ const Account = () => {
   const [name, setName] = useState('')
   const [session] = useSession()
 
+  /* Fetching */
   const {
     data: fetchUserData,
     loading: fetchUserLoading,
@@ -32,43 +34,46 @@ const Account = () => {
     }
   }, [fetchUserData])
 
-  const [
-    updateUser,
-    { loading: updateUserLoading, error: updateUserError },
-  ] = useUpdateUserMutation()
+  /* Update */
 
+  const [errorMessage, setErrorMessage] = React.useState('')
+  const [updateUser, { loading: updateUserLoading }] = useUpdateUserMutation({
+    onError: (error) => setErrorMessage(error.message),
+  })
+
+  const handleSubmit = async () => {
+    await updateUser({
+      variables: {
+        // @ts-ignore
+        userId: Number(session.id),
+        name,
+      },
+    })
+  }
+
+  const errorNode = () => {
+    if (!errorMessage) {
+      return false
+    }
+
+    return (
+      <Alert
+        color="danger"
+        size="sm"
+        content={errorMessage}
+        hasClose
+        onClose={() => setErrorMessage('')}
+      ></Alert>
+    )
+  }
+
+  /* Render */
   if (fetchUserLoading) {
     return <Loader />
   }
 
   if (fetchUserError) {
     return <p>Error: {fetchUserError.message}</p>
-  }
-
-  const handleSubmit = () => {
-    updateUser({
-      // @ts-ignore
-      userId: session.id,
-      name,
-    })
-  }
-
-  const errorNode = () => {
-    if (!updateUserError) {
-      return false
-    }
-
-    return (
-      <div
-        title="Error: "
-        // type="danger"
-        // showCloseButton
-        // isInline
-        // onClickClose={() => alert('Closed!')}
-      >
-        {updateUserError}
-      </div>
-    )
   }
 
   return (
@@ -78,7 +83,7 @@ const Account = () => {
       <Card className={`mt-4`}>
         <CardBody>
           {errorNode()}
-          <div className={`flex justify-between items-center`}>
+          <div className={`flex items-center justify-between`}>
             <InputGroup>
               <Input
                 placeholder="Name"

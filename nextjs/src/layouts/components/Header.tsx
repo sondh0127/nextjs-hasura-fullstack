@@ -6,10 +6,10 @@ import {
   Input,
   InputAddon,
   InputGroup,
-  useToggle,
 } from '@retail-ui/core'
 import { useThemeCtx } from '@retail-ui/core'
 import { Transition } from '@tailwindui/react'
+import { useToggle } from 'ahooks'
 import { signOut, useSession } from 'next-auth/client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -43,10 +43,6 @@ const routes = [
     name: 'Boards',
     href: '/boards',
   },
-  {
-    name: 'UI',
-    href: '/ui',
-  },
 ]
 
 const SessionItem: React.FC = () => {
@@ -55,20 +51,21 @@ const SessionItem: React.FC = () => {
   if (session) {
     return (
       <Dropdown>
-        <DropdownButton
-          className="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
-          aria-label="Account"
-          aria-haspopup="true"
-        >
-          <img
-            className="object-cover w-8 h-8 rounded-full"
-            src={session?.user?.image}
-            alt=""
-            aria-hidden="true"
-          />
+        <DropdownButton aria-label="Account" aria-haspopup="true">
+          {({ toggleOpen }) => (
+            <button className="align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
+              <img
+                className="object-cover w-8 h-8 rounded-full"
+                src={session?.user?.image}
+                alt="Account"
+                onClick={() => toggleOpen()}
+                aria-hidden="true"
+              />
+            </button>
+          )}
         </DropdownButton>
 
-        <DropdownList align="right">
+        <DropdownList isAlignRight>
           <DropdownItem>
             <ProfileIcon />
             <span>Profile</span>
@@ -110,7 +107,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   }, [router.pathname])
 
   return (
-    <header className="z-10 bg-white shadow-md h-14 dark:bg-gray-800">
+    <header className="z-10 bg-white shadow-md dark:bg-gray-800">
       <div className="container flex justify-between px-3 py-2 mx-auto text-purple-600 dark:text-purple-300">
         {/* Mobile hamburger  */}
         <div className={`flex items-center item`}>
@@ -188,18 +185,21 @@ const Header: React.FC<HeaderProps> = (props) => {
           </button>
           {/* Notifications menu */}
           <Dropdown>
-            <DropdownButton
-              className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
-              aria-label="Notifications"
-              aria-haspopup="true"
-            >
-              <NotificationIcon />
-              <span
-                aria-hidden="true"
-                className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
-              ></span>
+            <DropdownButton aria-label="Notifications" aria-haspopup="true">
+              {({ toggleOpen }) => (
+                <button
+                  onClick={() => toggleOpen()}
+                  className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                >
+                  <NotificationIcon />
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
+                  ></span>
+                </button>
+              )}
             </DropdownButton>
-            <DropdownList align="right">
+            <DropdownList isAlignRight>
               <DropdownItem className="justify-between">
                 <span>Messages</span>
                 <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600">

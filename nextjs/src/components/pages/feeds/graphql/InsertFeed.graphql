@@ -1,5 +1,5 @@
 mutation InsertFeed($body: String) {
   insert_feeds_one(object: { body: $body }) {
-    id
+    ...Feed
   }
 }
