@@ -12,7 +12,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "generate": "graphql-codegen --config codegen.yml --require dotenv/config",
-    "postinstall": "@prisma/cli generate"
+    "postinstall": "npx @prisma/cli generate"
   },
   "husky": {
     "hooks": {
