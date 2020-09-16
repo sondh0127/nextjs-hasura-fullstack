@@ -115,6 +115,13 @@ GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 ```
 
+> Config Authorised redirect URIs:
+
+```
+http://localhost:3000/api/auth/callback/google
+https://domailname.app/api/auth/callback/google
+```
+
 ### 6. **Start the NextJs application**
 
 ```sh
@@ -260,6 +267,14 @@ hasura metadata apply --endpoint https://nextjs-hasura-fullstack-trello.herokuap
 > TODO
 
 ---
+
+heroku login
+heroku container:login
+heroku container:push web -a appname
+heroku container:release web -a appname
+heroku open
+
+vercel
 
 ## License
 

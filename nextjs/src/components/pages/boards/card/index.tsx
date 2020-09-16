@@ -58,12 +58,11 @@ const CardTask: React.FC<CardTaskProps> = (props) => {
         <Card
           ref={innerRef}
           {...draggableProps}
-          {...dragHandleProps}
           className={`CardTask group ${
             isDragging && `border-purple-600`
           } px-2 py-3 mb-4`}
         >
-          <CardBody>
+          <CardBody {...dragHandleProps}>
             <div className={`flex items-center justify-between h-16`}>
               <div>{card.title}</div>
               <div className={`hidden group-hover:block`}>
