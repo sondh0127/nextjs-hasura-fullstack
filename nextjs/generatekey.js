@@ -8,7 +8,7 @@ async function generateKeys() {
     /* -------------------------- Copy env.example  ------------------------- */
 
     const data = fs.readFileSync('.env.example', 'utf8')
-    fs.writeFileSync('.env', data)
+    fs.writeFileSync('.env.local', data)
     console.log(
       `Copied .env.example to .env. 👌\n` +
         `Please create a Google OAuth Client( https://console.developers.google.com/apis/credentials/oauthclient) and copy the credentials to GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env\n`,

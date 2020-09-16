@@ -226,7 +226,6 @@ const BoardPage: React.FC = () => {
                         (listRef: { __ref: string }) =>
                           listRef.__ref !== cardCacheId,
                       )
-                      console.log(`🇻🇳 [LOG]: cards -> next`, next)
                       return next
                     },
                   },
@@ -318,7 +317,9 @@ const BoardPage: React.FC = () => {
     listRender = (
       <div className={`flex flex-no-wrap h-screen w-max-content`}>
         <DragDropContext
-          // onDragStart={onDragStart}
+          onDragStart={(source) => {
+            console.log(`🇻🇳 [LOG]: source`, source)
+          }}
           // onDragUpdate={onDragUpdate}
           onDragEnd={onDragEnd}
         >

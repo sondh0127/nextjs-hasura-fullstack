@@ -1,6 +1,8 @@
+import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth from 'next-auth'
+import Adapters from 'next-auth/adapters'
 import Providers from 'next-auth/providers'
 
 import Session from '@/types/session'
@@ -8,6 +10,8 @@ import Token from '@/types/token'
 import User from '@/types/user'
 
 const jwtSecret = JSON.parse(process.env.AUTH_PRIVATE_KEY || ``)
+
+const prisma = new PrismaClient()
 
 const options = {
   providers: [
@@ -17,7 +21,8 @@ const options = {
     }),
   ],
   database: process.env.DATABASE_URL,
-  // adapter: Adapters.Prisma.Adapter({ prisma }),
+  // @ts-ignore
+  adapter: Adapters.Prisma.Adapter({ prisma }),
   session: {
     jwt: true,
   },
