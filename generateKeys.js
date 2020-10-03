@@ -7,11 +7,9 @@ async function generateKeys() {
   try {
     /* -------------------------- Copy env.example  ------------------------- */
 
-    const data = fs.readFileSync('.env.example', 'utf8')
-    fs.writeFileSync('.env.local', data)
+    const frontendExample = fs.readFileSync('nextjs/.env.example', 'utf8')
     console.log(
-      `Copied .env.example to .env. 👌\n` +
-        `Please create a Google OAuth Client( https://console.developers.google.com/apis/credentials/oauthclient) and copy the credentials to GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env\n`,
+      `Please create a Google OAuth Client( https://console.developers.google.com/apis/credentials/oauthclient) and copy the credentials to GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env\n`,
     )
 
     /* -------------------------- Generate keys --------------------------- */
@@ -29,27 +27,24 @@ async function generateKeys() {
       key: privateKey,
     }
 
-    const frontendEnv =
-      `AUTH_PRIVATE_KEY='${JSON.stringify(AUTH_PRIVATE_KEY)}'\n` +
-      `HASURA_GRAPHQL_ADMIN_SECRET=secret@123\n`
-
     const HASURA_GRAPHQL_JWT_SECRET = {
       type: 'RS512',
       key: publicKey,
     }
 
-    const outputEnv =
-      frontendEnv +
-      `HASURA_GRAPHQL_JWT_SECRET='${JSON.stringify(
-        HASURA_GRAPHQL_JWT_SECRET,
-      )}'\n`
+    const frontendEnv = frontendExample + `\n` +
+      `AUTH_PRIVATE_KEY='${JSON.stringify(AUTH_PRIVATE_KEY)}'\n` +
+      `HASURA_GRAPHQL_ADMIN_SECRET=secret@123\n`
 
-    fs.writeFileSync('.env.key', outputEnv)
+    const backendEnv =
+      `HASURA_GRAPHQL_ADMIN_SECRET=secret@123\n` +
+      `HASURA_GRAPHQL_JWT_SECRET='${JSON.stringify(HASURA_GRAPHQL_JWT_SECRET,)}'\n`
+
+    fs.writeFileSync('nextjs/.env', frontendEnv)
+    fs.writeFileSync('hasura/.env', backendEnv)
 
     const logString =
-      'Secret keys was generated in .env.key 👌\n' +
-      'Edit AUTH_PRIVATE_KEY, HASURA_GRAPHQL_ADMIN_SECRET in your local nextjs/.env file\n' +
-      'Copy HASURA_GRAPHQL_JWT_SECRET, HASURA_GRAPHQL_ADMIN_SECRET to use in hasura/docker-compose.yml or in production config!\n'
+      'Secret keys was generated in nextjs/.env and hasura/.env\n'
     console.log(logString)
   } catch (err) {
     console.error(err)
