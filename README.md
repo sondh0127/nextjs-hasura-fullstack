@@ -17,15 +17,12 @@ A fullstack boilerplate which uses Hasura GraphQL Engine and Next.js to develop 
 - [Requirements](#requirements)
 - [Development Step](#development-step)
   - [1. **Clone the application**](#1-clone-the-application)
-  - [2. **Install dependencies for NextJs application**](#2-install-dependencies-for-nextjs-application)
-  - [3. **Run a generatekey.js (present in `nextjs` directory)**](#3-run-a-generatekeyjs-present-in-nextjs-directory)
-  - [4. **Add the necessary environment keys for `NextJs`**](#4-add-the-necessary-environment-keys-for-nextjs)
-  - [5. **Create Google client credentials**](#5-create-google-client-credentials)
-  - [6. **Start the NextJs application**](#6-start-the-nextjs-application)
-  - [7. **Open the Hasura packages on another terminal**](#7-open-the-hasura-packages-on-another-terminal)
-  - [8. **Add the necessary environment keys for `Hasura`**](#8-add-the-necessary-environment-keys-for-hasura)
-  - [9. **Start docker-compose**](#9-start-docker-compose)
-  - [10. **Start `Hasura console`**](#10-start-hasura-console)
+  - [2. **Run a generateKeys.js (present in root directory)**](#2-run-a-generatekeysjs-present-in-root-directory)
+  - [3. **Start `Hasura GraphQL server` with docker-compose**](#3-start-hasura-graphql-server-with-docker-compose)
+  - [4. **Start `Hasura console`**](#4-start-hasura-console)
+  - [5. **Open another terminal and install dependencies for NextJs application**](#5-open-another-terminal-and-install-dependencies-for-nextjs-application)
+  - [6. **Create Google client credentials**](#6-create-google-client-credentials)
+  - [7. **Start the NextJs application**](#7-start-the-nextjs-application)
 - [**Deployment**](#deployment)
   - [**Heroku for Hasura application**](#heroku-for-hasura-application)
   - [Hasura Config:](#hasura-config)
@@ -75,38 +72,52 @@ This boilerplate is built using the following technologies:
 git clone https://github.com/sondh0127/nextjs-hasura-fullstack
 ```
 
-### 2. **Install dependencies for NextJs application**
+### 2. **Run a generateKeys.js (present in root directory)**
 
 ```sh
-cd nextjs && yarn
+node generateKeys.js
 ```
 
-### 3. **Run a generatekey.js (present in `nextjs` directory)**
-
-```sh
-node generatekey.js
-```
-
-> It will create `.env` file and generate secret keys(store in `.env.key` file) which used to provide authentication and security for the app
+> It will create `hasura/.env` and `nextjs/.env` files which used to provide authentication and security for the app
 
 ```
 AUTH_PRIVATE_KEY  # Private key
 HASURA_GRAPHQL_JWT_SECRET  # Public key
-HASURA_GRAPHQL_ADMIN_SECRET # Backend console password
+HASURA_GRAPHQL_ADMIN_SECRET # Hasura console password
 ```
+For Backend:
 
-### 4. **Add the necessary environment keys for `NextJs`**
+### 3. **Start `Hasura GraphQL server` with docker-compose**
 
-Copy AUTH_PRIVATE_KEY and HASURA_GRAPHQL_ADMIN_SECRET from `.env.key` to your `.env` file
-
-The **AUTH_PRIVATE_KEY** and **HASURA_GRAPHQL_ADMIN_SECRET** should look like the following:
+Starting Docker by using docker-compose which will start our backend app and database services.
 
 ```sh
-AUTH_PRIVATE_KEY='{"type":"RS512","key":"..."}'
-HASURA_GRAPHQL_ADMIN_SECRET=secret@123
+cd hasura/
+docker-compose up
 ```
 
-### 5. **Create Google client credentials**
+If everything goes well, it’ll be up and running on http://localhost:8080/v1/graphql.
+
+### 4. **Start `Hasura console`**
+The `console` will help us automatically create migration and metadata for any change. [Readmore](https://hasura.io/docs/1.0/graphql/core/hasura-cli/hasura_console.html)
+
+Require [Hasura CLI](#requirements)
+
+Open console on another terminal
+```sh
+cd hasura/
+hasura console --admin-secret <HASURA_GRAPHQL_ADMIN_SECRET>
+```
+The console is running on http://localhost:9695.
+
+For Frontend:
+### 5. **Open another terminal and install dependencies for NextJs application**
+
+```sh
+cd nextjs/ && yarn
+```
+
+### 6. **Create Google client credentials**
 
 Create a new [Google OAuth Client](https://console.developers.google.com/apis/credentials/oauthclient) and copy the credentials (Client ID and Client Secret) into `.env` file.
 
@@ -122,50 +133,13 @@ http://localhost:3000/api/auth/callback/google
 https://domailname.app/api/auth/callback/google
 ```
 
-### 6. **Start the NextJs application**
+### 7. **Start the NextJs application**
 
 ```sh
 yarn dev
 ```
 
 The above command will start the application on [http://localhost:3000/](http://localhost:3000). It also watching for the change of your GraphQL to generate new code by [GraphQL Code Generator](https://graphql-code-generator.com/)
-
-### 7. **Open the Hasura packages on another terminal**
-
-```sh
-cd hasura
-```
-
-### 8. **Add the necessary environment keys for `Hasura`**
-
-Copy HASURA_GRAPHQL_ADMIN_SECRET and HASURA_GRAPHQL_ADMIN_SECRET from `.env.key` in [Step 3](#3-run-a-generatekeyjs-present-in-nextjs-directory) to `docker-compose.yml` file
-
-### 9. **Start docker-compose**
-
-We start Docker by using docker-compose which will start our backend app and database services.
-
-```sh
-docker-compose up
-```
-
-If everything goes well, it’ll be up and running on http://localhost:8080/v1/graphql.
-
-### 10. **Start `Hasura console`**
-
-Open console on another terminal
-
-```sh
-cd hasura
-```
-
-The `console` will help us automatically create migration and metadata for any change. [Readmore](https://hasura.io/docs/1.0/graphql/core/hasura-cli/hasura_console.html)
-
-The console is running on http://localhost:9695.
-Require [Hasura CLI](#requirements)
-
-```sh
-hasura console --admin-secret <HASURA_GRAPHQL_ADMIN_SECRET>
-```
 
 ---
 

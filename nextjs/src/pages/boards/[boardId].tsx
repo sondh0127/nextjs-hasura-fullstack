@@ -19,7 +19,7 @@ const Board: NextPageWithLayout<SessionProp> = ({ session }) => {
 export const getServerSideProps: GetServerSideProps<SessionProp> = async (
   ctx,
 ) => {
-  const session = await getSession(ctx as any)
+  const session = await getSession(ctx)
 
   return {
     props: { session },

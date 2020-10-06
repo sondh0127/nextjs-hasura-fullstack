@@ -1855,10 +1855,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/next-auth@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.1.4.tgz#29abde32e0593cace2e0e2a549208712d60d6d4c"
-  integrity sha512-I/z58q0mxZ5FiM5hKtPDAo/8bX/pU8xqm5LEbh5/EiFCDwwVfloyZV/rhjADzRPT6XPilQgauT3GSF+PBl0JJw==
+"@types/next-auth@^3.1.10":
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/@types/next-auth/-/next-auth-3.1.10.tgz#d9ca9957279c02ef11797e3ba4089b11ccca047f"
+  integrity sha512-elK/OUw9HhXiaL9y4etxj2CGltF+P89rcWNq/TdeIQL0a8cM26t8n1wuEyyUwJmLFa65WLfUePc1L0oqSV3Vmg==
   dependencies:
     "@types/node" "*"
     "@types/react" "*"

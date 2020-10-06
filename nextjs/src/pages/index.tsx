@@ -80,7 +80,7 @@ const IndexPage: NextPageWithLayout<IndexPageProps> = ({ session }) => {
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   ctx,
 ) => {
-  const session = await getSession(ctx as any)
+  const session = await getSession(ctx)
 
   return {
     props: {

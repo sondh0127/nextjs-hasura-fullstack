@@ -8,17 +8,6 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
-  pgadmin:
-    container_name: nextjs-hasura-fullstack-db-admin
-    image: dpage/pgadmin4
-    restart: always
-    depends_on:
-      - db
-    ports:
-      - 5050:80
-    environment:
-      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
   backend:
     container_name: nextjs-hasura-fullstack-backend
     image: nextjs-hasura-fullstack-backend
@@ -32,7 +21,7 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:@db:5432/postgres
       PORT: 8080
-      HASURA_GRAPHQL_ADMIN_SECRET: "secret@123"
-      HASURA_GRAPHQL_JWT_SECRET: '{"type":"RS512","key":"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu4BXEBSrqbS5IIJAGzR7\nuI/40Ke0YCmoXIcwOs1rYAD9OZBQq0L/GAg9/JZ6JUnqNu2wAVuYauVqlYG7xnPw\nHMgcxGdCQXk5IXPYmkMpmhFccEKRki2iTqPb4RT/VykiznCJ1OrgcL4WzfKMbR5G\nR9ze6XtHbjVMfhwsAgm2zmywXmzK/KKqX10in4rpKZQ1x625GbBAzexfusVcnUDb\nnq5OKn475XsYAG+CIJMhXGiSpDSuMhPvoIHuEsnfLqxItOHhMN2Gl+ItHQAdFDFn\nozilZVe3UDfpPEsZuyrM0JsSrhC40ao+0Sq8qZP1Zs68DIoah2eSkEpPQdalA5Co\nzwIDAQAB\n-----END PUBLIC KEY-----\n"}'
+      HASURA_GRAPHQL_ADMIN_SECRET: "${HASURA_GRAPHQL_ADMIN_SECRET}"
+      HASURA_GRAPHQL_JWT_SECRET: "${HASURA_GRAPHQL_JWT_SECRET}"
 volumes:
   db_data:

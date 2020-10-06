@@ -21,7 +21,7 @@ const Feeds: NextPageWithLayout<FeedsProps> = ({ session }) => {
 export const getServerSideProps: GetServerSideProps<FeedsProps> = async (
   ctx,
 ) => {
-  const session = await getSession(ctx as any)
+  const session = await getSession(ctx)
 
   return { props: { session } }
 }
